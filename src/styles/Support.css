@@ -1,0 +1,26 @@
+.supportmaindiv{
+    width: 100%;
+}
+.supportmaindiv nav{
+    width: 1150px;
+    height: 100%;
+}
+.support-navouternav{
+    border-bottom: 0.2px solid lightgray;
+    width: 100%;
+    height: 50px;
+    background-color: #d3d3d351;
+}
+.support-navinnernav{
+    width: 100%;
+    height: 100%;
+}
+.support-navinnernavleftside div{
+    height: 100%;
+    width: 50px;
+    border-left: 0.2px solid lightgray;
+    border-right: 0.2px solid lightgray;
+}
+.support-navinnernavleftside >svg{
+    margin-right: 20px;
+}

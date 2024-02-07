@@ -1,0 +1,118 @@
+.hotelpayment .errortravellerform{
+    color: red;
+    letter-spacing: 0.5px;
+}
+.hotelpayment nav{
+    width: 100%;
+    height: 70px;
+    border-bottom: 0.2px solid rgba(211, 211, 211, 0.545);
+}
+.hotelpayment nav svg{
+    margin-left: 150px;
+    scale: 1.2;
+    justify-content: flex-start;
+}
+.hotelpayment .hotelpaymentMaindiv{
+    width: 100%;
+}
+.hotelpayment .hotelpaymentbodydiv{
+    padding-top: 20px;
+    width: 100%;
+}
+.hotelpaymentbodydiv button{
+    color: white;
+    background-color: orangered;
+    padding: 8px 30px;
+    border-radius: 6px;
+    align-self: flex-end;
+    margin-left: 20px;
+    font-size: 16px;
+    width: fit-content;
+    
+}
+.hotelpaymentbodydiv .rightdiv{
+min-width: 200px !important;
+}
+
+.hotelpayment .hotelpaymentleftdiv{
+    width: 60%;
+}
+.hotelpayment .hotelpaymentrightdiv{
+    width: 25%;
+    align-self: flex-start;
+
+}
+.hotelpaymentcarddetails{
+    width: 95%;
+    margin-top: 20px;
+    text-wrap: wrap;
+    border: 0.2px solid rgba(211, 211, 211, 0.621);
+    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.075);
+    border-radius: 12px;
+}
+.hotelpaymentstar{
+    color: gray;
+}
+.hotelpaymentcardimage{
+    height: 100px;
+    min-width: 120px;
+    border-radius: 12px;
+}
+.hotelpaymentcardborderdotted{
+    padding: 20px;
+    position: relative;
+    border-bottom: 1px dashed lightgray;
+    margin-bottom: 10px;
+}
+.hotelpaymentcardhalfbolls1{
+    position: absolute;
+    height: 20px;
+    bottom: 0;
+    left: 0;
+    border-radius:0px 50px 50px 0px;
+    background-color: lightgray;
+    transform: translateY(50%);
+    width: 10px;
+}
+.hotelpaymentcardhalfbolls2{
+    position: absolute;
+    height: 20px;
+    bottom: 0;
+    right: 0;
+    transform: translateY(50%);
+    border-radius: 50px 0px 0px 50px;
+    background-color: lightgray;
+    width: 10px;
+
+}
+.hotelpaymentcardbottom{
+    width: 100%;
+    padding: 20px;
+}
+.hotelpaymentcardbottom >div{
+    width: 50%;
+}
+.hotelpaymentcardbottom p{
+color: gray;
+}
+.hotelpaymentcardbottom span{
+height: 60px;
+border: 1px solid lightgray;
+}
+.hotelpaymentbottomleftcard1,.hotelpaymentbottomleftcard2{
+    width: 50%;
+    height: 100%;
+}
+.hotelpaymentbottomleftcard2 p,.hotelpaymentbottomleftcard2 h3{
+align-self: flex-end;
+}
+.hotelpaymentcardbottom .smallline{
+    height: 30px !important;
+}
+.hotelpayment .flightinfo-travellerdiv> input{
+border: 0.5px solid lightgray;
+width: 500px;
+outline: none;
+height: 30px;
+padding-left: 10px;
+}

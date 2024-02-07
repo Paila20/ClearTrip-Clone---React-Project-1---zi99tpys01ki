@@ -1,0 +1,182 @@
+:root{
+  --orange:#F77728;
+  --blue:#3366CC;
+  --hoverblue:#3366cc19;
+  --white:#FFFFFF;
+  --black:#000000;
+}
+.loginBackBlur{
+  position: absolute;
+  height: 100vh;
+  width: 100vw;
+  z-index: 100000;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+.loginMainDiv{
+  position: absolute;
+  display: flex;
+  z-index: 1000000;
+  left: 50%;
+  top: 50%;  
+  transform: translate(-50%,-50%);
+  width: 800px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 5px lightgray;
+  height: 400px;
+  background-color: var(--white);
+}
+.leftlogin{
+  width: 100%;
+  background-color: rgba(255, 238, 232);
+  border-radius: 10px 0px 0px 10px;
+  height: 100%;
+}
+.rightlogin{
+  height: 100%;
+  border-radius: 0px 10px 10px 0px;
+  width: 100%;
+}
+.crossSign{
+  margin-top: 30px;
+  width: 100%;
+  /* border: 1px solid black; */
+}
+.crossSign svg{
+  float:right;
+  margin-right: 30px;
+}
+.loginform{
+  height: 80%;
+}
+.loginform fieldset{
+  margin-bottom: 15px !important;
+}
+.rightlogin fieldset{
+  width: 80%;
+  margin-top: 10px;
+  border: 1px solid black;
+  border-radius: 5px;
+}
+.rightlogin fieldset legend{
+  margin-left: 10px;
+}
+.rightlogin fieldset input{
+  font-size: 17px;
+  font-weight: 400;
+  padding-bottom: 5px;
+  color: rgba(0, 0, 0, 0.607);
+  outline: none;
+  width: 92%;
+  height: 100%;
+  border-radius: 5px;
+}
+.rightlogin .genderfieldset{
+  border: none !important;
+}
+.rightlogin .gender label{
+  justify-content: space-evenly;
+  width: 100%;
+} 
+.SubmitLogin, .SubmitSignup{
+  padding: 8px 30px;
+  background-color: var(--black);
+  color: var(--white);
+  border-radius: 5px;
+  margin-top: 30px;
+}
+.errorlogin, .errors{
+  letter-spacing: 0.3px;
+  font-weight: 500;
+  margin-top: 20px;
+  margin-bottom: -20px;
+  color: red;
+}
+.backtologin,.gotosignup{
+  color: var(--blue);
+  cursor: pointer;
+  font-size: 12px;
+  letter-spacing: -0.2px;
+  word-spacing: -0.2;
+  margin-top: 10px;
+}
+form{
+  width: 100%;
+}
+
+
+
+
+
+/* ---------------------media---------------------- */
+
+
+@media(max-width:800px) {
+  .loginBackBlur .loginMainDiv{
+    height: 600px;
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+  }
+  .loginBackBlur .leftlogin{
+    border-radius: 10px 10px 0px 0px ;
+  }
+  .loginBackBlur{
+    width: 100vw;
+  }
+  .loginBackBlur .loginform{
+    margin-top: 30px;
+  }
+  .loginBackBlur .crossSign{
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+  form{
+    margin-top: 20px;
+  }
+  .formsignup fieldset{
+    scale: 0.9;
+  }
+  .formsignup .backtologin{
+    margin-top: 0px;
+  }
+  form{
+    margin-top: 0px;
+  }
+  .formsignup fieldset{
+    scale: 0.8 !important;
+  }
+  .genderfieldset legend{
+    display: none;
+  }
+  .formsignup .errors{
+    margin-top: 0px;
+  }
+}
+
+
+@media(max-width:500px){
+
+  .loginBackBlur .rightlogin{
+    padding: none;
+  }
+  .loginBackBlur .crossSign{
+    margin-top:10px;
+  }
+}
+
+@media (max-width:370px){
+  .loginBackBlur .loginMainDiv{
+    width: 80vw;
+    height: 70vh;
+    position: relative;
+  }
+  .loginform .errorlogin{
+    margin-top: 0px;
+  }
+  .loginform .errors{
+    margin-top: 0px;
+  }
+}
+
+  
