@@ -131,7 +131,7 @@ export default function PaymentBooking() {
         }
         {donepayment &&
           <div className='backgroundwhite flexja g20 flexc'>
-            <p>{FirstName} ({Email})</p>
+            <p>{FirstName}</p>
             <p>Your Payment is Done</p>
           </div>
         }
