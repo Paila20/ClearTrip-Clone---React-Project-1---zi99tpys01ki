@@ -142,7 +142,7 @@ export default function HotelsCardInfo() {
     navigate(`/hotels/results/hotelInfo/Info?hotel_id=${dataa._id}&rooms=${rooms}&adults=${adults}&childrens=${childrens}&date=${dayOfWeek}&roomno=${sidebardata.roomNumber}`)
   }
 
-  const fetchdataHotelInputFields = async (valuee) => {
+  const fetchdataHotel = async (valuee) => {
     try {
       const response = await (await fetch(`${baseapi}/hotel?search={"location":"${valuee}"}`,
         {
@@ -183,7 +183,7 @@ export default function HotelsCardInfo() {
   }, [toggle])
   
   useEffect(() => {
-    fetchdataHotelInputFields(cityparam);
+    fetchdataHotel(cityparam);
     fetchcarddetails;
 
   }, [])
@@ -237,8 +237,9 @@ export default function HotelsCardInfo() {
                   {searchhoteldata.map((item, index) => (
                     <div key={index} className='hotelMainPageInput flexa' onClick={(e) => { e.stopPropagation(); setnavanimate({ ["hotel"]: false }); setinputvaluehotel(item.name); setinputvaluehotelid(item._id) }}><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" className="dropdown-new__item-stroke--icon listItemHover"><path strokeLinecap="round" strokeLinejoin="round" d="M20 10.182C20 16.546 12 22 12 22s-8-5.454-8-11.818c0-2.17.843-4.251 2.343-5.786A7.91 7.91 0 0 1 12 2c2.122 0 4.157.862 5.657 2.396A8.277 8.277 0 0 1 20 10.182Z" stroke='black'></path><path strokeLinecap="round" strokeLinejoin="round" d="M12 13a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" stroke='black'></path></svg>&nbsp;&nbsp;{item.name}</div>
                   ))}
-                </div>}
-              </div>
+                </div>}3
+                
+              </div> 
               <div className='dateInputUpperdynamic flexa'>
                 <div className='dateInputStaticInnerLeftdynamic flexja g5' onClick={() => { closedynamicpop("goingdate") }}>
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" className=""><path stroke="gray" strokeLinecap="round" strokeLinejoin="round" d="M16 2v4M8 2v4m-5 4h18M5 4h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Z"></path></svg>
@@ -385,32 +386,7 @@ export default function HotelsCardInfo() {
                 </div>
               </div>
             </div>
-            <div>
-              <div className='houserulesgriddiv'>
-                <div className='animationrotation1 flex flexc g5'>
-                  <h3>Restrictions</h3>
-                  <div className='flex g5'><h4>petsAllowed:</h4><p>{dataa.houseRules.restrictions.petsAllowed.toString().toUpperCase()}</p></div>
-                  <div className='flex g5'><h4>smokingAllowed:</h4><p>{dataa.houseRules.restrictions.smokingAllowed.toString().toUpperCase()}</p></div>
-                </div>
-                <div className='animationrotation2 flex flexc g5'>
-                  <h3>GuestProfile</h3>
-                  <div className='flex g5'><h4>unmarriedCouplesAllowed:</h4><p>{dataa.houseRules.guestProfile.unmarriedCouplesAllowed.toString().toUpperCase()}</p></div>
-
-                </div>
-                <div className='animationrotation3 flex flexc g10'>
-                  <h3>IdProofRelated</h3>
-                  <div className='flex g20'><h4>IdProofsAccepted:</h4><ol>{dataa.houseRules.idProofRelated.idProofsAccepted.map((item, index) => (<li key={index}>{item}</li>))}</ol></div>
-                  <div className='flex g5'><h4>LocalIdsAllowed:</h4><p>{dataa.houseRules.idProofRelated.localIdsAllowed.toString().toUpperCase()}</p></div>
-                </div>
-                <div className='animationrotation4 flex flexc g5'>
-                  <h3>childAndExtraBedPolicy</h3>
-                  <div className='flex g5'><h4>extraBedProvidedForChild:</h4><p>{dataa.childAndExtraBedPolicy.extraBedProvidedForChild.toString().toUpperCase()}</p></div>
-                  <div className='flex g5'><h4>extraBedForAdditionalGuest:</h4><p>{dataa.childAndExtraBedPolicy.extraBedForAdditionalGuest.toString().toUpperCase()}</p></div>
-                  <div className='flex g5'><h4>extraBedCharge:</h4><p>{dataa.childAndExtraBedPolicy.extraBedCharge}</p></div>
-                  <div className='flex g5'><h4>additionalInfo:</h4><p>{dataa.childAndExtraBedPolicy.additionalInfo}</p></div>
-                </div>
-              </div>
-            </div>
+            
             <div className='cardsroomsouterdiv flex flexc g20' ref={roomref}>
               <h1 id='room'>Rooms</h1>
               <div className='carousaltypecarddiv flex g20'>

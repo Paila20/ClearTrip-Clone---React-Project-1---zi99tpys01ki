@@ -259,11 +259,13 @@ span.error {
 
 .peopleClasses {
   gap: 10px;
+  /* flex-wrap :wrap; */
 }
 
 .upperClassesdiv {
   justify-content: space-between;
-  width: 350px;
+  width: 300px;
+  flex-wrap :wrap;
 }
 
 .upperClassesdiv p,

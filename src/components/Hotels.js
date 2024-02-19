@@ -53,6 +53,7 @@ export default function Hotels() {
           }
         }
       )).json();
+       console.log(response)
       setdataa(response.data.hotels);
     } catch (error) {
       alert(error);

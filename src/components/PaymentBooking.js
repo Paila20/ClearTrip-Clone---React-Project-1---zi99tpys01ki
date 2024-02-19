@@ -132,6 +132,7 @@ export default function PaymentBooking() {
         {donepayment &&
           <div className='backgroundwhite flexja g20 flexc'>
             <p>{FirstName}</p>
+            <h1>THANK YOU</h1>
             <p>Your Payment is Done</p>
           </div>
         }

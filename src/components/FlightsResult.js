@@ -168,6 +168,7 @@ export default function FlightsResult() {
                     }
                 }
             )).json();
+            console.log(response)
             setdataa(response.data.flights);
             setpageLoader(true);
             locationSetterMountingPhase();
@@ -274,9 +275,7 @@ export default function FlightsResult() {
                             <div className='datesGoing flightResultdatesGoing'>{`${flightResultdaygo}, ${flightResultmonthgo} ${flightResultdatego}`}</div>
                             {rotateButton["datego"] && <Calendar minDate={new Date()} onChange={(date) => { setflightResultdatego(date.getDate()); setcalenderdate(date); setflightResultdaygo(days[date.getDay()]); setflightResultmonthgo(months[date.getMonth()]); }} value={flightResultdatego} className="calendarForGoing flightResultcalendarGoing " />}
                         </div>
-                        {/* <div className='flightResultRightDatePicker blur flexa'>
-                            Return
-                        </div> */}
+                       
                         <div className='flightResultTraveller flexa' >
                             <div className='travellerdata flexa' onClick={() => { buttonRotate("traveller") }}>{`${travellersCount} Travellers`}</div>
                             <svg onClick={() => { buttonRotate("traveller") }} width="14" height="9" fill="currentColor" className={`t-all ml-3 ${rotateButton["traveller"] ? "rotateButtonzero" : "rotateButtonOneNinty"}`} style={{ color: "rgb(153, 153, 153)", transform: "rotate(-180deg)" }}><g fill="none" fillRule="evenodd"><path d="M15 12H-1V-4h16z"></path><path stroke="#FFF" strokeWidth="0.5" fill="currentColor" d="M11.59 8L7 3.42 2.41 8 1 6.59l6-6 6 6z"></path></g></svg>
