@@ -21,7 +21,7 @@ export default function LoginSignup({ settokenAvailability, checklogin, formClos
   const signupfun = async (e) => {
     e.preventDefault(e);
     if (signName && signEmail && signPassword && signgender) {
-      try {
+      try { 
         const response = await (await fetch(`${baseapi}/signup`,
           {
             method: "POST",

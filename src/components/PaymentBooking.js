@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react'
 import { NavLink, useLocation, useNavigate, useSearchParams } from 'react-router-dom'
 import "../styles/PaymentBooking.css"
+import { FaCheckCircle } from "react-icons/fa";
 
 export default function PaymentBooking() {
   const checkboxRef = useRef();
@@ -132,6 +133,7 @@ export default function PaymentBooking() {
         {donepayment &&
           <div className='backgroundwhite flexja g20 flexc'>
             <p>{FirstName}</p>
+            <FaCheckCircle color='green' size={200} />
             <h1>THANK YOU</h1>
             <p>Your Payment is Done</p>
           </div>

@@ -103,13 +103,14 @@ font-weight: 400;
     align-self: flex-start;
 }
 .paymentcarddiv4 .qrcodepayment{
-    height: 260px;
-    width: 210px;
+    height: 270px;
+    width: 270px;
     box-shadow: 1px 1px 10px rgba(211, 211, 211, 0.592);
     border: 0.5px solid rgba(211, 211, 211, 0.334);
     background-image: url(../../public/img/payment.png);
     background-position: center;
-    background-size: 270px;
+    background-size: auto;
+    background-repeat: no-repeat;
     border-radius: 5px;
 }
 .paymentcarddiv5{

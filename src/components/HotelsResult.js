@@ -168,6 +168,7 @@ export default function HotelsResult() {
           }
         }
       )).json();
+      console.log(response)
       settotalelementsforpagination(response.totalResults)
       setdataa(sortingincreaseordecrease(response.data.hotels))
       setloader(true);

@@ -47,7 +47,7 @@ export default function HotelsCardInfo() {
   
   function colorchanger(key){
     setcolor({})
-    setcolor((prev)=>({...prev,[key]:true}));
+    setcolor((prev)=>({...prev,[key]:true})); 
   }
 
   const scrollhandle=(ele)=>{
@@ -113,6 +113,8 @@ export default function HotelsCardInfo() {
   }
 
   function popupnavanimate(key) {
+    console.log(key)
+    console.log(navanimate)
     setnavanimate({});
     setnavanimate((prev) => ({ ...prev, [key]: !navanimate[key] }));
   }
@@ -227,7 +229,7 @@ export default function HotelsCardInfo() {
      
       {trueFinderpop() > 0 && <div className={`navbaranimatecloser  ${trueFinderpop() ? "animatedown" : "animateup"}`} onClick={() => { setnavanimate({}) }}></div>}
       {loader &&
-        <div className='HotelsResult flexa flexc'>
+        <div className='HotelsResult flexa flexc' style={{fontSize:"13px"}}>
           <div className={`navbaranimate ${trueFinderpop() > 0 ? "animatedown" : "animateup"} flexja`}>
             <div className='upperCenterdivDynamic flexja b1 g5'>
               <div className='hotelInputdynamic flexa g10' onClick={(e) => { closedynamicpop("hotel") }} >
@@ -237,7 +239,7 @@ export default function HotelsCardInfo() {
                   {searchhoteldata.map((item, index) => (
                     <div key={index} className='hotelMainPageInput flexa' onClick={(e) => { e.stopPropagation(); setnavanimate({ ["hotel"]: false }); setinputvaluehotel(item.name); setinputvaluehotelid(item._id) }}><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" className="dropdown-new__item-stroke--icon listItemHover"><path strokeLinecap="round" strokeLinejoin="round" d="M20 10.182C20 16.546 12 22 12 22s-8-5.454-8-11.818c0-2.17.843-4.251 2.343-5.786A7.91 7.91 0 0 1 12 2c2.122 0 4.157.862 5.657 2.396A8.277 8.277 0 0 1 20 10.182Z" stroke='black'></path><path strokeLinecap="round" strokeLinejoin="round" d="M12 13a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" stroke='black'></path></svg>&nbsp;&nbsp;{item.name}</div>
                   ))}
-                </div>}3
+                </div>}
                 
               </div> 
               <div className='dateInputUpperdynamic flexa'>
