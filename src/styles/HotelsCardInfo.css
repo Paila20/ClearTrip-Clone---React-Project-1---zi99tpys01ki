@@ -327,76 +327,9 @@ hr {
     justify-self: flex-end;
 }
   
-  .animationrotation1 {
-    animation: animation1 4s ease-in-out infinite;
-}
+ 
 
-.animationrotation2 {
-    animation: animation2 4s ease-in-out infinite;
-    animation-delay: 1s;
-}
-
-.animationrotation3 {
-    animation: animation3 4s ease-in-out infinite;
-    animation-delay: 3s;
-}
-
-.animationrotation4 {
-    animation: animation4 4s ease-in-out infinite;
-    animation-delay: 2s;
-}
-
-@keyframes animation1 {
-    0%{
-        scale: 1;
-    }
-    50%{
-        scale: 0.7;
-        transform: translate(120px,0px);
-    }
-    100%{
-        scale:1;
-    }
-}
-
-@keyframes animation2 {
-    0%{
-        scale: 1;
-    }
-    50%{
-        scale: 0.7;
-        transform: translate(-120px,0px);
-    }
-    100%{
-        scale:1;
-    }
-}
-
-@keyframes animation3 {
-    0%{
-        scale: 1;
-    }
-    50%{
-        scale: 0.7;
-        transform: translate(120px,0px);
-    }
-    100%{
-        scale:1;
-    }
-}
-
-@keyframes animation4 {
-    0%{
-        scale: 1;
-    }
-    50%{
-        scale: 0.7;
-        transform: translate(-120px,0px);
-   }
-   100%{
-        scale:1;
-   }
-}
+  
 
 .headerforselectortyperoom button{
     padding: 5px 30px;

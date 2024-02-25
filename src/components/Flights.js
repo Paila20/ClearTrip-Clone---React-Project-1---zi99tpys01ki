@@ -259,7 +259,7 @@ export default function Flights() {
                     {datePop.re && <Calendar minDate={datego} onChange={(date) => { setdatere(date); setactiveReDate(true); setways("two") }} value={datere} className="calendarForGoing" />}
                   </div>
                 </div>
-                <button className={`${(!flightIn || !flightOut)||samefield ? "buttondisabled" : ""}`} onClick={() => getFlights()} disabled={(!flightIn || !flightOut)||samefield}>Search flights</button>
+                <button className={`${(!flightIn || !flightOut)||samefield ? "buttondisabled" : ""}`} style={{marginRight: 40, marginLeft:10}} onClick={() => getFlights()} disabled={(!flightIn || !flightOut)||samefield}>Search flights</button>
               </div>
             </div>
           </div>

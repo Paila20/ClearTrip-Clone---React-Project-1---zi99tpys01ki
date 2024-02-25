@@ -173,7 +173,7 @@ export default function hotelpayment() {
             <div className='hotelpaymentleftdiv'>
               <div className='flightinfo-FirstPart flexa g20'>
                 <div className='flightinfo-1-logo flexja'>1</div>
-                <h1>Review your itinerary</h1>
+                <h1>Review your itinerary</h1> 
               </div>
               <div className='hotelpaymentcarddetails'>
                 <div className='hotelpaymentcardborderdotted flex flexjsb'>

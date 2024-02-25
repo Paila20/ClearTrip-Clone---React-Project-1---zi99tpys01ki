@@ -9,7 +9,7 @@ import { months,days,roomAndpeople, baseapi } from './Constant';
 export default function Hotels() {
   const navigate = useNavigate();
 
-  const [dataa, setdataa] = useState();
+  const [dataa, setdataa] = useState([]);
   const refference = useRef();
   const [datego, setdatego] = useState(new Date());
   const [daygo, setdaygo] = useState(days[datego.getDay()]);
