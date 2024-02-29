@@ -37,15 +37,19 @@ export default function LoginSignup({ settokenAvailability, checklogin, formClos
             })
           }
         )).json();
+        console.log(response);
         if (response.status == "fail" && response.message == "User already exists") {
           setexistusererror(true);
         }
 
         if (response.status == "success") {
+
           localStorage.setItem("token", JSON.stringify(response.token));
+          localStorage.setItem('userName', JSON.stringify(response.data.name))
+
           formClose(false);
           settokenAvailability(true);
-          setall((prev) => ({ ...prev, ["token"]: response.token }));
+          setall((prev) => ({ ...prev, ["token"]: response.token, ["userName"]: response.data.nam }));
         }
 
       } catch (error) {
@@ -82,11 +86,11 @@ export default function LoginSignup({ settokenAvailability, checklogin, formClos
           }
         )).json();
         if (response.status == "success") {
-          setall((prev) => ({ ...prev, ["token"]: response.token }));
           localStorage.setItem("token", JSON.stringify(response.token));
+          localStorage.setItem("userName", JSON.stringify(response.data.name));
           formClose(false);
           settokenAvailability(true);
-          setall((prev) => ({ ...prev, ["token"]: response.token }));
+          setall((prev) => ({ ...prev, ["token"]: response.token ,["userName"]: response.data.name }));
         }
         else {
           seterrorlogin(true);

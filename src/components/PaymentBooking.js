@@ -1,7 +1,8 @@
 import React, { useState, useRef } from 'react'
 import { NavLink, useLocation, useNavigate, useSearchParams } from 'react-router-dom'
-import "../styles/PaymentBooking.css"
 import { FaCheckCircle } from "react-icons/fa";
+
+import "../styles/PaymentBooking.css"
 
 export default function PaymentBooking() {
   const checkboxRef = useRef();
@@ -28,41 +29,88 @@ export default function PaymentBooking() {
   function termscheck(){
       settermserror(false);
   }
+  
   function outlineremoval(key){
     inputfill[key].style.outline="none";
     setdebiterror(false);
   }
-  function paymentdone() {
-    if (checkboxRef.current.checked) {
-      if (pop["UPI"]) {
-        if(upiinput.current.value==""){
-          upiinput.current.style.outline=`0.5px solid red`
-          setupierror(true);
-        }
-        else{
-          setdonepayment(true);
-          navigatelast();
-        }
-      }
-      else {
-        let bool=true
-        Object.keys(inputfill).forEach(item => {
-          if(inputfill[item].value==""){
-            inputfill[item].style.outline=`0.5px solid red`;
-           setdebiterror(true);
-           bool=false
-          }
-        })
-        if(bool){
-          setdonepayment(true);
-          navigatelast();
-        }
-      }
+  function Upierror(e){
+    const inputval = e.target.value;
+    const inputele = e.target;
+    if (/^[0-9A-Za-z.-]{2,256}@[A-Za-z]{2,64}$/.test(inputval)) {
+      inputele.style.outline = "1px solid green";
+      setupierror(false);
+      console.log("working..")
     }
     else {
-      settermserror(true);
+      inputele.style.outline = "1px solid red"
+      setupierror(true);
+      console.log("not working..")
     }
   }
+ 
+  function paymentdone() {
+    let isValid = true;
+    if (checkboxRef.current.checked) {
+        if (pop["UPI"]) {
+            const upiValue = upiinput.current.value.trim();
+        
+            const upiRegex = /^[0-9A-Za-z.-]{2,256}@[A-Za-z]{2,64}$/;
+            if (!upiRegex.test(upiValue)) {
+                upiinput.current.style.outline = `0.5px solid red`;
+                setupierror(true);
+            } else {
+             
+                upiinput.current.style.outline = "none";
+                setdonepayment(true);
+                navigatelast();
+            }
+        } else {
+    
+
+          Object.keys(inputfill).forEach(item => {
+            const fieldValue = inputfill[item].value;
+
+            
+            if (fieldValue === "") {
+                inputfill[item].style.outline = `0.5px solid red`;
+                setdebiterror(true);
+                isValid = false;
+            } else {
+                
+                if (item === "0" && (fieldValue.length !== 16 || isNaN(fieldValue))) {
+                  console.log(fieldValue.length)
+                    inputfill[item].style.outline = `0.5px solid red`;
+
+                    setdebiterror(true);
+                    isValid = false;
+               
+                } else if (item === "1" && (isNaN(fieldValue) || fieldValue < 1 || fieldValue > 12 || fieldValue === "")) {
+                    inputfill[item].style.outline = `0.5px solid red`;
+                    setdebiterror(true);
+                    isValid = false;
+                } else if (item === "2" && (fieldValue.length !== 4 || isNaN(fieldValue))) {
+                    inputfill[item].style.outline = `0.5px solid red`;
+                    setdebiterror(true);
+                    isValid = false;
+                } else if (item === "4" && (fieldValue.length !== 3 || isNaN(fieldValue))) {
+                    inputfill[item].style.outline = `0.5px solid red`;
+                    setdebiterror(true);
+                    isValid = false;
+                }
+            }
+        });
+    }
+
+    if (isValid) {
+        setdonepayment(true);
+        navigatelast();
+    }
+} else {
+    settermserror(true);
+}
+}
+
   function navigatelast() {
     setTimeout(() => {
       navigate("/");
@@ -87,7 +135,8 @@ export default function PaymentBooking() {
                 <div className='paymentcarddiv1result flex flexjsb'>
                   <div className='paymentcarddiv2 flex flexc g10'>
                     <h3>Enter UPI ID</h3>
-                    <input type='text' ref={upiinput} placeholder='Enter your UPI ID' onChange={()=>{setupierror(false);upiinput.current.style.outline=`none`}}></input>
+                    <input type='text' ref={upiinput} placeholder='Enter your UPI ID' onChange={(e)=>Upierror(e)}></input>
+                    {/* //{()=>{setupierror(false);upiinput.current.style.outline=`none`} */}
                     {upierror && <span>Please enter a valid UPI ID</span>}
                     <p>Payment request will be sent to the phone no. linked to your UPI ID</p>
                   </div>
@@ -127,12 +176,13 @@ export default function PaymentBooking() {
                 <p>Total, inclusive of all taxes</p>
               </div>
             </div>
-            <button className='paybuttonpayment' onClick={() => { paymentdone() }}>Pay now</button>
+            <button className='paybuttonpayment' disabled={false} onClick={() => { paymentdone() }}>Pay now</button>
           </div>
         }
         {donepayment &&
           <div className='backgroundwhite flexja g20 flexc'>
             <p>{FirstName}</p>
+            
             <FaCheckCircle color='green' size={200} />
             <h1>THANK YOU</h1>
             <p>Your Payment is Done</p>

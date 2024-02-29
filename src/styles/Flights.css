@@ -368,6 +368,8 @@ span.error {
   z-index: 100;
   border-radius: 10px;
   width: 313px;
+  max-height: 300px;
+  overflow-y: scroll;
   height: 300px;
   background-color: white;
   border: 0.5px solid lightgray;
@@ -384,7 +386,8 @@ span.error {
   z-index: 100;
   border-radius: 10px;
   width: 313px;
-  height: 300px;
+  max-height: 300px;
+  height:300px;
   background-color: white;
   border: 0.5px solid lightgray;
 }
@@ -397,6 +400,7 @@ span.error {
 }
 
 .flightInData .slidee p {
+  margin-top: 0;
   font-size: 13px;
   padding: 2px 8px;
   border-radius: 2px;
@@ -474,6 +478,7 @@ span.error {
 }
 
 .flightInData h4 {
+  padding-top: 5px;
   width: 60%;
   overflow: hidden;
   text-overflow: ellipsis;

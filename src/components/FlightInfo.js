@@ -255,7 +255,7 @@ export default function FlightInfo() {
                       }
                     </div>
                     <div className='state flexa' onClick={() => { popp("state") }} >
-                      <input type='text' className='state-input' placeholder='state (e.g. India)' value={details.dstate} disabled />
+                      <input type='text' className='state-input' placeholder='state (e.g. Alaska)' value={details.dstate} disabled />
                       <IoIosArrowDown className={pop["state"] ? "state-downarrow" : "state-uparrow"} />
                       {pop["state"] &&
                         <div className='state-pop flexa g10 flexc'>
