@@ -8,44 +8,43 @@ export default function PaymentBooking() {
   const checkboxRef = useRef();
   const inputfill = useRef([]);
   const upiinput=useRef();
+
   const navigate = useNavigate();
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   let FirstName = JSON.parse(searchParams.get("FirstName"));
-  let Email = JSON.parse(searchParams.get("Email"));
-  let amount = searchParams.get("amount");
+  let amount = searchParams.get("amount"); 
+
   const [termserror,settermserror]=useState(false)
   const [upierror,setupierror]=useState(false)
   const [debiterror,setdebiterror]=useState(false);
-
-
-
   const [donepayment, setdonepayment] = useState(false);
   const [pop, setpop] = useState({ "UPI": true });
+
   function popp(key) {
     setpop({});
     setpop((prev) => ({ ...prev, [key]: true }))
   }
-  function termscheck(){
+  function termscheck() {
       settermserror(false);
   }
   
-  function outlineremoval(key){
+  function outlineremoval(key) {
     inputfill[key].style.outline="none";
     setdebiterror(false);
   }
-  function Upierror(e){
+
+  function Upierror(e) {
     const inputval = e.target.value;
     const inputele = e.target;
     if (/^[0-9A-Za-z.-]{2,256}@[A-Za-z]{2,64}$/.test(inputval)) {
       inputele.style.outline = "1px solid green";
       setupierror(false);
-      console.log("working..")
+     
     }
     else {
       inputele.style.outline = "1px solid red"
       setupierror(true);
-      console.log("not working..")
     }
   }
  
@@ -136,7 +135,6 @@ export default function PaymentBooking() {
                   <div className='paymentcarddiv2 flex flexc g10'>
                     <h3>Enter UPI ID</h3>
                     <input type='text' ref={upiinput} placeholder='Enter your UPI ID' onChange={(e)=>Upierror(e)}></input>
-                    {/* //{()=>{setupierror(false);upiinput.current.style.outline=`none`} */}
                     {upierror && <span>Please enter a valid UPI ID</span>}
                     <p>Payment request will be sent to the phone no. linked to your UPI ID</p>
                   </div>

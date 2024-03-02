@@ -31,7 +31,7 @@ export default function HotelsResult() {
   const [logincheck, setlogincheck] = useState(false)
   const [searchhoteldata, setsearchhoteldata] = useState();
   const [inputvalue, setinputvalue] = useState(cityparam);
-  const [staticinput, setstaticinput] = useState(cityparam);
+ 
   const [profiletoggle, setprofiletoggle] = useState(false);
   const [navanimate, setnavanimate] = useState({});
   const [datego, setdatego] = useState(dateObject);
@@ -105,6 +105,7 @@ export default function HotelsResult() {
 
   function finishtoken() {
     localStorage.removeItem("token");
+    localStorage.removeItem("name");
     settokenAvailability(false);
     checklogin();
   }
@@ -119,7 +120,7 @@ export default function HotelsResult() {
     }
   }
   function navigatecurrentpage() {
-    navigate(`/hotels/results?location=${inputvalue.match(/^([^,]+)/)[1]}&rooms=${details.room}&adults=${details.adults}&childrens=${details.children}&date=${datego}`)
+    navigate(`/hotels/results?location=${inputvalue}&rooms=${details.room}&adults=${details.adults}&childrens=${details.children}&date=${datego}`)
   }
   function navigatecardinfo(hotel_id) {
     if (localStorage.getItem("token")) {
@@ -183,9 +184,9 @@ export default function HotelsResult() {
     checklogin();
   }, [])
   return (
-    <div className='HotelsResult flex flexc'>
-      {trueFinderpop() > 0 && <div className={`navbaranimatecloser  ${trueFinderpop() ? "animatedown" : "animateup"}`} onClick={() => { setnavanimate({}) }}></div>}
-      {pop[`${Object.keys(pop)[0]}`] === true && <div className='filterpopcloser' onClick={() => { setpop({}) }}></div>}
+    <div className='HotelsResult flexa flexc'>
+
+
       <div className={`navbaranimate ${trueFinderpop() > 0 ? "animatedown" : "animateup"} flexja`}>
         <div className='upperCenterdivDynamic flexja b1 g5'>
           <div>
@@ -194,10 +195,9 @@ export default function HotelsResult() {
             <input className='inputdynamic' type='text' value={inputvalue} onChange={(e) => { setinputvalue(e.target.value); fetchdataHotelInputFields(e.target.value) }} />
             {navanimate["hotel"] && <div className='popdynamichotelInput' onClick={(e) => { e.stopPropagation() }}>
               {searchhoteldata.map((item) => (
-                <>
-                <>{console.log(item)}</>
+              
                 <div className='hotelMainPageInput flexa' onClick={(e) => { e.stopPropagation(); setnavanimate({ ["hotel"]: false }); setinputvalue(item.location) }}><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" className="dropdown-new__item-stroke--icon listItemHover"><path strokeLinecap="round" strokeLinejoin="round" d="M20 10.182C20 16.546 12 22 12 22s-8-5.454-8-11.818c0-2.17.843-4.251 2.343-5.786A7.91 7.91 0 0 1 12 2c2.122 0 4.157.862 5.657 2.396A8.277 8.277 0 0 1 20 10.182Z" stroke='black'></path><path strokeLinecap="round" strokeLinejoin="round" d="M12 13a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" stroke='black'></path></svg>&nbsp;&nbsp;{item.location}</div>
-             </>
+           
               ))}
 
             </div>}
@@ -208,7 +208,11 @@ export default function HotelsResult() {
               <p>{`${datego.getDate()} ${daygo}'${datego.getFullYear().toString().match(/\d{2}$/)[0]}`}</p>
               {navanimate["goingdate"] && <Calendar minDate={new Date()} onChange={(date, e) => { e.stopPropagation(); setnavanimate({ ["goingdate"]: false }); setdatego(date); setdaygo(days[date.getDay()]); setmonthgo(months[date.getMonth()]) }} className="calendarForGoing" />}
             </div>
-           
+            <div className='datecenterline'></div>
+                <div className='dateInputStaticInnerRightdynamic flexja g5' onClick={() => { closedynamicpop("returndate") }} >
+                  <p>{`${datego.getDate()} ${daygo}'${datego.getFullYear().toString().match(/\d{2}$/)[0]}`}</p>
+                  {navanimate["returndate"] && <Calendar minDate={datego} onChange={(date, e) => { e.stopPropagation(); setnavanimate({ ["returndate"]: false }); }} className="calendarForGoing" />}
+                </div>
           </div>
           <div className='roomsAndGuestsdynamic flexja g5' onClick={() => { closedynamicpop("room") }}>
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" className=""><path stroke="gray" strokeLinecap="round" strokeLinejoin="round" d="M16 2v4M8 2v4m-5 4h18M5 4h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Z"></path></svg>
@@ -285,7 +289,7 @@ export default function HotelsResult() {
               <nav className='navUpperHome'>
                 {!tokenAvailability && <button className='loginoutBtn' onClick={() => setlogincheck(true)}>Log in / Sign up</button>}
                 {tokenAvailability && <button className='profileBtn flexja' onClick={(e) => { setprofiletoggle(!profiletoggle) }} ><svg viewBox="0 0 14 14" height="16px" width="16px" className="c-inherit"><g fill="none" fillRule="evenodd"><rect width="14" height="14" fill="#FFF" opacity="0"></rect><circle cx="7" cy="7" r="6.25" stroke="currentColor" strokeWidth="1.5"></circle><path fill="currentColor" d="M3,5 C4.38071187,5 5.5,3.88071187 5.5,2.5 C5.5,1.11928813 4.38071187,0 3,0 C1.61928813,0 0.5,1.11928813 0.5,2.5 C0.5,3.88071187 1.61928813,5 3,5 Z" transform="matrix(-1 0 0 1 10 3)"></path><path fill="currentColor" d="M7,9 C9.14219539,9 10.8910789,10.6839685 10.9951047,12.8003597 L11,13 L3,13 C3,10.790861 4.790861,9 7,9 Z"></path><circle cx="7" cy="7" r="7.75" stroke="#FFF" strokeWidth="1.5"></circle></g></svg>
-                {JSON.parse(localStorage.getItem('userName'))}
+                {JSON.parse(localStorage.getItem('name'))}
                   {profiletoggle &&
                     <div className='profilePop flexja flexc'>
 
@@ -309,7 +313,7 @@ export default function HotelsResult() {
                           <NavLink to="/maintenance"><p className='profileSelectors rightPS flexa'><svg viewBox="0 0 14 14" height="16" width="16" className="c-secondary-500"><g fill="none" fillRule="evenodd"><rect width="14" height="14" fill="#FFF" opacity="0"></rect><path fill="currentColor" fillRule="nonzero" d="M5.5,1 C5.5,1.82842712 6.17157288,2.5 7,2.5 C7.82842712,2.5 8.5,1.82842712 8.5,1 L11,1 C11.5522847,1 12,1.44771525 12,2 L12,12 C12,12.5522847 11.5522847,13 11,13 L8.5,13 C8.5,12.1715729 7.82842712,11.5 7,11.5 C6.17157288,11.5 5.5,12.1715729 5.5,13 L3,13 C2.44771525,13 2,12.5522847 2,12 L2,2 C2,1.44771525 2.44771525,1 3,1 L5.5,1 Z M4.402,2.499 L3.5,2.499 L3.5,6 L5,6 L5,7.5 L3.5,7.5 L3.5,11.499 L4.402,11.499 L4.46706391,11.3917355 C4.96982923,10.6015566 5.83218191,10.0625441 6.82372721,10.0050927 L7,10 C8.06512059,10 9.00059634,10.5550755 9.53293609,11.3917355 L9.597,11.499 L10.5,11.499 L10.5,7.5 L9,7.5 L9,6 L10.5,6 L10.5,2.499 L9.597,2.499 L9.53293609,2.60826455 C9.03017077,3.39844335 8.16781809,3.93745585 7.17627279,3.99490731 L7,4 C5.93487941,4 4.99940366,3.44492446 4.46706391,2.60826455 L4.402,2.499 Z M8,6 L8,7.5 L6,7.5 L6,6 L8,6 Z"></path></g></svg><p>print hotel voucher</p></p></NavLink>
                         </div>
                       </div>
-                      <div className='SignoutBtn' onClick={() => { finishtoken(); setall((prev) => ({ ...prev, ["token"]: "" })) }}>Log out</div>
+                      <div className='SignoutBtn' onClick={() => { finishtoken(); setall((prev) => ({ ...prev, ["token"]: "", ["name"]: "" })) }}>Log out</div>
                     </div>}
                 </button>}
               </nav>

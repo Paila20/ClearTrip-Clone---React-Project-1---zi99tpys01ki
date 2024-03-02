@@ -153,7 +153,7 @@ export default function Flights() {
     dateprintgo();
     dateprintre();
     setdatePop({ go: false, re: false });
-    // setflightInOutPop({ in: false, out: false })
+    //  setflightInOutPop({ in: false, out: false })
   }, [
     adult,
     children,
@@ -172,10 +172,10 @@ export default function Flights() {
     setflightInOutPop({});
     setflightIn(e.target.value);
     setflightInOutPop({ ["in"]: !flightInOutPop["in"] });
-    const inputValue = e.target.value.trim(); // Remove whitespace
+    const inputValue = e.target.value.trim(); 
 
     const searchedValue = objdropdowncity.filter((item) => {
-      return item.fname.includes(inputValue); // Use lowercase for case-insensitive comparison
+      return item.fname.includes(inputValue); 
     });
 
     setSearchedcityIn(searchedValue);
@@ -185,10 +185,10 @@ export default function Flights() {
     setflightInOutPop({});
     setflightOut(e.target.value);
     setflightInOutPop({ ["out"]: !flightInOutPop["out"] });
-    const inputValue = e.target.value.trim(); // Remove whitespace
+    const inputValue = e.target.value.trim(); 
 
     const searchedValue = objdropdowncity.filter((item) => {
-      return item.fname.includes(inputValue); // Use lowercase for case-insensitive comparison
+      return item.fname.includes(inputValue); 
     });
 
     setSearchedcityOut(searchedValue);

@@ -227,7 +227,7 @@ export default function HotelsCardInfo() {
         </div>
       }
      
-      {trueFinderpop() > 0 && <div className={`navbaranimatecloser  ${trueFinderpop() ? "animatedown" : "animateup"}`} onClick={() => { setnavanimate({}) }}></div>}
+
       {loader &&
         <div className='HotelsResult flexa flexc' style={{fontSize:"13px"}}>
           <div className={`navbaranimate ${trueFinderpop() > 0 ? "animatedown" : "animateup"} flexja`}>

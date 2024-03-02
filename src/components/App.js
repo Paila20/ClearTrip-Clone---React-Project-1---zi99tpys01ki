@@ -11,6 +11,7 @@ import PaymentBooking from './PaymentBooking';
 import HotelsCardInfo from './HotelsCardInfo';
 import Hotelpayment from '../SmallComp/Hotelpayment';
 import { Maintenance } from '../SmallComp/Maintenance';
+import LoginSignup from '../SmallComp/LoginSignup';
 
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
         <Route path="/flights"  element={<Flights/>}/>
         <Route path="/hotels" element={<Hotels/>}/>
         </Route>
+        <Route path="/loginsignup" element={<LoginSignup />}/>        
         <Route path="/flights/:results" element={<Flightsresult/>}/>
         <Route path="/hotels/:results" element={<HotelsResult/>}/>
         <Route path="/flights/results/:Info" element={<FlightInfo/>}/>
