@@ -5,7 +5,7 @@ import { useAuthContext } from '../components/ContextAllData';
 import { baseapi } from '../components/Constant';
 
 
-export default function LoginSignup({ settokenAvailability, checklogin, formClose }) {
+export default function LoginSignup({ settokenAvailability, checklogin, setlogincheck }) {
   const [pagination, setpagination] = useState(true);
   const { all, setall } = useAuthContext();
   const [error, seterror] = useState(false);
@@ -47,7 +47,7 @@ export default function LoginSignup({ settokenAvailability, checklogin, formClos
           localStorage.setItem("token", JSON.stringify(response.token));
           localStorage.setItem("name", JSON.stringify(response.data.name))
 
-          formClose(false);
+          setlogincheck(false);
           settokenAvailability(true);
           setall((prev) => ({ ...prev, ["token"]: response.token}));
           setall((prev) => ({ ...prev, ["name"]: response.data.name}));
@@ -89,7 +89,7 @@ export default function LoginSignup({ settokenAvailability, checklogin, formClos
         if (response.status == "success") {
           localStorage.setItem("token", JSON.stringify(response.token));
           localStorage.setItem("name", JSON.stringify(response.data.name));
-          formClose(false);
+          setlogincheck(false);
           settokenAvailability(true);
           setall((prev) => ({ ...prev, ["token"]: response.token}));
           setall((prev) => ({ ...prev, ["name"]: response.data.name}));
@@ -118,7 +118,7 @@ export default function LoginSignup({ settokenAvailability, checklogin, formClos
         <div className='leftlogin'><CarouselThree /></div>
         <div className='rightlogin flexa flexc'>
           <div className='crossSign'>
-            <svg onClick={() => { formClose(false); setTimeout(() => { checklogin(); }, 20000); }} width="22" height="22" viewBox="0 0 24 24" fill="none" className=" c-pointer c-neutral-900"><path d="M18 6L12 12M12 12L6 18M12 12L6 6M12 12L18 18" stroke="#1A1A1A" strokeLinecap="round" strokeLinejoin="round"></path></svg>
+            <svg onClick={() => { setTimeout(() => { checklogin(); }, 20000); }} width="22" height="22" viewBox="0 0 24 24" fill="none" className=" c-pointer c-neutral-900"><path d="M18 6L12 12M12 12L6 18M12 12L6 6M12 12L18 18" stroke="#1A1A1A" strokeLinecap="round" strokeLinejoin="round"></path></svg>
           </div>
           {pagination ?
             (<form className='flexja flexc loginform' onSubmit={(e) => loginfun(e)}>

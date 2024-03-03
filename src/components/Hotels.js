@@ -38,7 +38,7 @@ export default function Hotels() {
 
   function navigateToHotelResults() {
     if (inputvalue != "") {
-      navigate(`/hotels/results?location=${inputvalue.match(/^([^,]+)/)[1]}&rooms=${rooms}&adults=${adults}&childrens=${childrens}&date=${datego}`)
+      navigate(`/hotels/results?location=${inputvalue}&rooms=${rooms}&adults=${adults}&childrens=${childrens}&date=${datego}`)
     }
   }
 

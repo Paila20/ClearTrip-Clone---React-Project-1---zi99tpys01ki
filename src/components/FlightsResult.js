@@ -186,7 +186,7 @@ export default function FlightsResult() {
 
     return (
         <div className='flightResultMain flex flexc'>
-            {logincheck && <LoginSignup settokenAvailability={settokenAvailability} checklogin={checklogin} formClose={setlogincheck} />}
+            {logincheck && <LoginSignup settokenAvailability={settokenAvailability} checklogin={checklogin} setlogincheck={setlogincheck} />}
             <nav className='navFlightResults flexja'>
                 <div className='innernav'>
                     <div>
