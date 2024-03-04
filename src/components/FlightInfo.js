@@ -20,6 +20,22 @@ export default function FlightInfo() {
     
     return departureDate;
   }
+  function enddate() {
+    const departureDate = startdate();
+    const arrivalDate = new Date(departureDate);
+
+    const [departureHours, departureMinutes] = dataa.departureTime.split(":");
+    const [arrivalHours, arrivalMinutes] = dataa.arrivalTime.split(":");
+
+    arrivalDate.setHours(arrivalHours, arrivalMinutes);
+
+    if (arrivalDate < departureDate) {
+        arrivalDate.setDate(arrivalDate.getDate() + 1);
+    }
+
+    return arrivalDate;
+}
+
 
   
 
