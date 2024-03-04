@@ -21,22 +21,7 @@ export default function FlightInfo() {
     return departureDate;
   }
 
-  function enddate(){
-    const [departureHours, departureMinutes] = dataa.departureTime.split(":");
-    const [arrivalHours, arrivalMinutes] = dataa.arrivalTime.split(":");
-    const arrivalDate = new Date(dateObject);
-    if(departureHours>arrivalHours){
-    arrivalDate.setHours(arrivalHours,arrivalMinutes);
-    }
-    else if(departureHours==arrivalHours){
-      arrivalDate.setHours(arrivalHours,departureMinutes+arrivalMinutes)
-    }
-    else{
-      arrivalDate.setHours(departureHours+arrivalHours,departureMinutes+arrivalMinutes)
-    }
   
-    return arrivalDate;
-  }
 
   const { details, setdetails } = detailssStatefun();
   const [pageLoader, setpageLoader] = useState(false);

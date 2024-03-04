@@ -51,11 +51,9 @@ export default function FlightsResult() {
     const [togglecardfulldetails, settogglecardfulldetails] = useState({});
     const [valuee, setvaluee] = useState(2500);
 
-    function airlineSelector(key) {
-        setTimeout(() => {
-            setfilter((prev) => ({ ...prev, [key]: !filter[key] }));
-        }, 10);
-    }
+    useEffect(() => {},[logincheck])
+
+  
     function airlineSelectorwithvalue(key, value) {
         setTimeout(() => {
             if (filter[key] == value) {
@@ -147,9 +145,7 @@ export default function FlightsResult() {
 
     function checklogin() {
         const token = JSON.parse(localStorage.getItem("token")) || [];
-        if (typeof token == "object") {
-            setlogincheck((e) => true);
-        }
+      
         if (typeof token == "string") {
             settokenAvailability(true)
         }
@@ -371,7 +367,7 @@ export default function FlightsResult() {
                             <div className={flightResultsortingnav["arrivalTime"] ? "activesortingnavColor" : flightResultsortingnav["arrivalTime"] == false ? "activesortingnavColor" : null} onClick={() => { sortingnav("arrivalTime") }}>Arrival &nbsp;{(flightResultsortingnav["arrivalTime"] == false && <svg viewBox="0 0 5 8" fill="currentColor" width="7px" height="12px" style={{ transform: `rotate(${-180}deg)` }}><path d="M0 4.688l2.073.006L2.08 0l.823.013.005 4.679L5 4.695 2.483 8z" fillRule="evenodd"></path></svg>)}{(flightResultsortingnav["arrivalTime"] == true && <svg viewBox="0 0 5 8" fill="currentColor" width="7px" height="12px" ><path d="M0 4.688l2.073.006L2.08 0l.823.013.005 4.679L5 4.695 2.483 8z" fillRule="evenodd"></path></svg>)}</div>
                             <div   style={{marginRight: 200}} className={flightResultsortingnav["ticketPrice"] ? "activesortingnavColor" : flightResultsortingnav["ticketPrice"] == false ? "activesortingnavColor" : null} onClick={() => { sortingnav("ticketPrice") }}>Price &nbsp;{(flightResultsortingnav["ticketPrice"] == false && <svg viewBox="0 0 5 8" fill="currentColor" width="7px" height="12px" style={{ transform: `rotate(${-180}deg)` }}><path d="M0 4.688l2.073.006L2.08 0l.823.013.005 4.679L5 4.695 2.483 8z" fillRule="evenodd"></path></svg>)}{(flightResultsortingnav["ticketPrice"] == true && <svg viewBox="0 0 5 8" fill="currentColor" width="7px" height="12px" ><path d="M0 4.688l2.073.006L2.08 0l.823.013.005 4.679L5 4.695 2.483 8z" fillRule="evenodd"></path></svg>)}</div>
                           
-                        </nav>  
+                        </nav>   
                         <div className='flightResultData'>
                             {dataa.map((item, index) => (filter[`${item.flightID[0]}${item.flightID[1]}`] && <div className='countvisibility'>{count++}</div> && (
                                 <div className='flightResultcardOuter flexja flexc'>

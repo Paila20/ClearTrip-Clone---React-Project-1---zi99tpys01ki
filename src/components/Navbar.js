@@ -14,9 +14,7 @@ export default function Navbar() {
 
     function checklogin() {
         const token = JSON.parse(localStorage.getItem("token")) || [];
-        if (typeof token == "object") {
-            setlogincheck((e) => true);
-        }
+       
         if (typeof token == "string") {
             settokenAvailability(true)
         }

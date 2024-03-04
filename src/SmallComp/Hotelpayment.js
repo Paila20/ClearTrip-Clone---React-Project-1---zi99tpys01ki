@@ -33,7 +33,7 @@ export default function hotelpayment() {
 
   function popp(key) {
     setpop({});
-    setpop((prev) => ({ ...prev, [key]: !pop[key] }));
+    setpop((prev) => ({ ...prev, [key]: !pop[key] })); 
   }
 
   function personalInfosenderone(e) {

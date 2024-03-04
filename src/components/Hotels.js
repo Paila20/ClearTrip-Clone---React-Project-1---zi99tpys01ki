@@ -42,7 +42,7 @@ export default function Hotels() {
     }
   }
 
-  const fetchdataHotelInputFields = useCallback(async (valuee) => {
+  const fetchdataHotelInputFields = async (valuee) => {
     try {
       const response = await (await fetch(`${baseapi}/hotel?search={"location":"${valuee}"}`,
         {
@@ -53,14 +53,14 @@ export default function Hotels() {
           }
         }
       )).json();
-        console.log(response)
+   
       const arr = response.data.hotels.map(item=>{return item.location})
        setdataa(new Set(arr));
-      // setdataa(response.data.hotels);
+     
     } catch (error) {
       alert(error);
     }
-  },[inputvalue])
+  }
   useEffect(() => {
     fetchdataHotelInputFields("");
   }, [])

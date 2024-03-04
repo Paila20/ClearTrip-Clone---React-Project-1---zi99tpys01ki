@@ -50,63 +50,37 @@ export default function HotelsCardInfo() {
     setcolor((prev)=>({...prev,[key]:true})); 
   }
 
-  const scrollhandle=(ele)=>{
-    if(ele.current){
-    window.scrollTo({top:ele.current.offsetTop-150,behavior:'smooth'});
+  const scrollhandle = (ele) => {
+    if (ele.current) {
+        window.scrollTo({ top: ele.current.offsetTop - 150, behavior: 'smooth' });
     }
-  }
-  
-  window.addEventListener("scroll",scrolleffect)
+}
 
-  function scrolleffect(){
-    if(roomref.current && amenitieref.current && generalref.current){
-    if(window.scrollY>=roomref.current.offsetTop-151){
-      colorchanger("rooms");
-    }
-    else if(window.scrollY>=amenitieref.current.offsetTop-151){
-      colorchanger("amenities");
-    }
-    else if(window.scrollY>=generalref.current.offsetTop-151){
-      colorchanger("general");
-    }
-  }
-  if(carddivbuttonroom.current && navdivbuttonroom.current){
-    if(window.scrollY>=carddivbuttonroom.current.offsetTop-0){
-      navdivbuttonroom.current.style.opacity=1;
-    }
-    else if(window.scrollY>=carddivbuttonroom.current.offsetTop-10){
-      navdivbuttonroom.current.style.opacity=0.9;
-    }
-    else if(window.scrollY>=carddivbuttonroom.current.offsetTop-20){
-      navdivbuttonroom.current.style.opacity=0.8;
-    }
-    else if(window.scrollY>=carddivbuttonroom.current.offsetTop-30){
-      navdivbuttonroom.current.style.opacity=0.7;
-    }
-    else if(window.scrollY>=carddivbuttonroom.current.offsetTop-40){
-      navdivbuttonroom.current.style.opacity=0.6;
-    }
-    else if(window.scrollY>=carddivbuttonroom.current.offsetTop-50){
-      navdivbuttonroom.current.style.opacity=0.5;
-    }
-    else if(window.scrollY>=carddivbuttonroom.current.offsetTop-60){
-      navdivbuttonroom.current.style.opacity=0.4;
-    }
-    else if(window.scrollY>=carddivbuttonroom.current.offsetTop-70){
-      navdivbuttonroom.current.style.opacity=0.3;
-    }
-    else if(window.scrollY>=carddivbuttonroom.current.offsetTop-80){
-      navdivbuttonroom.current.style.opacity=0.2;
-    }
-    else if(window.scrollY>=carddivbuttonroom.current.offsetTop-90){
-      navdivbuttonroom.current.style.opacity=0.1;
-    }
-    else{
-      navdivbuttonroom.current.style.opacity=0;
-    }
+window.addEventListener("scroll", scrolleffect);
+
+function scrolleffect() {
+  const scrollY = window.scrollY;
+
+  const roomOffset = roomref?.current?.offsetTop || 0;
+  const amenityOffset = amenitieref?.current?.offsetTop || 0;
+  const generalOffset = generalref?.current?.offsetTop || 0;
+  const cardOffset = carddivbuttonroom?.current?.offsetTop || 0;
+
+  if (roomref.current && amenitieref.current && generalref.current) {
+      if (scrollY >= roomOffset - 151) {
+          colorchanger("rooms");
+      } else if (scrollY >= amenitieref.current.offsetTop - 151) {
+          colorchanger("amenities");
+      } else if (scrollY >= generalref.current.offsetTop - 151) {
+          colorchanger("general");
+      }
   }
 
+  if (carddivbuttonroom.current && navdivbuttonroom.current) {
+      const opacity = Math.max(0, 1 - (scrollY - cardOffset) / 10);
+      navdivbuttonroom.current.style.opacity = opacity;
   }
+}
   
   function fulldetailpagedirectionchanger() {
     setroomcarddetailspop(!roomcarddetailspop)
@@ -128,17 +102,15 @@ export default function HotelsCardInfo() {
     key1 == "increase" ? setdetails((prev) => ({ ...prev, [key2]: details[key2] + 1 })) : setdetails((prev) => ({ ...prev, [key2]: details[key2] - 1 }));
   }
 
+  function trueFinderpop() {
+    return Object.keys(navanimate).length;
+}
+
+
   function navigatecurrentpage() {
     navigate(`/hotels/results/hotelInfo?hotel_id=${inputvaluehotelid}&location=${inputvaluehotel}&rooms=${details.room}&adults=${details.adults}&childrens=${details.children}&date=${dateObject}`)
   }
-  function trueFinderpop() {
-    if (Object.keys(navanimate).length === 0) {
-      return 0;
-    }
-    else {
-      return Object.keys(navanimate).length
-    }
-  }
+ 
 
   function navigatedetailspage(){
     navigate(`/hotels/results/hotelInfo/Info?hotel_id=${dataa._id}&rooms=${rooms}&adults=${adults}&childrens=${childrens}&date=${dayOfWeek}&roomno=${sidebardata.roomNumber}`)
@@ -190,23 +162,29 @@ export default function HotelsCardInfo() {
 
   }, [])
 
-  function colorratingmanager(rating) {
-    if(dataa){
-    let count = 1;
-    while (count <= rating && colorrating[count - 1]) {
-      colorrating[count - 1].style.backgroundColor = "#00aa6c";
-      count++;
-    }
-    let ans = rating % 1;
-    if (ans > 0) {
+
+function colorratingmanager(rating) {
+  if (!dataa) return; 
+
+  let count = 0; 
+
+  for (count = 0; count < rating; count++) {
+      if (colorrating[count]) {
+          colorrating[count].style.backgroundColor = "#00aa6c";
+      }
+  }
+
+  const ans = rating % 1;
+  if (ans > 0 && colorratinghalf[count - 1]) {
       colorratinghalf[count - 1].style.backgroundColor = "#00aa6c";
-    }
   }
 }
 
+
+
   return (
     <div className='hotelcardinfo flex flexc'>
-      {roomcarddetailspop && <div className='fullinforoomclearner' onClick={() => { fulldetailpagedirectionchanger() }}></div>}
+
       {Object.keys(sidebardata).length != 0 &&
         <div className={`sideinforoomdiv flex flexc g20 ${roomcarddetailspop ? "roomcarddetailspopPosition" : ""}`}>
           <div className='flex flexc g10'>
@@ -298,7 +276,7 @@ export default function HotelsCardInfo() {
             <button onClick={() => { setnavanimate({}); navigatecurrentpage(); settoggle(!toggle) }}>Update</button>
           </div>
 
-          {logincheck && <LoginSignup settokenAvailability={settokenAvailability} checklogin={checklogin} formClose={setlogincheck} />}
+
           <nav className='navFlightResults flexja'>
             <div className='innernav'>
               <div className='uppernav flexa'>
@@ -351,16 +329,22 @@ export default function HotelsCardInfo() {
                     <h1>{dataa.name}&nbsp;-&nbsp;{dataa.location.match(/^([^,]+)/)[1]}</h1>
                     <span>{dataa.amenities.length}-star Hotel,{dataa.location.match(/^([^,]+)/)[1]}</span>
                   </div>
+                  
                   <span className='flexa'>
-                    {(dataa.rating == 5 || dataa.rating == 4 || dataa.rating == 3 || dataa.rating == 2 || dataa.rating == 1) ? `${dataa.rating}.0` : dataa.rating}/5
-                    &nbsp; &nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="18" height="12" fill="none" viewBox="0 0 18 12" className="hotelcardinfo-ownlogo"><path fill="#1a1a1a" d="M16.603 3.717L18 2.202h-3.097a9.696 9.696 0 00-10.886 0H.912l1.397 1.515A4.257 4.257 0 00.914 6.676a4.243 4.243 0 001.121 3.072 4.269 4.269 0 002.977 1.373 4.283 4.283 0 003.075-1.137l1.369 1.485 1.368-1.483a4.26 4.26 0 002.9 1.133 4.264 4.264 0 004.271-4.256 4.234 4.234 0 00-1.392-3.146zM5.186 9.742a2.896 2.896 0 01-2.67-1.778 2.871 2.871 0 01.627-3.138 2.892 2.892 0 013.148-.624 2.887 2.887 0 011.784 2.66A2.872 2.872 0 017.229 8.9a2.89 2.89 0 01-2.043.843zm4.27-2.963c0-1.895-1.384-3.521-3.207-4.217a8.361 8.361 0 016.413 0c-1.823.696-3.206 2.322-3.206 4.217zm4.268 2.963a2.896 2.896 0 01-2.669-1.778 2.872 2.872 0 01.626-3.138 2.892 2.892 0 013.15-.624 2.887 2.887 0 011.783 2.66c0 .764-.305 1.497-.847 2.037a2.894 2.894 0 01-2.043.843zm0-4.39a1.518 1.518 0 00-1.399.933 1.504 1.504 0 00.328 1.645 1.516 1.516 0 002.586-1.068c0-.4-.16-.784-.444-1.067a1.517 1.517 0 00-1.07-.442zM6.7 6.863a1.506 1.506 0 01-.935 1.395 1.52 1.52 0 01-1.65-.327 1.508 1.508 0 011.07-2.577 1.518 1.518 0 011.401.931c.076.184.115.38.115.578z"></path></svg>
-                    &nbsp;&nbsp;
-                    <div className='hotelcardinfo-colorrating' ref={(e) => { colorrating[0] = e }}><div className='hotelcardinfo-colorratinghalf' ref={(e) => { colorratinghalf[0] = e }}></div></div>
-                    <div className='hotelcardinfo-colorrating' ref={(e) => { colorrating[1] = e }}><div className='hotelcardinfo-colorratinghalf' ref={(e) => { colorratinghalf[1] = e }}></div></div>
-                    <div className='hotelcardinfo-colorrating' ref={(e) => { colorrating[2] = e }}><div className='hotelcardinfo-colorratinghalf' ref={(e) => { colorratinghalf[2] = e }}></div></div>
-                    <div className='hotelcardinfo-colorrating' ref={(e) => { colorrating[3] = e }}><div className='hotelcardinfo-colorratinghalf' ref={(e) => { colorratinghalf[3] = e }}></div></div>
-                    <div className='hotelcardinfo-colorrating' ref={(e) => { colorrating[4] = e }}><div className='hotelcardinfo-colorratinghalf' ref={(e) => { colorratinghalf[4] = e }}></div></div>
+                   {dataa.rating >= 1 && dataa.rating <= 5 ? `${dataa.rating}.0` : dataa.rating}/5
+                     &nbsp;&nbsp;
+                     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="12" fill="none" viewBox="0 0 18 12" className="hotelcardinfo-ownlogo">
+                     <path fill="#1a1a1a" d="M16.603 3.717L18 2.202h-3.097a9.696 9.696 0 00-10.886 0H.912l1.397 1.515A4.257 4.257 0 00.914 6.676a4.243 4.243 0 001.121 3.072 4.269 4.269 0 002.977 1.373 4.283 4.283 0 003.075-1.137l1.369 1.485 1.368-1.483a4.26 4.26 0 002.9 1.133 4.264 4.264 0 004.271-4.256 4.234 4.234 0 00-1.392-3.146zM5.186 9.742a2.896 2.896 0 01-2.67-1.778 2.871 2.871 0 01.627-3.138 2.892 2.892 0 013.148-.624 2.887 2.887 0 011.784 2.66A2.872 2.872 0 017.229 8.9a2.89 2.89 0 01-2.043.843zm4.27-2.963c0-1.895-1.384-3.521-3.207-4.217a8.361 8.361 0 016.413 0c-1.823.696-3.206 2.322-3.206 4.217zm4.268 2.963a2.896 2.896 0 01-2.669-1.778 2.872 2.872 0 01.626-3.138 2.892 2.892 0 013.15-.624 2.887 2.887 0 011.783 2.66c0 .764-.305 1.497-.847 2.037a2.894 2.894 0 01-2.043.843zm0-4.39a1.518 1.518 0 00-1.399.933 1.504 1.504 0 00.328 1.645 1.516 1.516 0 002.586-1.068c0-.4-.16-.784-.444-1.067a1.517 1.517 0 00-1.07-.442zM6.7 6.863a1.506 1.506 0 01-.935 1.395 1.52 1.52 0 01-1.65-.327 1.508 1.508 0 011.07-2.577 1.518 1.518 0 011.401.931c.076.184.115.38.115.578z"></path>
+                     </svg>
+                      &nbsp;&nbsp;
+                     {Array.from({ length: 5 }).map((_, index) => (
+                     <div key={index} className='hotelcardinfo-colorrating' ref={(e) => { colorrating[index] = e }}>
+                     <div className='hotelcardinfo-colorratinghalf' ref={(e) => { colorratinghalf[index] = e }}></div>
+                     </div>
+                     ))}
                   </span>
+
+
                   <div className='hotelcardinfo-cancellationdiv'>
                     <div className='flex g10'><div><GiSparkles className='hotelcardinfo-cancellationdivlogo' /></div><div><h4>Cancellation till check-in available</h4><p>With Cancel For No Reason powered by Cleartrip</p></div></div>
                     <div className='flex g10'><div><MdOutlineVerified className='hotelcardinfo-cancellationdivlogo' /></div><div><h4>Best in className service</h4><p>Service at this property rated 5.0</p></div></div>
