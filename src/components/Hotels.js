@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useNavigate, Link } from 'react-router-dom';
 import "../styles/Hotels.css";
 import Calendar from 'react-calendar';
@@ -10,7 +10,6 @@ export default function Hotels() {
   const navigate = useNavigate();
 
   const [dataa, setdataa] = useState([]);
-  const refference = useRef();
   const [datego, setdatego] = useState(new Date());
   const [daygo, setdaygo] = useState(days[datego.getDay()]);
   const [monthgo, setmonthgo] = useState(months[datego.getMonth()])

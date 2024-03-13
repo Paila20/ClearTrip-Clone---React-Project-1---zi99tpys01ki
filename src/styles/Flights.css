@@ -259,13 +259,22 @@ span.error {
 
 .peopleClasses {
   gap: 10px;
-  /* flex-wrap :wrap; */
+}
+
+.downClassesdiv{
+  width: 100%
+}
+
+.downClassesdiv p {
+  width: 150px;
+  margin-left: 25px;
+  scale: 0.8;
 }
 
 .upperClassesdiv {
   justify-content: space-between;
-  width: 300px;
-  flex-wrap :wrap;
+  width: 100%;
+  scale: 0.8;
 }
 
 .upperClassesdiv p,
@@ -328,6 +337,11 @@ span.error {
   border-left: 0.2px solid lightgray;
 }
 
+.inOutCombine .i1 {
+    margin-left: -16.5px;
+    border-left: 0.2px solid lightgray;
+  }
+  
 .inOutCombine p {
   margin-left: -15px;
   z-index: 10;
@@ -368,9 +382,8 @@ span.error {
   z-index: 100;
   border-radius: 10px;
   width: 313px;
-  max-height: 300px;
-  /* overflow-y: scroll; */
-  /* height: 300px; */
+  height: 300px;
+  overflow-y: scroll;
   background-color: white;
   border: 0.5px solid lightgray;
 }
@@ -386,10 +399,10 @@ span.error {
   z-index: 100;
   border-radius: 10px;
   width: 313px;
-  max-height: 300px;
-  /* height:300px; */
+  height: 300px;
   background-color: white;
   border: 0.5px solid lightgray;
+  overflow-y: scroll;
 }
 
 .flightInData .slidee {
@@ -400,7 +413,6 @@ span.error {
 }
 
 .flightInData .slidee p {
-  margin-top: 0;
   font-size: 13px;
   padding: 2px 8px;
   border-radius: 2px;
@@ -478,7 +490,6 @@ span.error {
 }
 
 .flightInData h4 {
-  padding-top: 5px;
   width: 60%;
   overflow: hidden;
   text-overflow: ellipsis;

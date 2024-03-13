@@ -1,5 +1,5 @@
-import {useEffect, useState} from 'react';
-import { BrowserRouter as Router,Routes,Route,useParams} from "react-router-dom";
+
+import { BrowserRouter as Router,Routes,Route } from "react-router-dom";
 import Flights from "./Flights";
 import Navbar from "./Navbar";
 import Hotels from "./Hotels";
@@ -11,7 +11,7 @@ import PaymentBooking from './PaymentBooking';
 import HotelsCardInfo from './HotelsCardInfo';
 import Hotelpayment from '../SmallComp/Hotelpayment';
 import { Maintenance } from '../SmallComp/Maintenance';
-import LoginSignup from '../SmallComp/LoginSignup';
+
 
 
 function App() {

@@ -10,7 +10,22 @@ export const objdropdowncity = [{ name: "BLR", fname: "Bangalore, IN", lname: "-
 { name: "CCU", fname: "Kolkata, IN", lname: "- Netaji Subhas Chandra Bose Airport (CCU)" },
 { name: "GOI", fname: "Goa, IN", lname: "- Dabolim Airport (GOI)" },
 { name: "HYD", fname: "Hyderabad, IN", lname: "- Rajiv Gandhi International (HYD)" },
-{ name: "MAA", fname: "Chennai, IN", lname: "- Chennai Airport (MAA)" },];
+{ name: "MAA", fname: "Chennai, IN", lname: "- Chennai Airport (MAA)" },
+{ name: "AMD", fname: "Ahmedabad, IN", lname:"- Sardar Vallabhbhai Patel International Airport"},
+{ name: "PNQ", fname: "Pune, IN", lname: "- Pune Airport"},
+{ name: "GAU", fname: "Guwahati, IN", lname:"- Lokpriya Gopinath Bordoloi International Airport"},
+{ name: "JAI", fname: "Jaipur, IN", lname:"- Jaipur International Airport" },
+{ name: "NAG", fname: "Nagpur, IN", lname:"- Dr. Babasaheb Ambedkar International Airport"},
+{ name: "COK", fname: "Kochi, IN", lname:"- Cochin International Airport"},
+{ name: "IXC", fname: "Chandigarh, IN", lname:"- Chandigarh International Airport"},
+{ name: "BBI", fname: "Bhubaneswar, IN", lname:"- Biju Patnaik International Airport"},
+{ name: "CJB", fname: "Coimbatore, IN", lname: "- Coimbatore International Airport"},
+{ name: "LKO", fname: "Lucknow, IN", lname: "- Lucknow International Airport"},
+{ name: "TRV", fname: "Thiruvananthapuram,IN", lname: "- Trivandrum International Airport"},
+{ name: "IXE", fname: "Mangalore", lname: "- Mangalore International Airport"},
+{ name: "ATQ", fname: "Amritsar, IN", lname: "- Amritsar International Airport"}
+
+];
 
 export   const objcolor = { a: "Economy", b: "Bussiness", c: "First", d: "Premium" };
 

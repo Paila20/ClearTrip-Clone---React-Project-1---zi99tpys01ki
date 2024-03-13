@@ -45,12 +45,12 @@ export default function LoginSignup({ settokenAvailability, checklogin, setlogin
         if (response.status == "success") {
 
           localStorage.setItem("token", JSON.stringify(response.token));
-          localStorage.setItem("name", JSON.stringify(response.data.name))
+          localStorage.setItem("user", JSON.stringify(response.data.user.name))
 
           setlogincheck(false);
           settokenAvailability(true);
           setall((prev) => ({ ...prev, ["token"]: response.token}));
-          setall((prev) => ({ ...prev, ["name"]: response.data.name}));
+        
         }
 
       } catch (error) {
@@ -88,11 +88,11 @@ export default function LoginSignup({ settokenAvailability, checklogin, setlogin
         )).json();
         if (response.status == "success") {
           localStorage.setItem("token", JSON.stringify(response.token));
-          localStorage.setItem("name", JSON.stringify(response.data.name));
+          localStorage.setItem("user", JSON.stringify(response.data.name));
           setlogincheck(false);
           settokenAvailability(true);
           setall((prev) => ({ ...prev, ["token"]: response.token}));
-          setall((prev) => ({ ...prev, ["name"]: response.data.name}));
+     
         }
         else {
           seterrorlogin(true);

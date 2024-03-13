@@ -12,6 +12,7 @@ export default function FlightInfo() {
   const searchParams = new URLSearchParams(location.search);
   let flightid = searchParams.get("flightid");
   let dayOfWeek = searchParams.get("date");
+ 
   const dateObject = new Date(dayOfWeek);
   function startdate(){
     const departureDate = new Date(dateObject);
@@ -183,9 +184,12 @@ export default function FlightInfo() {
               <div className=' flightinfo-carddetails '>
                 <div className='flightinfo-sou-To-des flexa g20'>
                   <div className='source-to-destination flexa'>
-                    {dataa && objdropdownstate.map((item,index) => (<p key={index}>{item.name == dataa.source ? `${item.fname.match(/^([^,]+)/)[1]}` : ""}</p>))}&nbsp;
+                    {dataa.source}
+                   
                     <p><svg viewBox="0 0 24 24" height="16" width="16"><g fill="none" fillRule="evenodd"><path fill="#FFF" d="M24 24H0V0h24z"></path><path fill="#FFF" d="M24 24H0V0h24z"></path><path fill="currentColor" d="M5 12.875h10.675l-4.9 4.9L12 19l7-7-7-7-1.225 1.225 4.9 4.9H5z"></path></g></svg></p>&nbsp;
-                    {dataa && objdropdownstate.map((item,index) => (<p key={index}>{item.name == dataa.destination ? `${item.fname.match(/^([^,]+)/)[1]}` : ""}</p>))}
+                
+
+                   {dataa.destination}
                   </div>
                   <div className='flightinfodate'>
                     {`${day}, ${date} ${month} ${year}`}

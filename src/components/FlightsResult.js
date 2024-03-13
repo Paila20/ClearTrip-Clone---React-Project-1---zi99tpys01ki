@@ -16,8 +16,8 @@ export default function FlightsResult() {
     const navigate = useNavigate();
     const location = useLocation();
     const searchParams = new URLSearchParams(location.search);
-    let flightFrom = searchParams.get("flightfrom");
-    let flightTo = searchParams.get("flightto");
+    let flightFrom = searchParams.get("source");
+    let flightTo = searchParams.get("destination");
     let dayOfWeek = searchParams.get("dayofweek");
     const dateObject = new Date(dayOfWeek);
     
@@ -37,8 +37,8 @@ export default function FlightsResult() {
     const [adult, setadult] = useState(1);
     const [children, setchildren] = useState(0);
     const [infant, setinfant] = useState(0);
-    const [flightResultIn, setflightResultIn] = useState({ name: "", fname: "" });
-    const [flightResultOut, setflightResultOut] = useState({ name: "", fname: "" });
+    const [flightIn, setflightIn] = useState(flightFrom);
+    const [flightOut, setflightOut] = useState(flightTo);
     const [flightResultdatego, setflightResultdatego] = useState(dateObject.getDate());
     const [flightResultdaygo, setflightResultdaygo] = useState(days[dateObject.getDay()]);
     const [flightResultmonthgo, setflightResultmonthgo] = useState(months[dateObject.getMonth()]);
@@ -50,6 +50,8 @@ export default function FlightsResult() {
     const [tripdurationmax, settripdurationmax] = useState(10);
     const [togglecardfulldetails, settogglecardfulldetails] = useState({});
     const [valuee, setvaluee] = useState(2500);
+    const [searchedcityIn, setSearchedcityIn] = useState([]);
+    const [searchedcityOut, setSearchedcityOut] = useState([]);
 
     useEffect(() => {},[logincheck])
 
@@ -72,9 +74,9 @@ export default function FlightsResult() {
     }
 
     function swaplocations() {
-        const temp = flightResultIn;
-        setflightResultIn(flightResultOut);
-        setflightResultOut(temp);
+        const temp = flightIn;
+        setflightIn(flightOut);
+        setflightOut(temp);
     }
 
     function sortingnav(key) {
@@ -89,10 +91,7 @@ export default function FlightsResult() {
         }
     }
 
-    function locationSetterMountingPhase() {
-        objdropdowncity.map((item) => (flightFrom == item.name ? setflightResultIn(prev => ({ ...prev, name: item.name, fname: item.fname })) : ""))
-        objdropdowncity.map((item) => (flightTo == item.name ? setflightResultOut(prev => ({ ...prev, name: item.name, fname: item.fname })) : ""))
-    }
+   
 
     const onewayPricewithcomma = (number) => {
         clearTimeout(tl);
@@ -124,22 +123,24 @@ export default function FlightsResult() {
 
     function finishtoken() {
         localStorage.removeItem("token");
-        localStorage.removeItem("name");
+        localStorage.removeItem("user");
         settokenAvailability(false);
         checklogin();
     }
 
     function navigateToFlightInfo(_id) {
+       
         if (localStorage.getItem("token")) {
             navigate(`/flights/results/Info?flightid=${_id}&date=${dateObject}`)
         }
+
         else {
             setlogincheck(true);
         }
     }
 
     function forwardRoute() {
-        navigate(`/flights/results?flightfrom=${flightResultIn.name}&flightto=${flightResultOut.name}&dayofweek=${calenderdate}`);
+        navigate(`/flights/results?source=${flightIn}&destination=${flightOut}&dayofweek=${calenderdate}`);
         setfunctionCalltoggle(!functionCalltoggle);
     }
 
@@ -156,7 +157,7 @@ export default function FlightsResult() {
 
     const fetchdataForFlightsMountingPhase = useMemo(async () => {
         try {
-            const response = await (await fetch(`${baseapi}/flight?search={"source":"${flightFrom}","destination":"${flightTo}"}&day=${days[dateObject.getDay()]}&filter={${filter.stops != null ? `"stops":${filter.stops},` : ""}${`"ticketPrice":{"$lte":${valuee}}`},"duration":{"$lte":${tripdurationmax},"$gte":${tripdurationmin}}}&limit=20&page=1&sort={${Object.keys(flightResultsortingnav).length === 0 ? "" : `"${Object.keys(flightResultsortingnav)[0]}":${flightResultsortingnav[`${Object.keys(flightResultsortingnav)[0]}`] == true ? "1" : "-1"}`}}`,
+            const response = await (await fetch(`${baseapi}/flight?search={"source":"${flightFrom[0]+flightFrom[1]+flightFrom[2]}","destination":"${flightTo[0]+flightTo[1]+flightTo[2]}"}&day=${days[dateObject.getDay()]}&filter={${filter.stops != null ? `"stops":${filter.stops},` : ""}${`"ticketPrice":{"$lte":${valuee}}`},"duration":{"$lte":${tripdurationmax},"$gte":${tripdurationmin}}}&limit=20&page=1&sort={${Object.keys(flightResultsortingnav).length === 0 ? "" : `"${Object.keys(flightResultsortingnav)[0]}":${flightResultsortingnav[`${Object.keys(flightResultsortingnav)[0]}`] == true ? "1" : "-1"}`}}`,
                 {
                     method: "GET",
                     headers: {
@@ -168,17 +169,56 @@ export default function FlightsResult() {
             console.log(response)
             setdataa(response.data.flights);
             setpageLoader(true);
-            locationSetterMountingPhase();
+       
         } catch (error) {
             alert(error);
         }
     }, [functionCalltoggle, valuee, filter, flightResultsortingnav, tripdurationmax, tripdurationmin])
 
+    const fetchFlightsIn = async () => {
+        try {
+            const response = await fetch(`${baseapi}/airport?search={"city":"${flightIn}"}`, {
+                method: "GET",
+                headers: {
+                    projectID: "afznkxyf8vti",
+                    "Content-Type": "application/json",
+                }
+            })
+            const result = await response.json()
+            setSearchedcityIn(result.data.airports)
+        } catch (error) {
+            console.log(error);
+        }
+    }
+    
+    const fetchFlightsOut = async () => {
+        try {
+            const response = await fetch(`${baseapi}/airport?search={"city":"${flightOut}"}`, {
+                method: "GET",
+                headers: {
+                    projectID: "afznkxyf8vti",
+                    "Content-Type": "application/json",
+                }
+            })
+            const result = await response.json()
+            console.log(result);
+            setSearchedcityOut(result.data.airports)
+        } catch (error) {
+            console.log(error);
+        }
+      }
+
     useEffect(() => {
         setpageLoader(false);
         fetchdataForFlightsMountingPhase;
         setcalenderdate(dateObject);
+        
     }, []);
+    useEffect(()=>{
+        fetchFlightsIn();
+        fetchFlightsOut();
+    },[])
+
 
     return (
         <div className='flightResultMain flex flexc'>
@@ -197,7 +237,7 @@ export default function FlightsResult() {
                             <nav className='navUpperHome'>
                                 {!tokenAvailability && <button className='loginoutBtn' onClick={() => setlogincheck(true)}>Log in / Sign up</button>}
                                 {tokenAvailability && <button className='profileBtn flexja' onClick={(e) => { setprofiletoggle(!profiletoggle) }} ><svg viewBox="0 0 14 14" height="16px" width="16px" className="c-inherit"><g fill="none" fillRule="evenodd"><rect width="14" height="14" fill="#FFF" opacity="0"></rect><circle cx="7" cy="7" r="6.25" stroke="currentColor" strokeWidth="1.5"></circle><path fill="currentColor" d="M3,5 C4.38071187,5 5.5,3.88071187 5.5,2.5 C5.5,1.11928813 4.38071187,0 3,0 C1.61928813,0 0.5,1.11928813 0.5,2.5 C0.5,3.88071187 1.61928813,5 3,5 Z" transform="matrix(-1 0 0 1 10 3)"></path><path fill="currentColor" d="M7,9 C9.14219539,9 10.8910789,10.6839685 10.9951047,12.8003597 L11,13 L3,13 C3,10.790861 4.790861,9 7,9 Z"></path><circle cx="7" cy="7" r="7.75" stroke="#FFF" strokeWidth="1.5"></circle></g></svg>
-                                {JSON.parse(localStorage.getItem('name'))}
+                                {JSON.parse(localStorage.getItem('user'))}
                                     {profiletoggle &&
                                         <div className='profilePop flexja flexc'>
 
@@ -221,7 +261,7 @@ export default function FlightsResult() {
                                                     <NavLink to="/maintenance"><p className='profileSelectors rightPS flexa'><svg viewBox="0 0 14 14" height="16" width="16" className="c-secondary-500"><g fill="none" fillRule="evenodd"><rect width="14" height="14" fill="#FFF" opacity="0"></rect><path fill="currentColor" fillRule="nonzero" d="M5.5,1 C5.5,1.82842712 6.17157288,2.5 7,2.5 C7.82842712,2.5 8.5,1.82842712 8.5,1 L11,1 C11.5522847,1 12,1.44771525 12,2 L12,12 C12,12.5522847 11.5522847,13 11,13 L8.5,13 C8.5,12.1715729 7.82842712,11.5 7,11.5 C6.17157288,11.5 5.5,12.1715729 5.5,13 L3,13 C2.44771525,13 2,12.5522847 2,12 L2,2 C2,1.44771525 2.44771525,1 3,1 L5.5,1 Z M4.402,2.499 L3.5,2.499 L3.5,6 L5,6 L5,7.5 L3.5,7.5 L3.5,11.499 L4.402,11.499 L4.46706391,11.3917355 C4.96982923,10.6015566 5.83218191,10.0625441 6.82372721,10.0050927 L7,10 C8.06512059,10 9.00059634,10.5550755 9.53293609,11.3917355 L9.597,11.499 L10.5,11.499 L10.5,7.5 L9,7.5 L9,6 L10.5,6 L10.5,2.499 L9.597,2.499 L9.53293609,2.60826455 C9.03017077,3.39844335 8.16781809,3.93745585 7.17627279,3.99490731 L7,4 C5.93487941,4 4.99940366,3.44492446 4.46706391,2.60826455 L4.402,2.499 Z M8,6 L8,7.5 L6,7.5 L6,6 L8,6 Z"></path></g></svg><p>print hotel voucher</p></p></NavLink>
                                                 </div>
                                             </div>
-                                            <div className='SignoutBtn' onClick={() => { finishtoken(); setall((prev) => ({ ...prev, ["token"]: "" ,["name"]: ""})) }}>Log out</div>
+                                            <div className='SignoutBtn' onClick={() => { finishtoken(); setall((prev) => ({ ...prev, ["token"]: "" ,["user"]: ""})) }}>Log out</div>
                                         </div>
                                         }
                                 </button>}
@@ -245,23 +285,23 @@ export default function FlightsResult() {
                             </div>}
                         </div>
                         <div className='flightResultInOut flexa'>
-                            <input className='flightResultIn flexja' value={`${flightResultIn.name}-${flightResultIn.fname}`} onClick={() => { buttonRotate("flightIn"); }} />
-                            {rotateButton["flightIn"] && <div className='flightInData flightResultInData flexa flexc'>
-                                {objdropdowncity.map((item) => (
-                                    <div className='slidee flexja' onClick={() => { setflightResultIn(prev => ({ ...prev, name: item.name, fname: item.fname })); buttonRotateAllFalse() }}>
-                                        <p>{item.name}</p>
-                                        <h4>{item.fname} {item.lname}</h4>
+                            <input className='flightResultIn flexja' value={flightIn} onClick={() => { buttonRotate("flight1"); }}  onChange={(e) => { setflightIn(e.target.value) ; fetchFlightsIn(e.target.value) }}/>
+                            {rotateButton["flight1"] && <div className='flightInData flightResultInData flexa flexc'>
+                                {searchedcityIn.map((item) => (
+                                    <div className='slidee flexja' onClick={() => { setflightIn(`${item.iata_code} - ${item.city}`); buttonRotateAllFalse() }}>
+                                        <p>{item.iata_code}</p>
+                                        <h4>{item.city} {item.name}</h4>
                                     </div>
                                 ))}
                             </div>
                             }
                             <svg onClick={() => { swaplocations(); buttonRotateAllFalse() }} width="16" height="14" data-testid="modifySwap" className="c-pointer"> <g transform="translate(0 -1)" fill="none" fillRule="evenodd"> <g fill="#ED6521"> <path d="M3.556 7L0 11l3.556 4v-3h6.222v-2H3.556V7zM16 5l-3.556-4v3H6.222v2h6.222v3L16 5z"></path> </g> </g> </svg>
-                            <input className='flightResultOut flexja' value={`${flightResultOut.name}-${flightResultOut.fname}`} onClick={() => { buttonRotate("flightOut"); }} />
-                            {rotateButton["flightOut"] && <div className='flightInData flightResultOutData flexa flexc'>
-                                {objdropdowncity.map((item) => (
-                                    <div className='slidee flexja' onClick={() => { setflightResultOut(prev => ({ ...prev, name: item.name, fname: item.fname })); buttonRotateAllFalse() }}>
-                                        <p>{item.name}</p>
-                                        <h4>{item.fname} {item.lname}</h4>
+                            <input className='flightResultOut flexja' value={flightOut} onClick={() => { buttonRotate("flight2"); } } onChange={(e) => { setflightOut(e.target.value) ; fetchFlightsOut(e.target.value) }} />
+                            {rotateButton["flight2"] && <div className='flightInData flightResultOutData flexa flexc'>
+                                {searchedcityOut.map((item) => (
+                                    <div className='slidee flexja' onClick={() => { setflightOut(`${item.iata_code} - ${item.city}`); buttonRotateAllFalse() }}>
+                                        <p>{item.iata_code}</p>
+                                        <h4>{item.city} {item.name}</h4> 
                                     </div>
                                 ))}
                             </div>
@@ -314,7 +354,7 @@ export default function FlightsResult() {
                                     </div>
                                     <button onClick={() => { settravellersCount(adult + children + infant); buttonRotateAllFalse() }}>Submit</button>
                                 </div>
-                            }
+                            } 
                         </div>
                         <button className='flightResultSubmitMain' onClick={() => {buttonRotate("submit"); forwardRoute(); }}>Submit</button>
                         </div>
@@ -393,7 +433,7 @@ export default function FlightsResult() {
                                             <div className='flightresultCardFullDetailsHeader flexa'>
                                                 <div className='flexja g20'>
                                                     <div className='flexja g20'>
-                                                        {objdropdowncity.map((itemm) => (itemm.name == item.source ? `${itemm.fname.match(/^([^,]+)/)[1]}` : ""))} → {objdropdowncity.map((itemm) => (itemm.name == item.destination ? `${itemm.fname.match(/^([^,]+)/)[1]}` : ""))}
+                                                        {item.source} → {item.destination}
                                                     </div>
                                                     <div className='cardsmentiondate'>
                                                         {days[dateObject.getDay()]}, {dateObject.getDate()} {months[dateObject.getMonth()]}

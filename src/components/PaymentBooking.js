@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react'
-import { Link, NavLink, useLocation, useNavigate, useSearchParams } from 'react-router-dom'
+import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom'
 import { FaCheckCircle } from "react-icons/fa";
 
 import "../styles/PaymentBooking.css"
@@ -49,7 +49,7 @@ export default function PaymentBooking() {
   }
  
   function paymentdone() {
-    let isValid = true;
+   
     if (checkboxRef.current.checked) {
         if (pop["UPI"]) {
             const upiValue = upiinput.current.value.trim();
@@ -60,51 +60,45 @@ export default function PaymentBooking() {
                 setupierror(true);
             } else {
              
-                upiinput.current.style.outline = "none";
+                upiinput.current.style.outline = `0.5px solid green`;
                 setdonepayment(true);
                 navigatelast();
             }
         } else {
-    
+          let isValid = true;
 
           Object.keys(inputfill).forEach(item => {
             const fieldValue = inputfill[item].value;
 
-            
-            if (fieldValue === "") {
-                inputfill[item].style.outline = `0.5px solid red`;
-                setdebiterror(true);
-                isValid = false;
-            } else {
-                
-                if (item === "0" && (fieldValue.length !== 16 || isNaN(fieldValue))) {
+                  if (item === "0" && (fieldValue.length !== 16 || isNaN(fieldValue)||fieldValue==="")) {
                  
                     inputfill[item].style.outline = `0.5px solid red`;
 
                     setdebiterror(true);
                     isValid = false;
                
-                } else if (item === "1" && (isNaN(fieldValue) || fieldValue < 1 || fieldValue > 12 || fieldValue === "")) {
+                } if (item === "1" && (isNaN(fieldValue) || fieldValue < 1 || fieldValue > 12 || fieldValue === "")) {
                     inputfill[item].style.outline = `0.5px solid red`;
                     setdebiterror(true);
                     isValid = false;
-                } else if (item === "2" && (fieldValue.length !== 4 || isNaN(fieldValue))) {
+                } if (item === "2" && (fieldValue.length !== 4 || isNaN(fieldValue) || fieldValue==="")) {
                     inputfill[item].style.outline = `0.5px solid red`;
                     setdebiterror(true);
                     isValid = false;
-                } else if (item === "4" && (fieldValue.length !== 3 || isNaN(fieldValue))) {
+                }  if (item === "4" && (fieldValue.length !== 3 || isNaN(fieldValue)|| fieldValue==="")) {
                     inputfill[item].style.outline = `0.5px solid red`;
                     setdebiterror(true);
                     isValid = false;
                 }
             }
-        });
+        );
+        if (isValid) {
+          setdonepayment(true);
+          navigatelast();
+      }
     }
 
-    if (isValid) {
-        setdonepayment(true);
-        navigatelast();
-    }
+  
 } else {
     settermserror(true);
 }

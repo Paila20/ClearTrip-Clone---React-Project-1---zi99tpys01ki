@@ -123,7 +123,7 @@ export default function hotelpayment() {
 
 
 
-  const fetchcarddetails = useMemo(async () => {
+  const fetchcarddetails = async () => {
     try {
       const response = await (await fetch(`${baseapi}/hotel/${hotel_id}`,
         {
@@ -146,9 +146,9 @@ export default function hotelpayment() {
     } catch (error) {
       alert(error);
     }
-  }, [])
+  }
   useEffect(() => {
-    fetchcarddetails;
+    fetchcarddetails();
   }, [])
   function colorratingmanager(rating) {
     let count = 1;
@@ -194,6 +194,8 @@ export default function hotelpayment() {
                       <div className='hotelcardinfo-colorrating' ref={(e) => { colorrating[3] = e }}><div className='hotelcardinfo-colorratinghalf' ref={(e) => { colorratinghalf[3] = e }}></div></div>
                       <div className='hotelcardinfo-colorrating' ref={(e) => { colorrating[4] = e }}><div className='hotelcardinfo-colorratinghalf' ref={(e) => { colorratinghalf[4] = e }}></div></div>
                     </span>
+                   
+
                   </div>
                   <img className='hotelpaymentcardimage' src={`${dataa.images[0]}`}></img>
                 </div>
