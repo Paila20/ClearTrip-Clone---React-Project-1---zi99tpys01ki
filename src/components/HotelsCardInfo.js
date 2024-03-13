@@ -157,7 +157,7 @@ function scrolleffect() {
   }, [toggle])
   
   useEffect(() => {
-    fetchdataHotel(cityparam);
+    fetchdataHotel("");
     fetchcarddetails;
 
   }, [])

@@ -128,7 +128,8 @@ function filterchangerforrating(key, value) {
           }
         }
       )).json();
-      setsearchhoteldata(response.data.hotels);
+      const arr= response.data.hotels.map(item =>{return item.location})
+      setsearchhoteldata(new Set(arr));
     } catch (error) {
       alert(error);
     }
@@ -181,9 +182,9 @@ function filterchangerforrating(key, value) {
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" className=""><path stroke="gray" strokeLinecap="round" strokeLinejoin="round" d="M20 10.182C20 16.546 12 22 12 22s-8-5.454-8-11.818c0-2.17.843-4.251 2.343-5.786A7.91 7.91 0 0 1 12 2c2.122 0 4.157.862 5.657 2.396A8.277 8.277 0 0 1 20 10.182Z"></path><path stroke="gray" strokeLinecap="round" strokeLinejoin="round" d="M12 13a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"></path></svg>
             <input className='inputdynamic' type='text' value={inputvalue} onChange={(e) => { setinputvalue(e.target.value); fetchdataHotelInputFields(e.target.value) }} />
             {navanimate["hotel"] && <div className='popdynamichotelInput' onClick={(e) => { e.stopPropagation() }}>
-              {searchhoteldata.map((item) => (
+              {Array.from(searchhoteldata).map((item) => (
               
-                <div className='hotelMainPageInput flexa' onClick={(e) => { e.stopPropagation(); setnavanimate({ ["hotel"]: false }); setinputvalue(item.location) }}><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" className="dropdown-new__item-stroke--icon listItemHover"><path strokeLinecap="round" strokeLinejoin="round" d="M20 10.182C20 16.546 12 22 12 22s-8-5.454-8-11.818c0-2.17.843-4.251 2.343-5.786A7.91 7.91 0 0 1 12 2c2.122 0 4.157.862 5.657 2.396A8.277 8.277 0 0 1 20 10.182Z" stroke='black'></path><path strokeLinecap="round" strokeLinejoin="round" d="M12 13a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" stroke='black'></path></svg>&nbsp;&nbsp;{item.location}</div>
+                <div className='hotelMainPageInput flexa' onClick={(e) => { e.stopPropagation(); setnavanimate({ ["hotel"]: false }); setinputvalue(item) }}><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" className="dropdown-new__item-stroke--icon listItemHover"><path strokeLinecap="round" strokeLinejoin="round" d="M20 10.182C20 16.546 12 22 12 22s-8-5.454-8-11.818c0-2.17.843-4.251 2.343-5.786A7.91 7.91 0 0 1 12 2c2.122 0 4.157.862 5.657 2.396A8.277 8.277 0 0 1 20 10.182Z" stroke='black'></path><path strokeLinecap="round" strokeLinejoin="round" d="M12 13a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" stroke='black'></path></svg>&nbsp;&nbsp;{item}</div>
            
               ))}
 
