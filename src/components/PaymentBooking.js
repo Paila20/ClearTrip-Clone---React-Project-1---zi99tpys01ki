@@ -81,7 +81,7 @@ export default function PaymentBooking() {
                     inputfill[item].style.outline = `0.5px solid red`;
                     setdebiterror(true);
                     isValid = false;
-                } if (item === "2" && (fieldValue.length !== 4 || isNaN(fieldValue) || fieldValue==="")) {
+                } if (item === "2" && (fieldValue.length !== 4 || isNaN(fieldValue) || fieldValue==="" || fieldValue!==2023 ||fieldValue>=2024)) {
                     inputfill[item].style.outline = `0.5px solid red`;
                     setdebiterror(true);
                     isValid = false;
