@@ -19,6 +19,7 @@ export default function PaymentBooking() {
   const [upierror,setupierror]=useState(false)
   const [debiterror,setdebiterror]=useState(false);
   const [donepayment, setdonepayment] = useState(false);
+  const [cardnum, setCardNum] = useState('');
   const [pop, setpop] = useState({ "UPI": true });
 
   function popp(key) {
@@ -47,6 +48,77 @@ export default function PaymentBooking() {
       setupierror(true);
     }
   }
+
+ 
+
+  function isValidateYear(e) {
+    const inputvalue = parseInt(e.target.value);
+    const inputele = e.target;
+    const currentYear = new Date().getFullYear();
+    const maxYear = currentYear + 10; // Maximum allowed year
+
+    if (!isNaN(inputvalue) && inputvalue >= currentYear && inputvalue <= maxYear) {
+        inputele.style.outline = "none";
+        setdebiterror(false); // Reset the debit error state if the year is valid
+    } else {
+        inputele.style.outline = "1px solid red";
+        setdebiterror(true);
+    }
+}
+
+
+function isValidMonth(e) {
+  
+  const inputvalue = parseInt(e.target.value, 10);
+ const inputele = e.target;
+  
+  if(!isNaN(inputvalue) && inputvalue >= 1 && inputvalue <= 12){
+     inputele.style.outline="none";
+  }
+  else{
+    inputele.style.outline="1px solid red";
+    setdebiterror(true);
+  }
+}
+
+const isValidDebitCard = (e) => {
+  const input = e.target.value.replace(/\D/g, ''); // Remove non-numeric characters
+  let formattedInput = '';
+
+  for (let i = 0; i < input.length; i++) {
+    if (i > 0 && i % 4 === 0) {
+      formattedInput += ' ';
+    }
+    formattedInput += input[i];
+  }
+
+  setCardNum(formattedInput);
+
+  // Validate the input
+  if (!/^\d{4} \d{4} \d{4} \d{4}$/.test(formattedInput)) {
+    setdebiterror(true); // Set error state to true if input is invalid
+  } else {
+    setdebiterror(false); // Reset error state if input is valid
+  }
+};
+
+
+ function isValidCVV(e) {
+  
+  var inputvalue = e.target.value.replace(/\D/g, '');
+  var inputele = e.target;
+ 
+  if((inputvalue.length !== 3 && inputvalue.length !== 4) || !/^\d+$/.test(inputvalue)){
+      inputele.style.outline = "1px solid red" ;
+      setdebiterror(true);
+  }else{
+    inputele.style.outline = "none";
+  }
+  }
+
+ 
+
+
  
   function paymentdone() {
    
@@ -68,28 +140,36 @@ export default function PaymentBooking() {
           let isValid = true;
 
           Object.keys(inputfill).forEach(item => {
-            const fieldValue = inputfill[item].value;
+        
+            if(inputfill[item].value==""){
+              inputfill[item].style.outline=`0.5px solid red`;
+               setdebiterror(true);
+               isValid=false;
+            }
 
-                  if (item === "0" && (fieldValue.length !== 16 || isNaN(fieldValue)||fieldValue==="")) {
+                //   if (item === "0" && (fieldValue.length !== 16 || isNaN(fieldValue)||fieldValue==="")) {
                  
-                    inputfill[item].style.outline = `0.5px solid red`;
+                //     inputfill[item].style.outline = `0.5px solid red`;
 
-                    setdebiterror(true);
-                    isValid = false;
+                //     setdebiterror(true);
+                //     isValid = false;
                
-                } if (item === "1" && (isNaN(fieldValue) || fieldValue < 1 || fieldValue > 12 || fieldValue === "")) {
-                    inputfill[item].style.outline = `0.5px solid red`;
-                    setdebiterror(true);
-                    isValid = false;
-                } if (item === "2" && (fieldValue.length !== 4 || isNaN(fieldValue) || fieldValue==="" || fieldValue!==2023 ||fieldValue>=2024)) {
-                    inputfill[item].style.outline = `0.5px solid red`;
-                    setdebiterror(true);
-                    isValid = false;
-                }  if (item === "4" && (fieldValue.length !== 3 || isNaN(fieldValue)|| fieldValue==="")) {
-                    inputfill[item].style.outline = `0.5px solid red`;
-                    setdebiterror(true);
-                    isValid = false;
-                }
+                // } if (item === "1" && (isNaN(fieldValue) || fieldValue < 1 || fieldValue > 12 || fieldValue === "")) {
+                //     inputfill[item].style.outline = `0.5px solid red`;
+                //     setdebiterror(true);
+                //     isValid = false;
+                // } 
+                // if (item === "2" && (fieldValue.length !== 4 || isNaN(fieldValue) || fieldValue==="" || fieldValue!==2023 ||fieldValue>2023)) {
+                //     inputfill[item].style.outline = `0.5px solid red`;
+                //     setdebiterror(true);
+                //     isValid = false;
+
+                // } 
+                //  if (item === "4" && (fieldValue.length !== 3 || isNaN(fieldValue)|| fieldValue==="")) {
+                //     inputfill[item].style.outline = `0.5px solid red`;
+                //     setdebiterror(true);
+                //     isValid = false;
+                // }
             }
         );
         if (isValid) {
@@ -145,16 +225,18 @@ export default function PaymentBooking() {
                 <div className='paymentcarddiv5 flex flexc g10'>
                   <h3>Enter card details</h3>
                   <label>Card number</label>
-                  <input ref={(e) => { inputfill[0] = e }} type='number' placeholder='Enter card number' onChange={()=>{outlineremoval(0)}}></input>
+                 
+                  <input ref={(e) => { inputfill[0] = e }} type='number' placeholder='Enter card number' onChange={(e)=>{outlineremoval(0); isValidDebitCard(e)}}></input>
+                 {}
                   <label>Expiry date</label>
                   <div className='flexa g20'>
-                    <input ref={(e) => { inputfill[1] = e }} className='expirydate' type='number' placeholder='Month' onChange={()=>{outlineremoval(1)}}></input>
-                    <input ref={(e) => { inputfill[2] = e }} className='expirydate' type='number' placeholder='Year' onChange={()=>{outlineremoval(2)}}></input>
+                    <input ref={(e) => { inputfill[1] = e }} className='expirydate' type='number' placeholder='MM' onChange={(e)=>{outlineremoval(1); isValidMonth(e)}}></input>
+                    <input ref={(e) => { inputfill[2] = e }} className='expirydate' type='number' placeholder='YYYY' onChange={(e)=>{outlineremoval(2); isValidateYear(e)}}></input>
                   </div>
                   <label>Card holder name</label>
                   <input ref={(e) => { inputfill[3] = e }} type='text' placeholder='Name as on card' onChange={()=>{outlineremoval(3)}}></input>
                   <label>CVV</label>
-                  <input ref={(e) => { inputfill[4] = e }} className='cvvinput' type='number' placeholder='CVV' onChange={()=>{outlineremoval(4)}}></input>
+                  <input ref={(e) => { inputfill[4] = e }} className='cvvinput' type='number' placeholder='XXX' onChange={(e)=>{outlineremoval(4); isValidCVV(e)}}></input>
                   { debiterror && <span>Please enter all details correctly</span>}
                 </div>
               }
