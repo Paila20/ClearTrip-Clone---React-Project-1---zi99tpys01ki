@@ -55,9 +55,13 @@ export default function Flights() {
   }
 
   function getFlights() {
-    if (flightIn && flightOut) {
+    if (flightIn && flightOut && localStorage.getItem('token')) {
       navigate(`/flights/results?source=${flightIn}&destination=${flightOut}&dayofweek=${datego}`);
     }
+    else{
+      alert('please register to search flights')
+    }
+
   }
 
   function reverseInput() {

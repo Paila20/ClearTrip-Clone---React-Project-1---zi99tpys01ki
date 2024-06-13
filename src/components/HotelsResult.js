@@ -86,8 +86,14 @@ function filterchangerforrating(key, value) {
     navigate(`/hotels/results?location=${inputvalue}&rooms=${details.room}&adults=${details.adults}&childrens=${details.children}&date=${datego}`)
   }
   function navigatecardinfo(hotel_id) {
+    if(localStorage.getItem('token')){
+      navigate(`/hotels/results/hotelInfo?hotel_id=${hotel_id}&location=${cityparam}&rooms=${details.room}&adults=${details.adults}&childrens=${details.children}&date=${dateObject}`) 
+    }
+    else{
+      alert('please register before searching for hotels')
+    }
 
-      navigate(`/hotels/results/hotelInfo?hotel_id=${hotel_id}&location=${cityparam}&rooms=${details.room}&adults=${details.adults}&childrens=${details.children}&date=${dateObject}`)
+
    
   }
   const fetchdataHotelInputFields = async (valuee) => {
