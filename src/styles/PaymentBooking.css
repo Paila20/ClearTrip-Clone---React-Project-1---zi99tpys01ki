@@ -1,0 +1,180 @@
+.paymentbooking .paymentbookingMaindiv{
+    height: 90vh;
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+}
+.colordiv{
+    background-color: rgba(186, 222, 244, 0.364);
+}
+.paymentbooking nav{
+    border-bottom: 0.5px solid lightgray;
+    height: 60px;
+    padding-left: 10%;
+}
+.paymentbooking nav svg{
+    scale: 1.2;
+}
+.paymentCardouter{
+    height: 450px;
+    width: 750px;
+    transform: translateY(-10%);
+}
+.paymentCardouter h2{
+font-weight: 400;
+}
+.paymentbookingcard{
+    height: 100% !important;
+    width: 100%;
+    border-radius: 3px;
+    border: 0.5px solid lightgray;
+}
+.paymentcarddiv3 p{
+    color: lightgray;
+    font-weight: 200;
+    font-size: 14px;
+}
+.paymentcarddiv3 .linevertical{
+    height: 170px;
+    border-left: 1px solid lightgray;
+}
+.paymentbooking .backgroundwhite{
+    height: 270px;
+    position: absolute;
+    padding: 30px;
+    border-radius: 6px;
+    justify-content: space-between;
+    /* background-image: url("../../public/img/paymentdone.jpg");  */
+    background-size: contain;
+    background-color: white;
+    width: 480px;
+}
+.paymentbooking .backgroundwhite p{
+    font-size: 20px;
+}
+.paymentcarddiv1result{
+    width: 75%;
+}
+.paymentcarddiv1{
+    height: 100%;
+    box-sizing: border-box;
+    width: 25%;
+    min-width: 130px;
+    padding: 15px 5px;
+}
+.selectorcardpayment{
+    padding: 5px;
+    border-radius: 3px;
+    color: #3366CC;
+    cursor: pointer;
+}
+.colorselectorpayment{
+    background-color: #D6E8FC;
+}
+.paymentcarddiv2{
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+}
+.paymentcarddiv4{
+    width: 100%;
+}
+.paymentcarddiv2 h3{
+    font-weight: 400;
+}
+.paymentcarddiv2 input{
+    font-weight: 400;
+    border: 0.5px solid lightgray;
+    height: 30px;
+    outline: none;
+    padding-left: 10px;
+    border-radius: 3px;
+}
+.paymentcarddiv2 p{
+    font-size: 13px;
+    font-weight: 300;
+    color: gray;
+}
+.paymentcarddiv4{
+    padding: 10px;
+}
+.paymentcarddiv4 h3{
+    font-weight: 400;
+    align-self: flex-start;
+}
+.paymentcarddiv4 .qrcodepayment{
+    height: 270px;
+    width: 270px;
+    box-shadow: 1px 1px 10px rgba(211, 211, 211, 0.592);
+    border: 0.5px solid rgba(211, 211, 211, 0.334);
+    background-image: url(../../public/img/payment.png);
+    background-position: center;
+    background-size: auto;
+    background-repeat: no-repeat;
+    border-radius: 5px;
+}
+.paymentcarddiv5{
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+}
+.paymentcarddiv5 h3{
+    font-weight: 400;
+}
+.paymentcarddiv5 label{
+font-weight: 300;
+}
+.paymentcarddiv5 input{
+    padding-left: 10px;
+    color: black;
+    height: 35px;
+    font-size: 16px;
+    border: 0.01px solid rgba(0, 0, 0, 0.277);
+    outline: none;
+    width: 60%;
+    border-radius: 3px;
+    
+}
+.paymentcarddiv5 input::placeholder{
+color: lightgray;
+font-weight: 300;
+}
+.paymentcarddiv5 .cvvinput{
+    width: 100px;
+}
+.paymentcarddiv5 .expirydate{
+    width: 130px;
+}
+.paymentpolichecker p{
+    color: gray;
+    font-size: 13px;
+    font-weight: 400;
+    width: 100%;
+    word-wrap: wrap;
+}
+.paymentpolichecker div p{
+    /* text-wrap: nowrap; */
+    word-wrap: wrap;
+}
+.paybuttonpayment{
+    /* padding: 10px 30px; */
+    background-color: lightcoral;
+    color: white;
+    font-size: 16px;
+    width: 150px;
+    align-self: flex-end;
+    border-radius: 5px;
+}
+.paymentpolichecker input{
+    outline: none;
+}
+.paymentCardouter span{
+    color: red;
+    font-size: 12px;
+    font-weight: 400;
+}
+
+
+
+

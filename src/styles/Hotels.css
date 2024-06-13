@@ -1,0 +1,216 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
+:root{
+    --orange:#F77728;
+    --blue:#3366CC;
+    --hoverblue:#3366cc19;
+    --white:#FFFFFF;
+    --black:#000000;
+}
+.HotelsMainPage{
+    position: relative;
+    margin: 30px 0px 0px 50px;
+    justify-content: space-around;
+    width: 65.5%;
+    font-weight: 600;
+}
+.HotelsMainPage .HotelsMainHeading{
+  font-weight: 600;
+}
+.HotelsMainPage .HotelsMainHeadingBottom{
+    font-weight: 600;
+    text-wrap: nowrap;
+    color: rgba(0, 0, 0, 0.804);
+}
+.MainHotelFrontPage{
+    width: 100%;
+}
+.HotelsMainPageForm{
+    justify-content: space-around;
+    padding: 20px 0px;
+    border: 0.5px solid lightgray;
+    border-radius: 10px;
+    box-shadow: 0.5px 0.5px 8px rgba(110, 89, 89, 0.249);
+    height: 300px;
+    margin-top: 35px;
+}
+.formInputDiv{
+    position: relative;
+    border: 0.5px solid lightgray;
+    width: 85%;
+    height: 56px;
+    padding-left: 10px;
+    border-radius: 6px;
+}
+.formInputDiv input{
+    height: 100%;
+    width: 100%;
+    border-radius: 6px;
+    outline: none;
+    font-size: 15px;
+    padding-left: 10px;
+}
+.formInputDiv:hover{
+    border: 0.5px solid var(--blue);
+}
+.formDatesDiv{
+    padding-left: 10px;
+    border-radius: 6px;
+}
+.HotelsMainFormButton{
+    background-color: var(--orange);
+    color:var(--white);
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    height: 50px;
+    float: right;
+    width: 200px;
+}
+.HotelsMainFormButtonDiv{
+    width: 85%;
+}
+.dateOuter{
+    width: 85%;
+    height: 56px;
+    justify-content: space-between;
+}
+.datesDiv{
+    width: 45%;
+    height: 100%;
+    border: 0.5px solid lightgray;
+    border-radius: 6px;
+}
+.datesDiv> p{
+    height: 30px;
+    border-left: 1.6px solid lightgray;
+}
+.datesDiv>div{
+}
+.leftcalenderDiv{
+    width: 100%;
+    position: relative;
+}
+.rightcalenderDiv{
+    width: 100%;
+    position: relative;
+}
+.HotelsRoomSelectorDiv{
+    position: relative;
+    border: 0.5px solid lightgray;
+    border-radius: 6px;
+    height: 100%;
+    width: 45%;
+    padding-left: 10px;
+}
+.HotelsRoomSelectorDiv>p{
+}
+.HotelsPeoplePop{
+    position: absolute;
+    border: 0.5px solid lightgray;
+    border-radius: 6px;
+    top: 60px;
+    left: 0;
+    width: 277px;
+    background-color: white;
+}
+.HotelsPeoplePop p{
+    color: rgba(0, 0, 0, 0.667);
+    margin: 10px;
+}
+.HotelsPeoplePop div{
+    width: 90%;
+    height: 45px;
+    border-radius: 3px;
+    margin: 10px 10px;
+    padding-left: 10px;
+}
+
+.HotelsPeoplePop div:hover{
+    background-color: rgba(211, 211, 211, 0.366);
+}
+.HotelsInputPopup::-webkit-scrollbar{
+    display: none;
+}
+.HotelsInputPopup{
+    position: absolute;
+    top: 58px;
+    left: 0;
+    background-color: white;
+    border: 0.5px solid lightgray;
+    width: 96%;
+    height: 300px;
+    overflow-y: scroll;
+    border-radius: 6px;
+    z-index: 1;
+    padding: 0px 10px;
+}
+.hotelMainPageInput{
+    border-radius: 6px;
+    height: 45px;
+    padding-left: 10px;
+}
+.hotelMainPageInput:hover{
+background-color: #eff5fc;
+}
+.hotelMainPageInput:hover svg path{
+stroke: blue;
+}
+
+.HotelsInputPopup p{
+    color: rgba(0, 0, 0, 0.466);
+    margin: 20px 10px 10px;
+    font-size: 14px;
+}
+.buttondisabled{
+    color: black;
+    background-color: rgba(128, 128, 128, 0.295);
+}
+
+
+@media(max-width:1290px){
+    .HotelsMainPage{
+        width: 100%;
+    }
+}
+@media(max-width:800px){
+    .HotelsMainPage>div{
+        flex-direction: column;
+    }
+    .sidecarousaldiv{
+        flex-direction: row;
+        gap: 20px;
+    }
+    .sidecarousaldiv .moreOffers{
+        display: none;
+    }
+    .HotelsMainPage{
+        width: 95%;
+        margin-left: 10px;
+    }
+}
+
+@media(max-width:550px){
+    .sidecarousaldiv{
+        flex-direction: column;
+    }
+    .dateOuter{
+        flex-direction: column;
+        gap: 20px;
+    }
+    .dateOuter{
+        height: 120px;
+        gap: 10px;
+    }
+    .datesDiv,.HotelsRoomSelectorDiv{
+        height: 60px;
+        width: 100%;
+    }
+    .HotelsMainFormButtonDiv{
+        display: flex;
+       justify-content: center;
+    }
+    .formInputDiv input::placeholder{
+        font-size:12px;
+    }
+}

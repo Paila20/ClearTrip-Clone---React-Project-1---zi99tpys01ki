@@ -1,0 +1,464 @@
+:root{
+    --orange:#F77728;
+    --blue:#3366CC;
+    --hoverblue:#3366cc19;
+    --white:#FFFFFF;
+    --black:#000000;
+}
+.paginationbuttondiv{
+    width: 300px;
+    height: 30px;
+    justify-self: flex-end;
+    justify-content: space-between;
+    margin: 50px 0px;
+}
+.paginationbuttondiv p{
+   box-shadow: 1px 1px 20px  lightgray;
+   background-color: lightgray;
+   border-radius: 3px;
+   padding: 2px 5px;
+   padding-bottom: 5px;
+   color: white;
+   scale: 0.8;
+}
+.paginationbuttondiv button:active{
+scale: 1.1;
+}
+.paginationbuttondiv button{
+    width: 100px;
+    height: 30px;
+    border-radius: 3px;
+    background-color: #ff4f17;
+    font-size: 16px;
+    color: white;
+}
+.disabledcolor{
+    background-color: lightgray !important;
+}
+.HotelsResult::-webkit-scrollbar{
+    display: none;
+  }
+.HotelsResult{
+    overflow-x: hidden;
+    overflow-y: scroll;
+    justify-content: space-between;
+    min-height: 100vh;
+}
+.HotelsResult .loginoutBtn{
+    background-color: white;
+    color: black;
+    border: 1px solid black;
+}
+.HotelsResult .navFlightResults{
+    border:none;
+    height: none !important;
+    z-index: 100;
+    position: relative;
+    background-color: white;
+}
+.upperCenterdiv{
+    width: 600px;
+    height: 50px;
+    margin-top: 10px;
+    border-radius: 12px;
+    border: 0.5px solid rgba(128, 128, 128, 0.562);
+}
+.upperCenterdivDynamic{
+    width: 850px;
+    height: 50px;
+    border-radius: 12px;
+    border: 0.5px solid rgba(128, 128, 128, 0.562);
+}
+
+.upperCenterdivDynamic > div {
+    width: 100%;
+    display: flex;
+}
+.upperCenterdiv>div{
+  height: 100%;
+}
+.dateInputStaticInnerLeftStatic,.dateInputStaticInnerRightStatic{
+    width: 100%;
+}
+.dateInputStaticInnerLeftdynamic,.dateInputStaticInnerRightdynamic{
+    width: 100%;
+    position: relative;
+}
+.hotelInputStatic{
+    padding-left: 10px;
+    width: 25%;
+}
+.hotelInputStatic p::-webkit-scrollbar{
+    display: none;
+}
+.hotelInputStatic svg{
+    width: 35px;
+}
+.hotelInputStatic p{
+    text-wrap: nowrap;
+    overflow-x: scroll;
+    width: 70%;
+}
+.hotelInputdynamic{
+    position: relative;
+    padding-left: 10px;
+    width: 50%;
+    height: 100%;
+}
+.dateInputUpperStatic{
+    width: 30%;
+    border-left: 0.5px solid rgba(128, 128, 128, 0.562);
+    border-right: 0.5px solid rgba(128, 128, 128, 0.562);
+}
+.dateInputUpperdynamic{
+    border-left: 0.5px solid rgba(128, 128, 128, 0.562);
+    border-right: 0.5px solid rgba(128, 128, 128, 0.562);
+    width: 30% ;
+    height: 100%;
+}
+.roomsAndGuestsStatic{
+    width: 33%;
+}
+.roomsAndGuestsdynamic{
+    position: relative;
+    width: 30%;
+}
+.datecenterline{
+    height: 20px;
+    border: 0.5px solid rgba(211, 211, 211, 0.51);
+}
+.navbaranimate{
+    position: absolute;
+    top:0;
+    left:0;
+    width: 100%;
+    gap: 50px;
+    height: 80px;
+    z-index: 10000;
+    box-shadow: 1px 1px 10px lightgray;
+    border-bottom: 0.5px solid lightgray;
+    background-color: white;
+}
+.navbaranimate> button{
+    background-color: #ff4f17;
+    color: white;
+    padding: 12px 45px;
+    border-radius: 6px;
+}
+.navbaranimatecloser{
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    background-color: black;
+    opacity: 0.1;
+}
+.animatedown{
+    scale: 1;
+    transition: all 0.2s ease-in;
+}
+.animateup{
+    scale: 0;
+    transition: all 0.2s ease-in;
+}
+.inputdynamic{
+width: 100%;
+height: 100%;
+font-size: 15px;
+border: none;
+outline: none;
+}
+.popdynamichotelInput{
+    position: absolute;
+    top: 75px;
+    left: 0;
+    border-radius: 12px;
+    background-color: white;
+    padding: 10px;
+    border: 0.2px solid lightgray;
+    width: 96%;
+    height: 500px;
+}
+.popdynamichotelInput{
+    overflow-y: scroll;
+}
+.popdynamichotelInput::-webkit-scrollbar{
+    display: none;
+}
+.roomPopDynamic{
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 320px;
+    height: 250px;
+    border: 0.2px solid lightgray;
+    background-color: white;
+    border-radius: 12px;
+    padding: 20px;
+    padding-top: 30px;
+}
+.roomPopDynamic>div{
+    width: 100%;
+    height: 50px;
+    justify-content: space-between;
+    padding: 0px 10px;
+}
+.roomPopDynamic h4{
+    font-weight: 500;
+}
+.roomPopDynamic p{
+    font-size: 13px;
+    color: gray;
+    letter-spacing: 0.3px;
+    word-spacing: 1px;
+}
+.buttondivguests{
+    width: 120px;
+    height: 100%;
+    justify-content: space-between;
+}
+.buttondivguests button{
+    height: 35px;
+    width: 35px;
+    border-radius: 50%;
+    border: 1px solid black;
+    color: black;
+    background-color: white;
+    font-size: 25px;
+    font-weight: 200;
+}
+.opacitydecrease{
+    opacity: 0.5;
+}
+.guestsDoneButton{
+    padding: 8px 25px;
+    background-color: #ff4f17;
+    color: white;
+    border-radius: 3px;
+    align-self: flex-end;
+}
+
+/* -------------------------bottom nav filter--------------- */
+
+.HotelsResultDownNav{
+    width: 100%;
+    height: 50px;
+    margin-top: 10px;
+    gap: 30px;
+    text-wrap: nowrap; 
+}
+.HotelsResultDownNav button{
+    width: 160px;
+    height: 40px;
+    background-color: #ff4f17;
+    color: white;
+    border-radius: 6px;
+    font-size: 16px;
+    letter-spacing: 0.5px;
+    align-self: flex-end;
+}
+.HotelsResultDownNav h3{
+    font-weight: 65600;
+}
+
+.hotelsresult-recommended,.hotelsresult-starCatagory,.hotelsresult-guestrating,.hotelsresult-price{
+    position: relative;
+    border: 1px solid lightgray;
+    border-radius: 50px;
+    justify-content: space-between;
+    padding: 3px 12px;
+    cursor: pointer;
+}
+.hotelsresult-recommended-pop div p{
+    font-size: 16px;
+    color: gray;
+}
+.hotelsresult-price-pop div,.hotelsresult-price-pop div p{
+    justify-content: space-between;
+    font-size: 15px;
+}
+.hotelsresult-starCatagory-pop > div,.hotelsresult-guestrating-pop > div{
+    height: 50px;
+}
+.hotelsresult-starCatagory-pop p, .hotelsresult-guestrating-pop p{
+   color: gray;
+}
+.hotelsresult-recommended p,.hotelsresult-starCatagory p,.hotelsresult-guestrating p,.hotelsresult-price p{
+    font-size: 14px;
+    font-weight: 600;
+}
+.hotelsresult-recommended-pop,.hotelsresult-starCatagory-pop,.hotelsresult-guestrating-pop,.hotelsresult-price-pop{
+    padding: 20px;
+    width: 320px;
+    border: 0.2px solid lightgray;
+    border-radius: 12px;
+    position: absolute;
+    background-color: white;
+    top: 50px;
+    left: 0;
+}
+.hotelsresult-starCatagory-pop p{
+    font-size: 16px;
+}
+.hotelsresult-starCatagory p,.hotelsresult-guestrating p,.hotelsresult-price p{
+    margin-left: 5px;
+}
+.hotelsresult-hotelsearchinput{
+    border: 0.2px solid lightgray;
+    border-radius: 5px;
+    height: 30px;
+}
+.hotelsresult-hotelsearchinput input{
+    border: none;
+    outline: none;
+}
+.filterpopcloser{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-color: black;
+    opacity: 0.1;
+    z-index: 10;
+}
+.relativecolorinput{
+    position: relative;
+    border-radius: 50%;
+    height: 20px;
+    width: 20px;
+    border: 0.5px solid lightgray;
+}
+.absolutecolordiv div{
+    height: 10px;
+    width: 10px;
+    background-color: white;
+    border-radius: 50%;
+}
+.absolutecolordiv{
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+}
+.blackbackground{
+    background-color: black;
+}
+
+/* ---------------------hotelsresult-bodydiv--------------- */
+
+.hotelsresult-rendergrid{
+    display: grid;
+    width: 1150px;
+    grid-template-columns: repeat(4,1fr);
+    grid-template-rows: repeat(auto,500px);
+    column-gap: 25px;
+    row-gap: 30px;
+    text-wrap: nowrap;
+    margin-top: 30px;
+}
+.hotelsresult-card .img{
+    width: 100%;
+    height: 210px;
+    /* border: 1px solid red; */
+    border-radius: 12px;
+    margin-bottom: 5px;
+}
+.hotelsresultcard-firstline{
+    width: 100%;
+    justify-content: space-between;
+}
+.hotelsresultcard-firstline p{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 190px;
+    font-size: 15px;
+    font-weight: 600;
+}
+.hotelsresultcard-firstline span{
+    font-size: 13px;
+}
+.hotelsresultcard-secondline{
+    width: 100%;
+    justify-content: space-between;
+    color: rgba(128, 128, 128, 0.703);
+    font-size: 13px;
+}
+.hotelsresultcard-secondline p{
+    width: 64px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 12px;
+}
+.hotelsresultcard-secondline span{
+
+}
+.hotelsresultcard-thirdline{
+    width: 100%;
+    justify-content: space-between;
+    font-size: 13px;
+}
+.hotelsresultcard-fourthline{
+    width: 100%;
+}
+.hotelsresultcard-fourthline del{
+color: rgba(128, 128, 128, 0.703);
+font-size: 14px;
+}
+.hotelsresultcard-fourthline span{
+    color: rgba(9, 233, 151, 0.764);
+    font-size: 11px;
+
+}
+.hotelsresultcard-fourthline p{
+font-size: 13px;
+}
+
+/* --------------HotelsResultCardsCarousal--------------- */
+
+.HotelsResultCardsCarousalMainDiv{
+    width: 100%;
+    position: relative;
+}
+.HotelsResultCardsCarousalMainDiv .indicator-inactive{
+scale: 0.7;
+}
+.HotelsResultCardsCarousalMainDiv .indicator-active{
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    scale: 1.6;
+}
+
+.HotelsResultCardsCarousalMainDiv .leftarrow{
+    position: absolute;
+    top: -80px;
+    background-color: white;
+    border-radius: 50%;
+    padding: 6px 7px 6px 5px;
+    left: 0px;
+    opacity: 0;
+    transition: all 0.15s ease-in; 
+}
+.HotelsResultCardsCarousalMainDiv:hover .leftarrow{
+    opacity: 1;
+}
+.HotelsResultCardsCarousalMainDiv .rightarrow{
+    padding: 6px 5px 6px 7px;
+    border-radius: 50%;
+    background-color: white;
+    position: absolute;
+    top: -80px;
+    right: 0px;
+    opacity: 0;
+    transition: all 0.15s ease-in; 
+}
+.HotelsResultCardsCarousalMainDiv:hover .rightarrow{
+    opacity: 1;
+}
+
+
+
+/* -----------HotelsResultCardsCarousal--end--------- */

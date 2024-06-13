@@ -1,0 +1,461 @@
+:root {
+    --orange: #F77728;
+    --buttonorange: #ff4f17;
+    --blue: #3366CC;
+    --hoverblue: #3366cc19;
+    --white: #FFFFFF;
+    --black: #000000;
+}
+
+html,
+body {
+    scroll-behavior: smooth;
+}
+body::-webkit-scrollbar {
+    display: none;
+}
+
+hr {
+    /* -------for line-------*/
+    width: 70%;
+    border: 0.2px solid rgba(211, 211, 211, 0.187);
+    margin: 20px 0px;
+}
+.hotelcardinfo .navbaranimate{
+    position: fixed;
+    top: 0;
+}
+.hotelcardinfo .navFlightResults {
+    position: fixed;
+    top: 0;
+}
+
+.hotelcardinfo {
+    justify-content: space-between;
+    min-height: 100vh;
+    position: relative;
+}
+
+.HotelsResult::-webkit-scrollbar {
+    display: none;
+}
+
+.hotelcardinfo nav {
+    border-bottom: 0.2px solid rgba(0, 0, 0, 0.208) !important;
+    box-shadow: none !important;
+}
+
+.hotelcardinfo-bottomnav {
+    height: 45%;
+    text-wrap: nowrap;
+    align-items: flex-end;
+    justify-content: space-between;
+    width: 100%;
+}
+.hotelcardinfo-bottomnavright a, .hotelcardinfo-box1right a{
+    cursor: pointer;
+}
+.hotelcardinfo-bottomnavright{
+    opacity: 0;
+}
+.hotelcardinfo-bottomnavleft {
+    justify-content: space-between;
+    width: 40%;
+}
+.hotelcardinfo-bottomnavleft a{
+    cursor: pointer;
+}
+
+.hotelcardinfo-bottomnavright {
+    justify-content: space-between;
+    width: 38%;
+}
+
+.hotelcardinfo-bottomnavright del {
+    color: gray;
+}
+
+.hotelcardinfo-bottomnavright div p {
+    color: gray;
+    font-size: 13px;
+}
+
+.hotelcardinfo-bottomnavright a,
+.hotelcardinfo-prizeinfo a {
+    background-color: var(--buttonorange);
+    padding: 8px 30px;
+    color: white;
+    border-radius: 3px;
+    font-size: 14px;
+}
+
+.hotelcardinfo-prizeinfo a {
+    padding: 10px 40px;
+    font-size: 15px;
+
+}
+
+.hotelcardinfo-bottomnavleft a {
+    text-decoration: none;
+    color: gray;
+    margin-right: 20px;
+    position: relative;
+}
+
+.hotelcardinfo-navbottomoptionunderline {
+    color: black !important;
+}
+
+.hotelcardinfo-navbottomoptionunderline:after {
+    content: '';
+    display: block;
+    position: absolute;
+    left: 0;
+    bottom: -6.5px;
+    width: 100%;
+    height: 1.5px;
+    background-color: #333;
+}
+
+.hotelcardinfo-mainbody {
+    width: 1150px;
+    margin-top: 140px;
+}
+
+.hotelcardinfo-box1 {
+    width: 100%;
+    height: 560px;
+    margin-top: 25px;
+}
+
+.hotelcardinfo-box1left::-webkit-scrollbar {
+    display: none;
+}
+
+.hotelcardinfo-box1left {
+    width: 45%;
+    padding-left: 1%;
+    padding-right: 4%;
+}
+
+.hotelcardinfo-box1right {
+    width: 50%;
+    justify-content: space-between;
+    text-wrap: nowrap;
+}
+
+.hotelcardinfo-carousaldiv {
+    height: 78%;
+    border: 0.2px solid lightgray;
+    border-radius: 6px;
+    border-radius: 12px;
+}
+
+.hotelcardinfo-prizeinfo {
+    height: 18%;
+    width: 100%;
+    justify-content: space-around;
+    border: 0.2px solid rgba(211, 211, 211, 0.664);
+    border-radius: 6px;
+}
+
+.hotelcardinfo-prizeinfo pre {
+    color: gray;
+    font-size: 13px;
+}
+
+.hotelcardinfo-prizeinfo p {
+    font-size: 13px;
+}
+
+.hotelcardinfo-prizeinfo p:nth-child(3) {
+    font-size: 12px;
+}
+
+.hotelcardinfo-prizeinfo del {
+    font-size: 14px;
+    color: gray;
+}
+
+.hotelcardinfo-prizeinfo span {
+    font-size: 12px;
+    color: green;
+}
+
+.HotelsCardInfoCarousalFirst .HotelsResultCardsCarousalMainDiv {
+    width: 100%;
+    height: 100%;
+}
+
+.HotelsCardInfoCarousalFirst {
+    width: 100%;
+    height: 100%;
+}
+
+.HotelsCardInfoCarousalFirst .HotelsResultCardsCarousalMainDiv .leftarrow {
+    position: absolute;
+    top: -200px;
+    background-color: white;
+    border-radius: 50%;
+    padding: 6px 7px 6px 5px;
+    left: 0px;
+    opacity: 0;
+    transition: opacity 0.15s ease-in;
+}
+
+.HotelsCardInfoCarousalFirst .HotelsResultCardsCarousalMainDiv:hover .leftarrow {
+    opacity: 1;
+}
+
+.HotelsCardInfoCarousalFirst .HotelsResultCardsCarousalMainDiv .leftarrow:active {
+    scale: 1.2;
+}
+
+.HotelsCardInfoCarousalFirst .HotelsResultCardsCarousalMainDiv .rightarrow {
+    padding: 6px 5px 6px 7px;
+    border-radius: 50%;
+    background-color: white;
+    position: absolute;
+    top: -200px;
+    right: 0px;
+    opacity: 0;
+    transition: opacity 0.15s ease-in;
+}
+
+.HotelsCardInfoCarousalFirst .HotelsResultCardsCarousalMainDiv:hover .rightarrow {
+    opacity: 1;
+}
+
+.HotelsCardInfoCarousalFirst .HotelsResultCardsCarousalMainDiv .rightarrow:active {
+    scale: 1.2;
+}
+
+.hotelcardinfo-generalheading span {
+    color: gray;
+    font-size: 15px;
+    letter-spacing: 1px;
+}
+
+.hotelcardinfo-ownlogo {
+    scale: 1.4;
+}
+
+.hotelcardinfo-colorrating {
+    height: 13px;
+    width: 13px;
+    margin-left: 2px;
+    border-radius: 50%;
+    border: 1px solid #00aa6c;
+}
+
+.hotelcardinfo-cancellationdiv {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    row-gap: 20px;
+    column-gap: 10px;
+}
+
+.hotelcardinfo-cancellationdiv p {
+    font-size: 13px;
+    margin-top: 10px;
+}
+
+.hotelcardinfo-cancellationdivlogo {
+    scale: 1.5;
+}
+
+.hotelcardinfo-cancellationdiv h4 {
+    font-weight: 600;
+}
+
+.hotelcardinfo-colorratinghalf {
+    height: 100%;
+    width: 50%;
+    border-radius: 50% 0px 0px 50%;
+}
+
+#hotelcardinfo-amenities {
+    width: 100%;
+}
+
+.hotelcardinfo-amenitiesgriddiv {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-top: 20px;
+    row-gap: 20px;
+    column-gap: 10px;
+}
+
+#hotelcardinfo-room {
+    width: 60%;
+    height: 500px;
+    margin-top: 30px;
+}
+
+.houserulesgriddiv {
+    display: grid;
+    height: 390px;
+    width: 690px;
+    grid-template-columns: 1fr 1fr;
+    margin-top: 20px;
+    row-gap: 25px;
+    column-gap: 20%;
+    /* padding: 30px; */
+}
+
+.houserulesgriddiv h3{
+    margin-bottom: 15px;
+    text-decoration: underline;
+}
+.houserulesgriddiv h4{
+   font-weight: 500;
+}
+.houserulesgriddiv p{
+   font-weight: 400;
+   font-size: 14px;
+}
+
+
+.houserulesgriddiv>div {
+    padding: 10px;
+    border-radius: 6px;
+    background-color: rgba(119, 136, 153, 0.4);
+}
+
+.hotelcardinfofooter {
+    justify-self: flex-end;
+}
+  
+ 
+
+  
+
+.headerforselectortyperoom button{
+    padding: 5px 30px;
+    background-color: #ff4f17;
+    color: white;
+    border-radius: 50px;
+
+
+}
+.cardsroomsouterdiv{
+    height: 400px;
+    width: 100%;
+    padding: 20px;
+    position: relative;
+}
+.carousaltypecarddiv::-webkit-scrollbar{
+    display: none;
+}
+.cardupperdiv::-webkit-scrollbar{
+    display: none;
+}
+.carousaltypecarddiv{
+    height: 300px;
+    width: 100%;
+    overflow-x: scroll;
+}
+.roomcardhotel{
+    position: relative;
+    height:250px;
+    width:300px;
+    border-radius: 6px;
+    background-color: white;
+    padding: 20px;
+    border: 1px solid black;
+    justify-content: space-between;
+}
+.cardupperdiv{
+    width: 1149px;
+    position: absolute;
+    overflow-x: scroll;
+}
+.roomcardhotelcancellation{
+    width: 300px;
+}
+.roomcardhotelcancellation p,.roomcardhotelbreakfast p{
+   font-size: 13px;
+}
+.roomcardhotel button{
+    height: 40px;
+    width: 100%;
+    background-color: #ff4f17;
+    color: white;
+    font-size: 17px;
+    border-radius: 6px;
+}
+.cardlogofeatures{
+    scale: 1.6;
+}
+.roomcardhotel del{
+    color: gray;
+    font-size: 13px;
+}
+.roomcardhotel span{
+    color: green;
+}
+.hotelroombookbutton:active{
+    scale: 1.02;
+}
+.aboutroomupperdiv{
+    justify-content: space-between;
+}
+.roomfulldetailsrelative{
+    position: relative;
+}
+.roomfulldetailsabsolute{
+    position: absolute;
+    top: 20px;
+    left: 0;
+    border-radius: 5px;
+    border: 0.2 px solid black;
+    color: rgb(255, 255, 255);
+    text-wrap: nowrap;
+    z-index: 100;
+    background-color: black;
+    padding: 2px 5px;
+    opacity: 0;
+}
+.roomfulldetailsrelative:hover .roomfulldetailsabsolute{
+opacity: 1;
+}
+.fullinforoomclearner{
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    background-color: rgba(211, 211, 211, 0.412);
+    z-index: 10000;
+}
+.sideinforoomdiv{
+    position: fixed;
+    top: 0;
+    right: -550px;
+    padding: 20px 10px;
+    height: 100%;
+    width: 500px;
+    z-index: 100000;
+    background-color: white;
+    transition: all 0.2s ease-in;
+}
+.roomcarddetailspopPosition{
+    right:0;
+    transition: all 0.2s ease-in;
+}
+line{
+    width: 100%;
+    border-bottom: 0.2px solid rgba(0, 0, 0, 0.142);
+}
+.sideinforoomdiv h3{
+    letter-spacing: 0.5px;
+    word-spacing: 1px;
+}
+.navigatebtnhotelcardinfo{
+    padding: 10px;
+    background-color: #ff4f17;
+    color: white;
+    border-radius: 6px;
+}
+.navigatebtnhotelcardinfo:active{
+    scale: 1.02;
+}
