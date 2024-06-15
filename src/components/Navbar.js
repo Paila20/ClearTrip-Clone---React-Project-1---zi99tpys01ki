@@ -83,6 +83,12 @@ export default function Navbar() {
                             <p>Hotels</p>
                         </li>
                     </NavLink>
+                    <NavLink to="/trips">
+                        <li className='flex' >
+                            <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" className="stroke"><rect x="2.83398" y="4.66699" width="10" height="16.6667" stroke="black" ></rect><rect x="12.834" y="9.66699" width="8.33333" height="11.6667" stroke="black" strokeLinecap="round" strokeLinejoin="round"></rect><path d="M10.334 9.66699H5.33398" stroke="black" strokeLinecap="round" strokeLinejoin="round"></path><path d="M18.6673 13.833H15.334" stroke="black" strokeLinecap="round" strokeLinejoin="round"></path><rect x="15.334" y="16.333" width="3.33333" height="5" stroke="black" strokeLinecap="round" strokeLinejoin="round"></rect><rect x="6.16602" y="16.333" width="3.33333" height="5" stroke="black" strokeLinecap="round" strokeLinejoin="round"></rect></svg>
+                            <p>MyTrips</p>
+                        </li>
+                    </NavLink>
                 </ul>
             </nav>
             <div className="flex marginbottomglobal" >
@@ -103,6 +109,12 @@ export default function Navbar() {
                                 <p>Hotels</p>
                             </li>
                         </NavLink>
+                        <NavLink to="/trips">
+                        <li className='flex' >
+                            <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" className="stroke"><rect x="2.83398" y="4.66699" width="10" height="16.6667" stroke="black" ></rect><rect x="12.834" y="9.66699" width="8.33333" height="11.6667" stroke="black" strokeLinecap="round" strokeLinejoin="round"></rect><path d="M10.334 9.66699H5.33398" stroke="black" strokeLinecap="round" strokeLinejoin="round"></path><path d="M18.6673 13.833H15.334" stroke="black" strokeLinecap="round" strokeLinejoin="round"></path><rect x="15.334" y="16.333" width="3.33333" height="5" stroke="black" strokeLinecap="round" strokeLinejoin="round"></rect><rect x="6.16602" y="16.333" width="3.33333" height="5" stroke="black" strokeLinecap="round" strokeLinejoin="round"></rect></svg>
+                            <p>MyTrips</p>
+                        </li>
+                    </NavLink>
                     </ul>
                 </nav>
                 <Outlet />

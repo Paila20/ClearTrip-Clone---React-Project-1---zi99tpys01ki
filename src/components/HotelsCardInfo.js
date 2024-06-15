@@ -181,7 +181,7 @@ function scrolleffect() {
     <div className='hotelcardinfo flex flexc'>
 
       {Object.keys(sidebardata).length != 0 &&
-        <div className={`sideinforoomdiv flex flexc g20 ${roomcarddetailspop ? "roomcarddetailspopPosition" : ""}`}>
+        <div className={` sideinforoomdiv flex flexc g20 ${roomcarddetailspop ? "roomcarddetailspopPosition" : ""}`}>
           <div className='flex flexc g10'>
             <svg onClick={() => { fulldetailpagedirectionchanger() }} width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" ><path d="M18 6L12 12M12 12L6 18M12 12L6 6M12 12L18 18" stroke="#1A1A1A" strokeLinecap="round" strokeLinejoin="round"></path></svg>
             <div className='flexa flexjsb'><h1>Room Details</h1> <h1>₹{Math.floor(sidebardata.price).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</h1></div>
@@ -347,7 +347,7 @@ function scrolleffect() {
                   </div>
                 </div>
                 <hr />
-                <div id='hotelcardinfo-amenities' ref={amenitieref}>
+                <div id='hotelcardinfo-amenities' ref={amenitieref}> 
                   <h2>Amenities</h2>
                   <div className='hotelcardinfo-amenitiesgriddiv'>
                     {dataa.amenities.map((item, index) => (

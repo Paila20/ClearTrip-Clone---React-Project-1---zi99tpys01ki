@@ -52,9 +52,69 @@ export default function FlightInfo() {
     setdetails((prev) => ({ ...prev, [key]: value }));
   }
 
+  function startdate(){
+    const departureDate = new Date(dateObject);
+    const [hours, minutes] = dataa.departureTime.split(":");
+    departureDate.setHours(hours, minutes);
+    
+    return departureDate;
+  }
+
+  
+  function enddate(){
+    const [departureHours, departureMinutes] = dataa.departureTime.split(":");
+    const [arrivalHours, arrivalMinutes] = dataa.arrivalTime.split(":");
+    const arrivalDate = new Date(dateObject);
+    if(departureHours>arrivalHours){
+    arrivalDate.setHours(arrivalHours,arrivalMinutes);
+    }
+    else if(departureHours==arrivalHours){
+      arrivalDate.setHours(arrivalHours,departureMinutes+arrivalMinutes)
+    }
+    else{
+      arrivalDate.setHours(departureHours+arrivalHours,departureMinutes+arrivalMinutes)
+    }
+  
+    return arrivalDate;
+  }
+
+
+  const senddata = async () => {
+    try {
+      if (details.dnumber && details.demail && details.dfname && details.dlname && details.dgender && details.dcountry && details.dstate && details.dbillingAddress) {
+        const response = await (await fetch(`${baseapi}/booking`,
+          {
+            method: "POST",
+            headers: {
+              projectID: "mhroh2oic5sz",
+              Authorization:`Bearer ${localtoken}`,
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              bookingType: "flight",
+              bookingDetails: {
+                flightId: `${flightid}`,
+                startDate: `${startdate()}`,
+                endDate: `${enddate()}`
+              }
+            })
+          }
+        )).json();
+        console.log(flightid);
+        console.log(startdate());
+        console.log(enddate());
+      }
+    }
+    catch (error) {
+      alert(error);
+    }
+  }
+
+
   
   function gotopayment() {
     if (details.dnumber && details.demail && details.dfname && details.dlname && details.dgender && details.dcountry && details.dstate && details.dbillingAddress) {
+      senddata();
       navigate(`/flights/results/flightInfo/flightbooking?FirstName="${details.dfname}"&Email="${details.demail}"&amount=${caltotalamout()}`);
     }
     else{

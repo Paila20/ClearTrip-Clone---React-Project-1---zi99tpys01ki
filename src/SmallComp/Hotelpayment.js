@@ -1,7 +1,9 @@
 import React, { useState, useEffect, useRef, useMemo } from 'react'
 import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom'
 import { IoIosArrowDown } from "react-icons/io";
-import Footer from "../SmallComp/Footer"
+import Footer from "../SmallComp/Footer";
+import { CgClose } from 'react-icons/cg';
+import { IoChevronDown } from "react-icons/io5";
 import "../styles/Hotelpayment.css"
 import { countries,states,months,days,hotelpaymentStatefun, baseapi,localtoken } from '../components/Constant';
 
@@ -30,6 +32,7 @@ export default function hotelpayment() {
   const [pop, setpop] = useState({});
   const [switcherform, setswitcherform] = useState(false);
   const [errortravellerform, seterrortravellerform] = useState(false);
+  
 
   function popp(key) {
     setpop({});
@@ -52,11 +55,39 @@ export default function hotelpayment() {
     setdetails((prev) => ({ ...prev, [key]: value }));
   }
 
-  
+  const senddata = async () => {
+    try {
+      if (details.dnumber && details.demail && details.dfname && details.dlname && details.dgender && details.dcountry && details.dstate && details.dbillingAddress) {
+        const response = await (await fetch(`${baseapi}/booking`,
+          {
+            method: "POST",
+            headers: {
+              projectID: "mhroh2oic5sz",
+              Authorization: `Bearer ${localtoken}`,
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              bookingType: "hotel",
+              bookingDetails: {
+                hotelId: `${hotel_id}`,
+                startDate: `${dateObject}`,
+                endDate: `${dateObject}`
+              }
+            })
+          }
+        )).json();
+
+      }
+    }
+    catch (error) {
+      alert(error);
+    }
+  } 
 
   function gotopayment() {
     if (details.dnumber && details.demail && details.dfname && details.dlname && details.dgender && details.dcountry && details.dstate && details.dbillingAddress) {
       const amount=caltotalamout();
+      senddata();
       navigate(`/hotels/results/hotelInfo/Info/paymentBooking?FirstName="${details.dfname}"&Email="${details.demail}"&amount=${amount}`);
     }
     else {
@@ -148,7 +179,7 @@ export default function hotelpayment() {
             <div className='hotelpaymentleftdiv'>
               <div className='flightinfo-FirstPart flexa g20'>
                 <div className='flightinfo-1-logo flexja'>1</div>
-                <h1>Review your itinerary</h1> 
+                <h3>Review your itinerary</h3> 
               </div>
               <div className='hotelpaymentcarddetails'>
                 <div className='hotelpaymentcardborderdotted flex flexjsb'>
@@ -156,7 +187,7 @@ export default function hotelpayment() {
                   <div className='hotelpaymentcardhalfbolls2'></div>
                   <div className='flex flexc g5'>
                     <div className='hotelpaymentstar'>{dataa.amenities.length}-star hotel in {dataa.location.match(/^([^,]+)/)[1]}</div>
-                    <h1>{dataa.name}&nbsp;-&nbsp;{dataa.location.match(/^([^,]+)/)[1]}</h1>
+                    <h2>{dataa.name}&nbsp;-&nbsp;{dataa.location.match(/^([^,]+)/)[1]}</h2>
                     <span className='flexa'>
                      
                     {dataa.rating >= 1 && dataa.rating <= 5 ?  dataa.rating :''}/5
@@ -200,10 +231,64 @@ export default function hotelpayment() {
                       <p>Rooms & Guests</p>
                       <h3>{rooms} Room, {childrens + adults} Guests</h3>
                       <p>{adults} adults {childrens ? `${childrens} children` : ""}</p>
+                    
                     </div>
+                  </div>
+                  <div>
+
+                   <p onClick= {() => popp('details')} style={{color: 'blue'}}>Details        <IoChevronDown/></p> 
+             
+                   {pop['details'] && <div className='detailspop'>
+                    <div className='flex g20 '>
+                      <CgClose onClick = {() => popp('details')}/>
+                      <h3>Guests Information</h3>
+                    </div>
+                    <div className='flex g20 mt50 flexjsb'>
+                      <p> Room {dataa.rooms.length}</p>
+                      <p>{dataa.houseRules.guestProfile.unmarriedCouplesAllowed }  {adults} Adults</p>
+                    </div>
+                     </div>}
                   </div>
                 </div>
               </div>
+
+              <div className= 'hotelpaymentcarddetails1'>
+                <div className='flex g10'>
+                <h3>{dataa.rooms[0].roomType} ,</h3>
+                <h3>{dataa.rooms[0].bedDetail}</h3>
+                </div>
+                <div className='flex g20'>
+                <img src={dataa.images[1]} className= 'hotelroom-img'/>
+                
+                <div className=' flex  g20 mt50'>
+                <p>{dataa.rooms[0].bedDetail}</p>
+                <p>{dataa.rooms[0].roomSize} sq.ft.</p>
+                <p>{dataa.rooms[0].roomType}</p>
+                <p> Room {dataa.rooms[0].roomNumber}</p>
+                </div>
+                <p className='mt70' onClick={() => popp('moredetails')}>see more details</p>
+                {pop['moredetails'] && <div className='moredetailspop'>
+                  <CgClose onClick={() => popp('moredetails')}/>
+                  <div className='flex g10'>
+                    <h3>{dataa.rooms[0].roomType} ,</h3>
+                    <h3>{dataa.rooms[0].bedDetail}</h3>
+
+                  </div>
+                  <img src={dataa.images[1]} className= 'hotelroom-imgpop'/>
+                  <div className=' flex  g20 mt50'>
+                <p>{dataa.rooms[0].bedDetail}</p>
+                <p>{dataa.rooms[0].roomSize} sq.ft.</p>
+                <p>{dataa.rooms[0].roomType}</p>
+                <p> Room {dataa.rooms[0].roomNumber}</p>
+                </div>
+                  </div>}
+                </div>
+               
+
+                
+           
+              </div>
+            
 
               <div className='flightinfo-SecondPart flexa g20'>
                 <div className='flightinfo-2-logo flexja'>2</div>

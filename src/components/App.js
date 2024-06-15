@@ -2,6 +2,7 @@
 import { BrowserRouter as Router,Routes,Route } from "react-router-dom";
 import Flights from "./Flights";
 import Navbar from "./Navbar";
+
 import Hotels from "./Hotels";
 import Flightsresult from "./FlightsResult";
 import HotelsResult from "./HotelsResult";
@@ -11,6 +12,7 @@ import PaymentBooking from './PaymentBooking';
 import HotelsCardInfo from './HotelsCardInfo';
 import Hotelpayment from '../SmallComp/Hotelpayment';
 import { Maintenance } from '../SmallComp/Maintenance';
+import MyTrips from "./MyTrips";
 
 
 
@@ -26,6 +28,7 @@ function App() {
         <Route index element={<Flights/>}/>
         <Route path="/flights"  element={<Flights/>}/>
         <Route path="/hotels" element={<Hotels/>}/>
+        <Route path="/trips" element={<MyTrips/>}/>
         </Route>
                
         <Route path="/flights/:results" element={<Flightsresult/>}/>
