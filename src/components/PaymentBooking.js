@@ -1,7 +1,7 @@
 
 
 import React, { useState } from 'react';
-import { Form, Input, Button, Checkbox, Radio, message } from 'antd';
+import { Form, Input, Button, Checkbox, Radio, message,Select } from 'antd';
 import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { FaCheckCircle } from "react-icons/fa";
 import "../styles/PaymentBooking.css";
@@ -18,6 +18,19 @@ export default function PaymentBooking() {
   const [donepayment, setDonepayment] = useState(false);
   const [paymentMethod, setPaymentMethod] = useState('UPI');
   const [cardNumber, setCardNumber] = useState('');
+
+  const { Option } = Select;
+
+const months = [
+  { month: 'Jan (01)', value: '01' }, { month: 'Feb (02)', value: '02' },
+  { month: 'Mar (03)', value: '03' }, { month: 'Apr (04)', value: '04' },
+  { month: 'May (05)', value: '05' }, { month: 'Jun (06)', value: '06' },
+  { month: 'Jul (07)', value: '07' }, { month: 'Aug (08)', value: '08' },
+  { month: 'Sep (09)', value: '09' }, { month: 'Oct (10)', value: '10' },
+  { month: 'Nov (11)', value: '11' }, { month: 'Dec (12)', value: '12' }
+];
+
+const yearsArray = Array.from({ length: 26 }, (_, index) => 2024 + index);
 
   const handlePaymentMethodChange = (e) => {
     setPaymentMethod(e.target.value);
@@ -42,15 +55,16 @@ export default function PaymentBooking() {
     form.setFieldsValue({ cardNumber: formattedValue });
   };
 
-  const validateYear = (_, value) => {
-    const currentYear = new Date().getFullYear();
-    const year = parseInt(value, 10);
-    if (isNaN(year) || year < currentYear || year > currentYear + 10) {
-      return Promise.reject(new Error('Please enter a valid year'));
-    }
-    return Promise.resolve();
-  };
+  
 
+
+  const validateYear = (rule, value) => {
+    const currentYear = new Date().getFullYear();
+    if (value >= currentYear) {
+      return Promise.resolve();
+    }
+    return Promise.reject('Please enter a valid year');
+  };
   return (
     <div className='paymentbooking'>
       <nav className='flexa'>
@@ -74,7 +88,7 @@ export default function PaymentBooking() {
               <div className='paymentcarddiv1 flex flexc g10'>
                 <Form.Item name="paymentMethod">
                   <Radio.Group onChange={handlePaymentMethodChange}>
-                    <Radio.Button value="UPI">UPI</Radio.Button>
+                    <Radio.Button value="UPI" className='upi'>UPI</Radio.Button>
                     <Radio.Button value="Debit">Debit/Credit card</Radio.Button>
                   </Radio.Group>
                 </Form.Item>
@@ -124,31 +138,37 @@ export default function PaymentBooking() {
                       maxLength={19}  
                     />
                   </Form.Item>
-                  <Form.Item
-                    
-                    style={{ marginBottom: 0 }}
-                  >
+                
+                  <Form.Item style={{ marginBottom: 0 }}>
                     <Form.Item
                       name="expiryMonth"
                       rules={[
-                        { required: true, message: 'Please enter the expiry month' },
-                        { pattern: /^(0?[1-9]|1[0-2])$/, message: 'Please enter a valid month' },
+                        { required: true, message: 'Please select the expiry month' }
                       ]}
-                      style={{ display: 'inline-block' }}
+                      style={{ display: 'inline-block', width: 'calc(30% - 8px)' }}
                     >
-                      <Input placeholder='MM' maxLength={2} />
+                      <Select placeholder="Month">
+                        {months.map(item => (
+                          <Option key={item.value} value={item.value}>{item.month}</Option>
+                        ))}
+                      </Select>
                     </Form.Item>
                     <Form.Item
                       name="expiryYear"
                       rules={[
-                        { required: true },
-                        { validator: validateYear },
+                        { required: true, message: 'Please select the expiry year' },
+                        { validator: validateYear }
                       ]}
-                      style={{ display: 'inline-block' }}
+                      style={{ display: 'inline-block', width: 'calc(30% - 8px)', marginLeft: '16px' }}
                     >
-                      <Input placeholder='YYYY' maxLength={4} />
+                      <Select placeholder="Year">
+                        {yearsArray.map(year => (
+                          <Option key={year} value={year}>{year}</Option>
+                        ))}
+                      </Select>
                     </Form.Item>
                   </Form.Item>
+
                   <Form.Item
                     name="cardHolderName"
                     rules={[{ required: true, message: 'Please enter the card holder name' }]}

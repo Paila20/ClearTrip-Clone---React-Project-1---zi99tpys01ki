@@ -283,12 +283,25 @@ export default function hotelpayment() {
                 </div>
                   </div>}
                 </div>
-               
-
-                
-           
               </div>
-            
+                <div className='flexc g20 mt50'>
+                  <h2>Cancellation Policy</h2>
+                  <p>{dataa.rooms[0].cancellationPolicy}</p>
+
+                </div>
+
+                <div className='flexc g20 mt50'>
+                  <h2>Booking Policy</h2>
+                  <p>{dataa.childAndExtraBedPolicy.extraBedProvidedForChild === true ? 'Guests below 18 years of age allowed' : 'Guests below 18 years of age not allowed'}</p>
+                  <p onClick= {()=>popp('seemore')} style={{color: 'blue'}}>see more</p>
+                  
+                                {
+                                    pop['seemore'] && <div className='flexc g20 seemore'>
+                                        <CgClose onClick={() => popp('seemore')} />
+                                        <p>Guests below 18 years of age not allowed</p>
+                                        </div>
+                                }             
+                </div>
 
               <div className='flightinfo-SecondPart flexa g20'>
                 <div className='flightinfo-2-logo flexja'>2</div>

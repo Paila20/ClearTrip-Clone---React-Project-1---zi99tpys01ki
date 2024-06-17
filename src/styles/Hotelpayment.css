@@ -63,6 +63,18 @@ min-width: 200px !important;
 .mt50{
     margin-top: 50px;
 }
+.seemore{
+    width: 60%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    border: 0.2px solid rgba(211, 211, 211, 0.621);
+    box-shadow: 1px 1px 10px rgba(14, 12, 12, 0.075);
+    border-radius: 12px;
+    padding: 3%;
+    gap: 30px;
+    margin: 5%; 
+}
 .mt70{
     margin-left: -330px;
     margin-top: 85px;
@@ -79,6 +91,7 @@ min-width: 200px !important;
     z-index: 100000;
     background-color: white;
     transition: all 0.2s ease-in;
+    border: grey;
 }
 .detailspop{
     width: 100%;

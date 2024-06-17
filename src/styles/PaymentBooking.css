@@ -58,7 +58,7 @@ font-weight: 400;
 .paymentcarddiv1{
     height: 100%;
     box-sizing: border-box;
-    width: 25%;
+    width: 35%;
     min-width: 130px;
     padding: 15px 5px;
 }
@@ -159,8 +159,8 @@ font-weight: 300;
 }
 .paybuttonpayment{
     /* padding: 10px 30px; */
-    background-color: lightcoral;
-    color: white;
+    background-color: #F77728 ;
+    color: black;
     font-size: 16px;
     width: 150px;
     align-self: flex-end;
@@ -175,6 +175,8 @@ font-weight: 300;
     font-weight: 400;
 }
 
-
+.upi{
+    max-width:500px ;
+}
 
 
