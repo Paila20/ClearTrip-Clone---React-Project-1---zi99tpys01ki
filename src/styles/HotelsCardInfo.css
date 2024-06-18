@@ -118,7 +118,8 @@ hr {
 }
 
 .hotelcardinfo-mainbody {
-    width: 1150px;
+    /* width: 1150px; */
+    width: 90%;
     margin-top: 140px;
 }
 
@@ -438,6 +439,18 @@ opacity: 1;
     background-color: white;
     transition: all 0.2s ease-in;
 }
+
+.hotel-logincheck{
+    position: fixed;
+    top: 0;
+    right: -550px;
+    padding: 20px 10px;
+    height: 100%;
+    width: 500px;
+    z-index: 100;
+    /* background-color: white; */
+    transition: all 0.2s ease-in; 
+}
 .roomcarddetailspopPosition{
     right:0;
     transition: all 0.2s ease-in;
@@ -458,4 +471,54 @@ line{
 }
 .navigatebtnhotelcardinfo:active{
     scale: 1.02;
+}
+
+.btninfo{
+    position: relative;
+    padding: 11px 13px;
+    gap: 20px;
+    background-color: white;
+}
+@media(max-width:1200px){
+    
+    .hotelcardinfo-bottomnavleft {
+        justify-content: space-between;
+        width: 92%;
+        margin-top: 20px;
+    }
+
+}
+
+@media(max-width:800px){
+    
+    .hotelcardinfo-bottomnavleft {
+        justify-content: space-between;
+        width: 92%;
+        margin-top: 20px;
+        /* margin-left: 70px; */
+        margin-right: -214px;
+    }
+
+    .hotelcardinfo-bottomnavright {
+        width: 98%;
+        margin-left: -290px;
+    }
+    .btninfo{
+        display: none;
+    }
+    .hotelcardinfo-bottomnavright {
+        opacity: 0;
+        margin: 10px -73px;
+    }
+    .hotelcardinfo-bottomnav {
+       
+        width: 34%;
+    }
+}
+@media(max-width:500px){
+    .hotelcardinfo-bottomnavright {
+        opacity: 0;
+        margin: 10px 0;
+    }
+    
 }

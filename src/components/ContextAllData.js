@@ -5,9 +5,21 @@ export function useAuthContext(){
 }
 export default function ContextAllDataProvider({children}) {
     const [all,setall]=useState({});
+    const [tokenAvailability, settokenAvailability] = useState();
+  const [logincheck, setlogincheck] = useState(false);
 
+ function checklogin() {
+        const token = JSON.parse(localStorage.getItem("token")) || [];
+       
+        if (typeof token == "string") {
+            settokenAvailability(true)
+        }
+        else{
+            setlogincheck(true)
+        }
+    }
   return (
-  <MyContext.Provider value={{all,setall}}>
+  <MyContext.Provider value={{all,setall,tokenAvailability, settokenAvailability,logincheck, setlogincheck,checklogin}}>
     {children}
   </MyContext.Provider>
   )

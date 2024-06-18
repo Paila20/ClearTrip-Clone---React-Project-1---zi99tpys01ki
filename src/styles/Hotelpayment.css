@@ -183,3 +183,51 @@ padding-left: 10px;
     border-radius: 5%;
     margin-top: 30px;
 }
+
+@media(max-width:1200px){
+    .hotelpaymentcarddetails {
+        width: 145%;
+        margin-top: 20px;
+        
+       
+    }
+
+    .hotelpayment .hotelpaymentbodydiv {
+        padding-top: 20px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+
+  
+}
+
+@media(max-width:800px){
+    .hotelpaymentcarddetails {
+        width: 145%;
+        margin-top: 20px;
+        
+       
+    }
+    .rightdiv {
+        margin-left: 332px;
+     }
+     
+    .hotelpayment .hotelpaymentbodydiv {
+        padding-top: 20px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        margin-left: -55px;
+    }
+    
+    .hotelpaymentcardbottom {
+       display: flex;
+       flex-direction: column;
+       padding: 0;
+    }
+
+    .hotelpaymentcardbottom span {
+       display: none;
+    }
+}

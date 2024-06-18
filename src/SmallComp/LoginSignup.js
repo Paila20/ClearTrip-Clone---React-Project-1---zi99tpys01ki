@@ -6,7 +6,7 @@ import "../styles/LoginSignup.css";
 import { useAuthContext } from '../components/ContextAllData';
 import { baseapi } from '../components/Constant';
 
-export default function LoginSignup({ settokenAvailability, checklogin, setlogincheck }) {
+export default function LoginSignup({ settokenAvailability,  setlogincheck }) {
   const [pagination, setpagination] = useState(true);
   const { all, setall } = useAuthContext();
   const [existusererror, setexistusererror] = useState(false);
@@ -86,7 +86,7 @@ export default function LoginSignup({ settokenAvailability, checklogin, setlogin
         <div className='leftlogin'><CarouselThree /></div>
         <div className='rightlogin flexa flexc'>
           <div className='crossSign'>
-            <svg onClick={() => { setlogincheck(false); setTimeout(() => { checklogin(); }, 60000); }} width="22" height="22" viewBox="0 0 24 24" fill="none" className=" c-pointer c-neutral-900"><path d="M18 6L12 12M12 12L6 18M12 12L6 6M12 12L18 18" stroke="#1A1A1A" strokeLinecap="round" strokeLinejoin="round"></path></svg>
+            <svg onClick={() => { setlogincheck(false);  }} width="22" height="22" viewBox="0 0 24 24" fill="none" className=" c-pointer c-neutral-900"><path d="M18 6L12 12M12 12L6 18M12 12L6 6M12 12L18 18" stroke="#1A1A1A" strokeLinecap="round" strokeLinejoin="round"></path></svg>
           </div>
           {pagination ?
             (

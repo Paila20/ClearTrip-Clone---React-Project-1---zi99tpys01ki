@@ -48,6 +48,8 @@ scale: 1.1;
     background-color: white;
     color: black;
     border: 1px solid black;
+    width: 100%;
+    height: 100%;
 }
 .HotelsResult .navFlightResults{
     border:none;
@@ -57,7 +59,9 @@ scale: 1.1;
     background-color: white;
 }
 .upperCenterdiv{
-    width: 600px;
+    /* width: 600px; */
+    width: 50%;
+
     height: 50px;
     margin-top: 10px;
     border-radius: 12px;
@@ -351,7 +355,8 @@ outline: none;
 
 .hotelsresult-rendergrid{
     display: grid;
-    width: 1150px;
+    /* width: 1150px; */
+    width: 90%;
     grid-template-columns: repeat(4,1fr);
     grid-template-rows: repeat(auto,500px);
     column-gap: 25px;
@@ -361,7 +366,8 @@ outline: none;
 }
 .hotelsresult-card .img{
     width: 100%;
-    height: 210px;
+    /* height: 210px; */
+
     /* border: 1px solid red; */
     border-radius: 12px;
     margin-bottom: 5px;
@@ -462,3 +468,60 @@ scale: 0.7;
 
 
 /* -----------HotelsResultCardsCarousal--end--------- */
+@media(max-width: 1200px){
+    .uppernav{
+        flex-direction: column;
+        /* gap: 30px; */
+    }
+    .HotelsResult .loginoutBtn{
+        margin: 0px 0;
+        padding: 0;
+    }
+    .HotelsResultDownNav{
+        margin-top: 55px;
+    }
+    .hotelsresult-rendergrid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .hotelsresult-card .img{
+        width: 100%;
+        height: 100%;
+        
+        /* border: 1px solid red; */
+        border-radius: 12px;
+        margin-bottom: 5px;
+    }
+    .upperCenterdiv{
+      margin-bottom: 20px;
+      width: 90%;
+    }
+}
+
+@media(max-width: 800px){
+    .uppernav{
+        flex-direction: column;
+        /* gap: 30px; */
+    }
+    .HotelsResult .loginoutBtn{
+        margin-top: 0px ;
+    }
+    .HotelsResultDownNav{
+        margin-top: 55px;
+        gap:10px;
+    }
+    .hotelsresult-rendergrid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .upperCenterdivDynamic{
+        width: 100%;
+        height: 10%;
+        border-radius: 12px;
+        border: 0.5px solid rgba(128, 128, 128, 0.562);
+        margin-bottom: 10px
+    }
+}
+@media(max-width:600px){
+    .hotelsresult-rendergrid {
+        grid-template-columns: 1fr;
+    }
+}

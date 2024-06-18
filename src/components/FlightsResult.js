@@ -5,10 +5,11 @@ import "../styles/FlightsResults.css";
 
 import { useLocation } from 'react-router-dom';
 import Calendar from 'react-calendar';
-
+import LoginSignup from '../SmallComp/LoginSignup';
 import { CiCircleInfo } from "react-icons/ci";
 import Footer from "../SmallComp/Footer";
 import {objdropdowncity,days,months,logofinder,airlineNamefinder,flightsresultsStatefun, baseapi } from './Constant';
+import { useAuthContext } from './ContextAllData';
 
 
 export default function FlightsResult() {
@@ -22,7 +23,7 @@ export default function FlightsResult() {
     
 
     let count = 0;
-    
+    const { all, setall,logincheck, setlogincheck, tokenAvailability, settokenAvailability,checklogin } = useAuthContext();
     const {filter,setfilter}=flightsresultsStatefun();
     const {rotateButton,setrotateButton}=flightsresultsStatefun();
     const {filterPopup,setfilterPopup}=flightsresultsStatefun();
@@ -46,9 +47,16 @@ export default function FlightsResult() {
     const [valuee, setvaluee] = useState(2500);
     const [searchedcityIn, setSearchedcityIn] = useState([]);
     const [searchedcityOut, setSearchedcityOut] = useState([]);
+    // const [logincheck, setlogincheck] = useState(false)
+    const [profiletoggle, setprofiletoggle] = useState(false);
+    // const [tokenAvailability, settokenAvailability] = useState();
 
  
-
+    function finishtoken() {
+        localStorage.removeItem("token");
+        settokenAvailability(false);
+        checklogin();
+    }
   
     function airlineSelectorwithvalue(key, value) {
         setTimeout(() => {
@@ -119,12 +127,25 @@ export default function FlightsResult() {
         setrotateButton((prev) => ({ prev: false }));
     }
 
+    // function checklogin() {
+    //     const token = JSON.parse(localStorage.getItem("token")) || [];
+    //     if (typeof token == "string") {
+    //         settokenAvailability(true)
+    //     }
+    // }
+    // useEffect(() => {
+    //     checklogin();
+    // }, [])
     
 
+   
     function navigateToFlightInfo(_id) {
-       
-       
-        navigate(`/flights/results/Info?flightid=${_id}&date=${dateObject}`)
+        if (localStorage.getItem("token")) {
+            navigate(`/flights/results/Info?flightid=${_id}&date=${dateObject}`)
+        }
+        else {
+            setlogincheck(true);
+        }
     }
 
     function forwardRoute() {
@@ -200,7 +221,7 @@ export default function FlightsResult() {
 
     return (
         <div className='flightResultMain flex flexc'>
-
+             {logincheck && <LoginSignup settokenAvailability={settokenAvailability} checklogin={checklogin} setlogincheck={setlogincheck} />}
             <nav className='navFlightResults flexja'>
                 <div className='innernav'>
                     <div>
@@ -210,6 +231,41 @@ export default function FlightsResult() {
                             <Link to="/flights"><svg height="18px" width="18px" fill="#999"><title>Flights</title><path d="M16.115.426l-4.387 4.427L1.676 2.172 0 3.862l8.285 4.403-3.35 3.38-2.606-.322-1.325 1.336 2.955 1.568 1.554 2.981 1.325-1.336-.304-2.613 3.35-3.38 4.27 8.303 1.676-1.69-2.544-9.936 4.479-4.527c1.203-1.214-.462-2.802-1.65-1.603z" fill="#36C" fillRule="evenodd"></path></svg></Link>
                             <Link to="/hotels"><svg width="20" height="20" fill="#999"><title>Hotels</title><g fill="none" fillRule="evenodd"><path fill="#FFF" d="M0 0h20v20H0z"></path><path d="M17.65 16.364v-2.432H2.354v2.425H.002L0 4.73c0-1.458 2.358-1.458 2.358 0v6.791h15.256L20 11.515v4.849h-2.35zm-8.895-5.096h-4.96c-.942 0-.853-2.173.03-2.173h3.941V7.478c0-.764.471-1.195.989-1.281v-.012h.104c.056-.004.113-.004.17 0h9.67c.959 0 1.301.31 1.301 1.299v3.789H8.755v-.005zm-3.13-3.177c-1.036 0-1.875-.855-1.875-1.909s.84-1.91 1.875-1.91c1.035 0 1.875.856 1.875 1.91 0 1.054-.84 1.909-1.875 1.909z" fill="#36CD"></path></g></svg></Link>
                         </div>
+
+                        <div className='upperrightIcons flex'>
+
+                    <nav className='navUpperHome'>
+                        {!tokenAvailability && <button className='loginoutBtn' onClick={() => setlogincheck(true)}>Log in / Sign up</button>}
+                        {tokenAvailability && <button className='profileBtn flexja' onClick={(e) => { setprofiletoggle(!profiletoggle) }} ><svg viewBox="0 0 14 14" height="16px" width="16px" className="c-inherit"><g fill="none" fillRule="evenodd"><rect width="14" height="14" fill="#FFF" opacity="0"></rect><circle cx="7" cy="7" r="6.25" stroke="currentColor" strokeWidth="1.5"></circle><path fill="currentColor" d="M3,5 C4.38071187,5 5.5,3.88071187 5.5,2.5 C5.5,1.11928813 4.38071187,0 3,0 C1.61928813,0 0.5,1.11928813 0.5,2.5 C0.5,3.88071187 1.61928813,5 3,5 Z" transform="matrix(-1 0 0 1 10 3)"></path><path fill="currentColor" d="M7,9 C9.14219539,9 10.8910789,10.6839685 10.9951047,12.8003597 L11,13 L3,13 C3,10.790861 4.790861,9 7,9 Z"></path><circle cx="7" cy="7" r="7.75" stroke="#FFF" strokeWidth="1.5"></circle></g></svg>
+                        {JSON.parse(localStorage.getItem("user"))}
+                            {profiletoggle &&
+                                <div className='profilePop flexja flexc'>
+
+                                    <div className='profileSelectorDiv flexja'>
+                                        <div className='profileSelectorleft'>
+                                            <h5>Account</h5>
+                                            <NavLink to="/maintenance"><p className='profileSelectors flexa'><svg viewBox="0 0 14 14" height="16" width="16" className="c-neutral-400"><g fill="none" fillRule="evenodd"><rect width="14" height="14" fill="#FFF" opacity="0"></rect><path fill="currentColor" d="M13,9.46769027 L13,12 C13,12.5522847 12.5522847,13 12,13 L2,13 C1.44771525,13 1,12.5522847 1,12 L1,9.46769027 L13,9.46769027 Z M8.76884248,1.00969027 C9.32112723,1.00969027 9.76884248,1.45740552 9.76884248,2.00969027 L9.768,3.99969027 L12,4 C12.5522847,4 13,4.44771525 13,5 L13,7.96769027 L1,7.96769027 L1,5 C1,4.44771525 1.44771525,4 2,4 L4.268,3.99969027 L4.26884248,2.00969027 C4.26884248,1.45740552 4.71655774,1.00969027 5.26884248,1.00969027 L8.76884248,1.00969027 Z M8.268,2.509 L5.768,2.509 L5.767,3.99969027 L8.267,3.99969027 L8.268,2.509 Z"></path></g></svg><p>Trips</p></p></NavLink>
+                                            <NavLink to="/maintenance"><p className='profileSelectors flexa'><svg viewBox="0 0 14 14" height="16" width="16" className="c-neutral-400"><g fill="none" fillRule="evenodd"><rect width="14" height="14" fill="#FFF" opacity="0"></rect><path fill="currentColor" fillRule="nonzero" stroke="currentColor" d="M6.66377804,12.0103667 C6.85467399,12.1862449 7.14840775,12.1868013 7.33996863,12.0116476 L7.52037698,11.846694 C10.4133674,9.18600047 11.3179531,8.24297499 11.9494023,7.05369364 C12.2679269,6.45377943 12.4230769,5.8833705 12.4230769,5.29700272 C12.4230769,3.72548999 11.2121985,2.5 9.66538462,2.5 C8.79968324,2.5 7.94470884,2.90670095 7.38258677,3.57477308 L7,4.02947068 L6.61741323,3.57477308 C6.05529116,2.90670095 5.20031676,2.5 4.33461538,2.5 C2.78780146,2.5 1.57692308,3.72548999 1.57692308,5.29700272 C1.57692308,5.88588466 1.73340796,6.4586853 2.05471743,7.06126617 C2.68799666,8.24891226 3.59889285,9.19694245 6.47994688,11.8409976 L6.66377804,12.0103667 Z"></path></g></svg><p>ShortLists</p></p></NavLink>
+                                            <NavLink to="/maintenance"><p className='profileSelectors flexa'><svg viewBox="0 0 14 14" height="16" width="16" className="c-neutral-400"><g fill="none" fillRule="evenodd"><rect width="14" height="14" fill="#FFF" opacity="0"></rect><path fill="currentColor" d="M4.5,7 C6.43299662,7 8,8.56700338 8,10.5 L8,14 L1,14 L1,10.5 C1,8.56700338 2.56700338,7 4.5,7 Z M10.5002944,9 C11.8810062,9 13.0002944,10.1192881 13.0002944,11.5 L13.0002944,14 L9.50029435,13.9997654 L9.50029435,10.5057654 C9.50029435,10.083454 9.48261395,9.6733711 9.38403764,9.28165365 C9.72780691,9.10132075 10.0848802,9 10.5002944,9 Z M10.5242101,4 C11.6287796,4 12.5242101,4.8954305 12.5242101,6 C12.5242101,7.1045695 11.6287796,8 10.5242101,8 C9.41964058,8 8.52421008,7.1045695 8.52421008,6 C8.52421008,4.8954305 9.41964058,4 10.5242101,4 Z M4.5,1 C5.88071187,1 7,2.11928813 7,3.5 C7,4.88071187 5.88071187,6 4.5,6 C3.11928813,6 2,4.88071187 2,3.5 C2,2.11928813 3.11928813,1 4.5,1 Z"></path></g></svg><p>Travellers</p></p></NavLink>
+                                            <NavLink to="/maintenance"><p className='profileSelectors flexa'><svg viewBox="0 0 14 14" height="16" width="16" className="c-neutral-400"><g fill="none" fillRule="evenodd"><rect width="14" height="14" fill="#FFF" opacity="0"></rect><path fill="currentColor" d="M10.9938128,1.8893206 C10.9979344,1.92619985 11,1.96327993 11,2.00038878 L11,2.9992998 L2.5,3 C2.25454011,3 2.05039163,3.17687516 2.00805567,3.41012437 L2,3.5 C2,3.74545989 2.17687516,3.94960837 2.41012437,3.99194433 L2.5,4 L12,4 C12.5522847,4 13,4.44771525 13,5 L13,12 C13,12.5522847 12.5522847,13 12,13 L2,13 C1.44771525,13 1,12.5522847 1,12 L1,5 L1.003,4.9462998 L1.00048219,4.89843613 L1,2.89446607 C1,2.38516155 1.38277848,1.95722081 1.88893182,1.90065328 L9.88893182,1.00657599 C10.4377995,0.945234733 10.9324715,1.34045296 10.9938128,1.8893206 Z M11,8 C10.4477153,8 10,8.44771525 10,9 C10,9.55228475 10.4477153,10 11,10 C11.5522847,10 12,9.55228475 12,9 C12,8.44771525 11.5522847,8 11,8 Z"></path></g></svg><p>Cleartrip Wallet</p></p></NavLink>
+                                            <NavLink to="/maintenance"><p className='profileSelectors flexa'><svg width="16" height="16" viewBox="0 0 14 14" fill="none" className="c-neutral-400"><path d="M11.1008 6.54288L12.0964 2.82779C12.2011 2.437 11.9417 2.16047 11.6665 2.08674C11.3914 2.01301 10.9756 2.32048 10.9756 2.32048L11.0285 2.1229C11.1856 1.53666 11.085 1.09317 10.7035 0.990929C10.3219 0.888689 9.98632 1.32248 9.85603 1.80873L9.82924 1.90872C9.82924 1.90872 9.6977 1.34976 9.37393 1.263C9.05016 1.17625 8.70913 1.39914 8.57825 1.88757L8.42176 2.47162C8.42176 2.47162 8.48102 1.85917 7.9926 1.7283C7.66883 1.64155 7.32721 1.8666 7.19692 2.35287L6.20149 6.06788C5.88733 7.24035 6.94727 9.31557 8.59504 9.64142C10.1295 9.94486 11.7497 8.81117 12.0638 7.63869L13.0521 5.12688C13.1824 4.64064 13.0005 4.42988 12.7463 4.31421C12.437 4.1735 11.1008 6.54288 11.1008 6.54288Z" fill="#808080" fill-opacity="0.7"></path><path d="M10.2949 4.86084L10.9756 2.32048M10.9756 2.32048L11.0285 2.1229C11.1856 1.53666 11.085 1.09317 10.7035 0.990929C10.3219 0.888689 9.98632 1.32248 9.85603 1.80873L9.82924 1.90872M10.9756 2.32048C10.9756 2.32048 11.3914 2.01301 11.6665 2.08674C11.9417 2.16047 12.2011 2.437 12.0964 2.82779L11.1008 6.54288C11.1008 6.54288 12.437 4.1735 12.7463 4.31421C13.0005 4.42988 13.1824 4.64064 13.0521 5.12688L12.0638 7.63869C11.7497 8.81117 10.1295 9.94486 8.59503 9.64142C6.94727 9.31557 5.88733 7.24035 6.20149 6.06788L7.19692 2.35287C7.32721 1.8666 7.66883 1.64155 7.9926 1.7283C8.48102 1.85917 8.42176 2.47162 8.42176 2.47162M8.42176 2.47162L7.94993 4.23251M8.42176 2.47162L8.57825 1.88757C8.70913 1.39914 9.05016 1.17625 9.37393 1.263C9.6977 1.34976 9.82924 1.90872 9.82924 1.90872M9.82924 1.90872L9.1224 4.54667" stroke="#D1D1D1" strokeWidth="0.4" strokeLinecap="round" strokeLinejoin="round"></path><path d="M3.95491 9.63425L1.4926 5.36977C1.23368 4.92117 1.46286 4.49322 1.7787 4.31087C2.09454 4.12852 2.71065 4.37097 2.71065 4.37097L2.5797 4.14417C2.19118 3.47123 2.16855 2.88946 2.60655 2.63658C3.04454 2.3837 3.60332 2.80896 3.92558 3.36713L3.99184 3.4819C3.99184 3.4819 3.96929 2.74705 4.34094 2.53248C4.71259 2.3179 5.2082 2.48054 5.5319 3.04121L5.91897 3.71163C5.91897 3.71163 5.64274 2.97387 6.20339 2.65018C6.57504 2.43561 7.0721 2.60072 7.39436 3.1589L9.85642 7.42334C10.6335 8.76921 10.0103 11.6868 8.08052 12.6358C6.28338 13.5196 3.9041 12.6544 3.12706 11.3085L1.07255 8.52971C0.750298 7.97155 0.905398 7.65064 1.1815 7.42334C1.51739 7.14683 3.95491 9.63425 3.95491 9.63425Z" fill="#808080"></path><path d="M4.39424 7.28703L2.71065 4.37097M2.71065 4.37097L2.5797 4.14417C2.19118 3.47123 2.16855 2.88946 2.60655 2.63658C3.04454 2.3837 3.60332 2.80896 3.92558 3.36713L3.99184 3.4819M2.71065 4.37097C2.71065 4.37097 2.09454 4.12852 1.7787 4.31087C1.46286 4.49322 1.23368 4.92117 1.4926 5.36977L3.95491 9.63425C3.95491 9.63425 1.51739 7.14683 1.1815 7.42334C0.905398 7.65064 0.750298 7.97155 1.07255 8.52971L3.12706 11.3085C3.9041 12.6544 6.28338 13.5196 8.08052 12.6358C10.0103 11.6868 10.6335 8.76921 9.85643 7.42334L7.39436 3.1589C7.0721 2.60072 6.57504 2.43561 6.20339 2.65018C5.64274 2.97387 5.91897 3.71163 5.91897 3.71163M5.91897 3.71163L7.08598 5.73295M5.91897 3.71163L5.5319 3.04121C5.2082 2.48054 4.71259 2.3179 4.34094 2.53248C3.96929 2.74705 3.99184 3.4819 3.99184 3.4819M3.99184 3.4819L5.74011 6.50999" stroke="#B3B3B3" strokeWidth="0.545068" strokeLinecap="round" strokeLinejoin="round"></path></svg> <p>Hi-Five</p></p></NavLink>
+                                            <NavLink to="/maintenance"><p className='profileSelectors flexa'><svg viewBox="0 0 14 14" height="16" width="16" className="c-neutral-400"><g fill="none" fillRule="evenodd"><rect width="14" height="14" fill="#FFF" opacity="0"></rect><path fill="currentColor" fillRule="nonzero" d="M0.646446609,6.64644661 L0.590530795,6.71219845 C0.362196938,7.03084485 0.584244403,7.5 1,7.5 L4.5,7.5 L4.5,13 C4.5,13.2761424 4.72385763,13.5 5,13.5 L9,13.5 L9.08987563,13.4919443 C9.32312484,13.4496084 9.5,13.2454599 9.5,13 L9.5,7.5 L13,7.5 C13.4454524,7.5 13.6685358,6.96142904 13.3535534,6.64644661 L7.35355339,0.646446609 C7.15829124,0.451184464 6.84170876,0.451184464 6.64644661,0.646446609 L0.646446609,6.64644661 Z"></path></g></svg><p>Expressway</p></p></NavLink>
+                                            <NavLink to="/maintenance"><p className='profileSelectors flexa'><svg viewBox="0 0 103 94" height="16" width="16" fill="#999" className=""><path fillRule="evenodd" d="M63.869 3.11c.615 2.336 5.017 2.131 6.55 3.684 1.937 1.962 3.359 6.55 3.372 9.708.007 1.8.09 3.601-.175 5.741-.062.5-.206 4.238-.421 6.56-.104 1.114.088 1.422.923 1.736.95.36 1.285 1.421.966 2.904-.677 3.16-1.535 10.722-2.636 12.758-.29.536-.834.943-1.283 1.048-.777.323-1.274.288-1.572 1.59-1.025 4.704-1.89 8.855-2.81 11.921-.608 1.072-1.06 1.418-1.766 1.91-.497.345-1.406 1.255-1.477 1.919-.181 1.702.313 3.77 1.954 4.561 10.353 3.892 22.675 9.347 30.774 11.252 5.516 1.298 6.503 7.34 6.503 12.871H0C0 87.742.987 81.7 6.503 80.402c8.099-1.905 20.42-7.36 30.773-11.252 1.642-.792 2.136-2.86 1.954-4.561-.07-.664-.98-1.574-1.477-1.92-.706-.49-1.157-.837-1.766-1.909-.92-3.066-1.785-7.217-2.809-11.921-.299-1.302-.796-1.267-1.573-1.59-.448-.105-.993-.512-1.282-1.048-1.1-2.036-1.96-9.598-2.637-12.758-.318-1.483.016-2.545.966-2.904.836-.314 1.027-.622.924-1.736-.216-2.322-.36-6.06-.421-6.56-.266-2.14-.337-3.95-.175-5.74.273-3.017 1.6-6.19 3.628-7.925 4.034-3.451 9.842-6.096 15.157-7.48 2.027-.53 5.15-1.022 8.08-1.086 2.482-.053 7.188-.078 8.024 3.097"></path></svg><p>Profile</p></p></NavLink>
+                                            <NavLink to="/maintenance"><p className='profileSelectors flexa'><svg viewBox="0 0 14 14" height="16" width="16" className="c-neutral-400"><g fill="none" fillRule="evenodd"><rect width="14" height="14" fill="#FFF" opacity="0"></rect><g transform="translate(-.5)"><path stroke="currentColor" strokeWidth="2" d="M7.5,11.7619821 C10.1233526,11.7619821 12.25,9.63533468 12.25,7.01198212 C12.25,4.38862956 10.1233526,2.26198212 7.5,2.26198212 C4.87664744,2.26198212 2.75,4.38862956 2.75,7.01198212 C2.75,9.63533468 4.87664744,11.7619821 7.5,11.7619821 Z"></path><g fill="currentColor" transform="translate(6)"><polygon points=".5 11 2.5 11 2.5 14 .5 14"></polygon><polygon points=".5 0 2.5 0 2.5 3 .5 3"></polygon></g><g fill="currentColor" transform="rotate(-45 4.5 -.243)"><polygon points=".5 11 2.5 11 2.5 14 .5 14"></polygon><polygon points=".5 0 2.5 0 2.5 3 .5 3"></polygon></g><g fill="currentColor" transform="rotate(45 4.5 14.243)"><polygon points=".5 11 2.5 11 2.5 14 .5 14"></polygon><polygon points=".5 0 2.5 0 2.5 3 .5 3"></polygon></g><g fill="currentColor" transform="rotate(90 4.5 10)"><polygon points=".5 11 2.5 11 2.5 14 .5 14"></polygon><polygon points=".5 0 2.5 0 2.5 3 .5 3"></polygon></g></g></g></svg><p>Settings</p></p></NavLink>
+                                        </div>
+                                        <div className='profileSelectorright'>
+                                            <h5>Quick tools</h5>
+                                            <NavLink to="/maintenance"><p className='profileSelectors rightPS flexa'><svg viewBox="0 0 14 14" className="c-secondary-500" height="16" width="16"><g fill="none" fillRule="evenodd"><rect width="14" height="14" fill="#FFF" opacity="0"></rect><path fill="currentColor" fillRule="nonzero" d="M7,0.506145606 C10.5898509,0.506145606 13.5,3.41629473 13.5,7.00614561 C13.5,10.5959965 10.5898509,13.5061456 7,13.5061456 C3.41014913,13.5061456 0.5,10.5959965 0.5,7.00614561 C0.5,3.41629473 3.41014913,0.506145606 7,0.506145606 Z M7,2.00614561 C4.23857625,2.00614561 2,4.24472186 2,7.00614561 C2,9.76756936 4.23857625,12.0061456 7,12.0061456 C9.76142375,12.0061456 12,9.76756936 12,7.00614561 C12,4.24472186 9.76142375,2.00614561 7,2.00614561 Z M9.95170499,6.25 L9.95170499,7.75 L4,7.75 L4,6.25 L9.95170499,6.25 Z"></path></g></svg><p>Cancellations</p></p></NavLink>
+                                            <NavLink to="/maintenance"><p className='profileSelectors rightPS flexa'><svg viewBox="0 0 14 14" className="c-secondary-500" height="16" width="16"><g fill="none" fillRule="evenodd"><rect width="14" height="14" fill="#FFF" opacity="0"></rect><path fill="currentColor" fillRule="nonzero" d="M10.2668078,7.9689266 L12.8037656,10.4358768 C13.0747077,10.6993422 13.0993388,11.1151056 12.8776589,11.4062615 L12.8037656,11.4895931 L10.2668078,13.9565433 L9.21220667,12.902827 L10.3256362,11.8201617 C9.09324498,11.7008095 8.15528162,11.3539959 7.53165946,10.7438555 L7.39333574,10.5983631 L8.49545964,9.59597947 L8.57836232,9.68117546 C8.90069746,9.98312464 9.45117369,10.1985626 10.2448054,10.3004475 L10.4902046,10.3275793 C10.5070205,10.3291543 10.5293571,10.3305626 10.5571255,10.3318005 L9.21220667,9.02264295 L10.2668078,7.9689266 Z M10.2668078,0.0434566847 L12.8037656,2.51040687 C13.0747077,2.77387225 13.0993388,3.18963564 12.8776589,3.48079157 L12.8037656,3.56412322 L10.2668078,6.0310734 L9.21220667,4.97735705 L10.36,3.861 L9.90547203,3.86319783 C7.75690071,3.85907413 6.766746,4.78606842 6.70312299,6.87606591 L6.6998369,7.0964307 C6.6998369,10.1345163 4.79337963,11.76317 1.29936687,11.8611255 L1.02747077,11.8656394 L0.00323858539,11.8679129 L-3.01092484e-13,10.366261 L1.02189677,10.3639964 C3.84757515,10.3486777 5.14036442,9.36504783 5.21612054,7.29380019 L5.21966679,7.0964307 C5.21966679,4.1050435 6.77779721,2.44923727 9.6542424,2.36492217 L10.51,2.358 L9.21220667,1.09717303 L10.2668078,0.0434566847 Z M1.03670265,2.59215268 L1.34961383,2.59595624 C2.88866715,2.63405802 4.04499582,2.95941162 4.81023737,3.61667181 L4.9580687,3.75256249 L3.92748451,4.8304344 L3.82564589,4.73926653 C3.3540282,4.35409048 2.51563444,4.12564382 1.30241769,4.09689616 L1.03670265,4.09380823 L0.0016192927,4.09380823 L0.0016192927,2.59215268 L1.03670265,2.59215268 Z"></path></g></svg><p>Change flight</p></p></NavLink>
+                                            <NavLink to="/maintenance"><p className='profileSelectors rightPS flexa'><svg viewBox="0 0 14 14" height="16" width="16" className="c-secondary-500"><g fill="none" fillRule="evenodd"><rect width="14" height="14" fill="#FFF" opacity="0"></rect><path fill="currentColor" fillRule="nonzero" d="M5.5,1 C5.5,1.82842712 6.17157288,2.5 7,2.5 C7.82842712,2.5 8.5,1.82842712 8.5,1 L11,1 C11.5522847,1 12,1.44771525 12,2 L12,12 C12,12.5522847 11.5522847,13 11,13 L8.5,13 C8.5,12.1715729 7.82842712,11.5 7,11.5 C6.17157288,11.5 5.5,12.1715729 5.5,13 L3,13 C2.44771525,13 2,12.5522847 2,12 L2,2 C2,1.44771525 2.44771525,1 3,1 L5.5,1 Z M4.402,2.499 L3.5,2.499 L3.5,6 L5,6 L5,7.5 L3.5,7.5 L3.5,11.499 L4.402,11.499 L4.46706391,11.3917355 C4.96982923,10.6015566 5.83218191,10.0625441 6.82372721,10.0050927 L7,10 C8.06512059,10 9.00059634,10.5550755 9.53293609,11.3917355 L9.597,11.499 L10.5,11.499 L10.5,7.5 L9,7.5 L9,6 L10.5,6 L10.5,2.499 L9.597,2.499 L9.53293609,2.60826455 C9.03017077,3.39844335 8.16781809,3.93745585 7.17627279,3.99490731 L7,4 C5.93487941,4 4.99940366,3.44492446 4.46706391,2.60826455 L4.402,2.499 Z M8,6 L8,7.5 L6,7.5 L6,6 L8,6 Z"></path></g></svg><p>print ticket</p></p></NavLink>
+                                            <NavLink to="/maintenance"><p className='profileSelectors rightPS flexa'><svg viewBox="0 0 14 14" height="16" width="16" className="c-secondary-500"><g fill="none" fillRule="evenodd"><rect width="14" height="14" fill="#FFF" opacity="0"></rect><path fill="currentColor" fillRule="nonzero" d="M5.5,1 C5.5,1.82842712 6.17157288,2.5 7,2.5 C7.82842712,2.5 8.5,1.82842712 8.5,1 L11,1 C11.5522847,1 12,1.44771525 12,2 L12,12 C12,12.5522847 11.5522847,13 11,13 L8.5,13 C8.5,12.1715729 7.82842712,11.5 7,11.5 C6.17157288,11.5 5.5,12.1715729 5.5,13 L3,13 C2.44771525,13 2,12.5522847 2,12 L2,2 C2,1.44771525 2.44771525,1 3,1 L5.5,1 Z M4.402,2.499 L3.5,2.499 L3.5,6 L5,6 L5,7.5 L3.5,7.5 L3.5,11.499 L4.402,11.499 L4.46706391,11.3917355 C4.96982923,10.6015566 5.83218191,10.0625441 6.82372721,10.0050927 L7,10 C8.06512059,10 9.00059634,10.5550755 9.53293609,11.3917355 L9.597,11.499 L10.5,11.499 L10.5,7.5 L9,7.5 L9,6 L10.5,6 L10.5,2.499 L9.597,2.499 L9.53293609,2.60826455 C9.03017077,3.39844335 8.16781809,3.93745585 7.17627279,3.99490731 L7,4 C5.93487941,4 4.99940366,3.44492446 4.46706391,2.60826455 L4.402,2.499 Z M8,6 L8,7.5 L6,7.5 L6,6 L8,6 Z"></path></g></svg><p>print hotel voucher</p></p></NavLink>
+                                        </div>
+                                    </div>
+                                    <div className='SignoutBtn' onClick={() => { finishtoken(); setall((prev) => ({ ...prev, ["token"]: "" })) }}>Sign out</div>
+                                </div>}
+                        </button>}
+                    </nav>
+                    </div>
                        
                     </div> 
                     <div className='downnav flexa g20'>

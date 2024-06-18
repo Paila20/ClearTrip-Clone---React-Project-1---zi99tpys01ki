@@ -3,23 +3,27 @@ import "../styles/Navbar.css";
 import { NavLink, Outlet } from 'react-router-dom'
 import { useAuthContext } from './ContextAllData';
 import LoginSignup from '../SmallComp/LoginSignup';
-import {mytrips} from './Constant';
+import { mytrips } from './Constant';
 import Footer from '../SmallComp/Footer';
 
 export default function Navbar() {
-    const { all, setall } = useAuthContext();
-    const [logincheck, setlogincheck] = useState(false)
-    const [tokenAvailability, settokenAvailability] = useState();
+    const { all, setall,logincheck, setlogincheck, tokenAvailability, settokenAvailability,checklogin } = useAuthContext();
+    // const [logincheck, setlogincheck] = useState(false)
+    // const [tokenAvailability, settokenAvailability] = useState();
     const [profiletoggle, setprofiletoggle] = useState(false);
 
-    function checklogin() {
-        const token = JSON.parse(localStorage.getItem("token")) || [];
+    // function checklogin() {
+    //     const token = JSON.parse(localStorage.getItem("token")) || [];
        
-        if (typeof token == "string") {
-            settokenAvailability(true)
-        }
-    }
+    //     if (typeof token == "string") {
+    //         settokenAvailability(true)
+    //     }
+    //     else{
+    //         setlogincheck(true)
+    //     }
+    // }
     useEffect(() => {
+
         checklogin();
     }, [])
 

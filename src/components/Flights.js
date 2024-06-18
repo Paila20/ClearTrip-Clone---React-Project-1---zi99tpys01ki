@@ -4,6 +4,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import { CalendarMonth } from "../SmallComp/icons";
 import Calendar from 'react-calendar';
 import Carousel from "../SmallComp/Carousal"
+import LoginSignup from '../SmallComp/LoginSignup';
 import CarouselTwo from '../SmallComp/CarousalTwo';
 import { objdropdowncity ,objcolor,objfares,months,daysOfWeek, baseapi } from './Constant';
 
@@ -35,6 +36,8 @@ export default function Flights() {
   const [samefield,setsamefield]=useState(false);
   const [searchedcityIn, setSearchedcityIn] = useState([]);
   const [searchedcityOut, setSearchedcityOut] = useState([]);
+ 
+
   
   function dateprintgo() {
     setdaygo(daysOfWeek[datego.getDay()]);
@@ -55,12 +58,10 @@ export default function Flights() {
   }
 
   function getFlights() {
-    if (flightIn && flightOut && localStorage.getItem('token')) {
+    if (flightIn && flightOut ) {
       navigate(`/flights/results?source=${flightIn}&destination=${flightOut}&dayofweek=${datego}`);
     }
-    else{
-      alert('please register to search flights')
-    }
+   
 
   }
 
@@ -156,6 +157,7 @@ const fetchFlightsOut = async () => {
  
   return (
       <div className='flightpage flex'>
+
         <div className='mainFlightPage'>
           <h1 className='flightMainHeading'>Search flights</h1>
           <h4 className='flightMainHeadingBottom'>Airline Sale is live!<br className='flightMainHeadingBottomMoverNextLine' /> Domestic fare starting at ₹1,799*</h4>
