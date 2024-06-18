@@ -517,8 +517,13 @@ line{
 }
 @media(max-width:500px){
     .hotelcardinfo-bottomnavright {
-        opacity: 0;
+        /* opacity: 0; */
         margin: 10px 0;
     }
+    .cardsroomsouterdiv {
+       
+        margin-top: 50px;
+    }
+    
     
 }
