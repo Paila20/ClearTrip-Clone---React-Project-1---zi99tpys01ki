@@ -1,7 +1,7 @@
 .paymentbooking .paymentbookingMaindiv{
     height: 90vh;
     position: relative;
-    overflow: hidden;
+    /* overflow: hidden; */
     width: 100%;
 }
 .colordiv{
@@ -16,8 +16,8 @@
     scale: 1.2;
 }
 .paymentCardouter{
-    height: 450px;
-    width: 750px;
+    height: 70%;
+    width: 60%;
     transform: translateY(-10%);
 }
 .paymentCardouter h2{
@@ -58,7 +58,7 @@ font-weight: 400;
 .paymentcarddiv1{
     height: 100%;
     box-sizing: border-box;
-    width: 35%;
+    width: 15%;
     min-width: 130px;
     padding: 15px 5px;
 }
@@ -176,7 +176,60 @@ font-weight: 300;
 }
 
 .upi{
-    max-width:500px ;
+    /* max-width:1000px ; */
 }
+.payment-form .button-container {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .payment-button {
+    width: 50%;
+    margin-bottom: 10px; /* Add some space between buttons */
+  }
+  .Select{
+    width: 29%;
+  }
+  .selectdiv{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    width: 100%;
+    
+  }
+  
 
-
+@media(max-width:800px){
+    .paymentcarddiv4 .qrcodepayment {
+        width: 100%;
+    }
+    .paymentbookingcardMaindiv {
+        display: flex;
+        flex-direction: column;
+        margin-left: 20px;
+    }
+    .paymentpolichecker {
+        display: flex;
+        flex-direction: column;
+    }
+    .paymentCardouter{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+    .paymentcarddiv5 input{
+       
+        width: 100%;
+        
+        
+    }
+    .paymentcarddiv5 Select{
+       
+        width: 100%;
+        
+        
+    }
+    .Select{
+        width: 85%;
+    }
+}

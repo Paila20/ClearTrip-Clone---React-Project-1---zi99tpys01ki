@@ -82,6 +82,15 @@
     gap: 20px;
     padding: 20px;
 }
+
+.rightdiv-flight{
+    width: 300px;
+    border: 1px solid lightgray;
+    height: 300px;
+    border-radius: 6px;
+    gap: 20px;
+    padding: 20px;
+}
 .rightdiv span{
     color: green;
 }

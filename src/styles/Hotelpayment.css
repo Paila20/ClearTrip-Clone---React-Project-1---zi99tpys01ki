@@ -230,4 +230,28 @@ padding-left: 10px;
     .hotelpaymentcardbottom span {
        display: none;
     }
+    .flightinfo-billinginput{
+        width: auto;
+    }
+    .hotelpayment .flightinfo-travellerdiv> input {
+       
+        width: auto;
+      
+    }
+     .flightinfo-travellerdiv {
+        margin-left: -160px;
+     }
+     .resflexc{
+        flex-direction: column;
+        margin-left: 100px;
+        width: 50%;
+     }
+     .hotelpaymentbodydiv button {
+        margin-right: 20px;
+     }
+     .flightinfo-buttondiv {
+        width: 10%;
+        justify-content: space-between;
+        gap: 10px;
+    }
 }

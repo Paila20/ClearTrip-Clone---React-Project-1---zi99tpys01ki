@@ -343,7 +343,7 @@ export default function hotelpayment() {
                     </div>
                   </div>
                   <label>Nationality</label>
-                  <div className='flexa g10'>
+                  <div className='flexa g10 resflexc'>
                     <div className='country flexa' onClick={() => { popp("country"); seterrortravellerform(false) }} >
                       <input type='text' className='country-input' placeholder='Country (e.g. India)' value={details.dcountry} disabled />
                       <IoIosArrowDown className={pop["country"] ? "country-downarrow" : "country-uparrow"} />

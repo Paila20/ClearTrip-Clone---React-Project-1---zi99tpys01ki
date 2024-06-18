@@ -227,3 +227,31 @@
 .flex{
     display: flex;
 }
+
+@media(max-width:800px){
+ 
+
+  .booking-hotelinfo-left-card {
+    width: 349px;
+    margin-left: 164px;
+}
+.booking-flight-details {
+  width: 310px;
+  height: 150px;
+  font-size: 15px;
+}
+.bookingdetails-expanded {
+  width: 100%;
+  font-size: 15px;
+}
+.bookingdetails-expanded-sec4{
+ display: none;
+}
+.booking-sec1{
+  padding: 0;
+}
+.booking-airline{
+  padding: 0;
+}
+
+}

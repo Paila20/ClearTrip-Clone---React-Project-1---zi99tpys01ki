@@ -291,7 +291,7 @@ export default function FlightInfo() {
               </>
               }
             </div>
-            <div className='rightdiv flex flexc'>
+            <div className='rightdiv-flight flex flexc'>
               <div className='flightinfo-price flexa'><p>Total price</p><h2>₹{caltotalamout()}</h2></div>
               <div className='flightinfo-base-fare flexa'><p>Base fare (travellers)</p>₹{dataa.ticketPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}</div>
               <div className='flightinfo-tax flexa'><p>Taxes and fees</p><p>₹{taxCalculate()}</p></div>

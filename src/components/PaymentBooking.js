@@ -32,8 +32,8 @@ const months = [
 
 const yearsArray = Array.from({ length: 26 }, (_, index) => 2024 + index);
 
-  const handlePaymentMethodChange = (e) => {
-    setPaymentMethod(e.target.value);
+  const handlePaymentMethodChange = (method) => {
+    setPaymentMethod(method);
   };
 
   const handlePaymentDone = (values) => {
@@ -86,11 +86,24 @@ const yearsArray = Array.from({ length: 26 }, (_, index) => 2024 + index);
             <h2>Pay to complete your booking</h2>
             <div className='paymentbookingcard flexa'>
               <div className='paymentcarddiv1 flex flexc g10'>
-                <Form.Item name="paymentMethod">
-                  <Radio.Group onChange={handlePaymentMethodChange}>
-                    <Radio.Button value="UPI" className='upi'>UPI</Radio.Button>
-                    <Radio.Button value="Debit">Debit/Credit card</Radio.Button>
-                  </Radio.Group>
+                <Form.Item name="paymentMethod" className='payment-form'>
+               
+                <div className='button-container'>
+                <Button
+                      type={paymentMethod === 'UPI' ? 'primary' : 'default'}
+                      onClick={() => handlePaymentMethodChange('UPI')}
+                      className='upi'
+                    >
+                      UPI
+                    </Button>
+                    <Button
+                      type={paymentMethod === 'Debit' ? 'primary' : 'default'}
+                      onClick={() => handlePaymentMethodChange('Debit')}
+                    >
+                      Debit/Credit card
+                    </Button>
+                </div>
+     
                 </Form.Item>
               </div>
 
@@ -139,13 +152,15 @@ const yearsArray = Array.from({ length: 26 }, (_, index) => 2024 + index);
                     />
                   </Form.Item>
                 
-                  <Form.Item style={{ marginBottom: 0 }}>
+                  <div style={{ marginBottom: 0 }} className='selectdiv'>
+                    <div  className='Select'>
                     <Form.Item
                       name="expiryMonth"
+                     
                       rules={[
                         { required: true, message: 'Please select the expiry month' }
                       ]}
-                      style={{ display: 'inline-block', width: 'calc(30% - 8px)' }}
+                      // style={{ display: 'inline-block', width: 'calc(30% - 8px)' }}
                     >
                       <Select placeholder="Month">
                         {months.map(item => (
@@ -153,13 +168,16 @@ const yearsArray = Array.from({ length: 26 }, (_, index) => 2024 + index);
                         ))}
                       </Select>
                     </Form.Item>
+                    </div>
+                    <div   className='Select'>
                     <Form.Item
                       name="expiryYear"
+                   
                       rules={[
                         { required: true, message: 'Please select the expiry year' },
                         { validator: validateYear }
                       ]}
-                      style={{ display: 'inline-block', width: 'calc(30% - 8px)', marginLeft: '16px' }}
+                      // style={{ display: 'inline-block', width: 'calc(30% - 8px)', marginLeft: '16px' }}
                     >
                       <Select placeholder="Year">
                         {yearsArray.map(year => (
@@ -167,7 +185,9 @@ const yearsArray = Array.from({ length: 26 }, (_, index) => 2024 + index);
                         ))}
                       </Select>
                     </Form.Item>
-                  </Form.Item>
+                    </div>
+                    
+                  </div>
 
                   <Form.Item
                     name="cardHolderName"
