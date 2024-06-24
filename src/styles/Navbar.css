@@ -89,6 +89,7 @@
   padding: 11px 13px;
   gap: 10px;
   background-color: white;
+  font-weight: 600;
 }
 
 .navFile .profileBtn:hover {
@@ -238,30 +239,54 @@
 @media(max-width:850px) {
 
   .navFile .navAsideHome {
-    display: none;
-  }
-
-  .navAsideHome300 {
+ 
     display: flex;
-    height: 50px;
+    flex-direction: row;
+
     width: 100%;
     box-shadow: 0px 5px 10px lightgray;
-  }
-
-  .navAsideHome300 ul {
-    display: flex;
-    width: 100%;
-    /* gap: 50px; */
     justify-content: center;
     align-items: center;
+    padding-bottom: 10px;
   }
 
-  .navAsideHome300 ul li {
-    padding: 10px 20px;
-    border-radius: 6px;
-    gap: 10px;
-    box-sizing: border-box;
+
+  .navFile .navAsideHome ul {
+    
+    display: flex;
+    flex-direction: row;
+    height: auto;
+    height: 50px;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+
   }
+  .marginbottomglobal {
+   
+    display: flex;
+    flex-direction: column;
+}
+.bottom-nav-left{
+  display: flex;
+        flex-direction: row;
+        margin-bottom: -912px;
+        margin-right: 0;
+        background-color: white;
+      
+        background: fixed;
+        position: fixed;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+   
+        border: 0.2px solid rgb(240, 240, 240);
+        box-shadow: 0.5px 0.5px 8px rgb(240, 240, 240);
+}
+.bottom-nav-left{
+ display: none;
+}
+
 }
 
 @media(max-width:400px){

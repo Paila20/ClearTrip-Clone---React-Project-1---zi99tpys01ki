@@ -9,7 +9,7 @@
 }
 .HotelsMainPage{
     position: relative;
-    margin: 30px 0px 0px 50px;
+    margin: 0px 0px 0px 50px;
     justify-content: space-around;
     width: 65.5%;
     font-weight: 600;
@@ -24,6 +24,7 @@
 }
 .MainHotelFrontPage{
     width: 100%;
+    margin-top: 10px;
 }
 .HotelsMainPageForm{
     justify-content: space-around;
@@ -31,7 +32,7 @@
     border: 0.5px solid lightgray;
     border-radius: 10px;
     box-shadow: 0.5px 0.5px 8px rgba(110, 89, 89, 0.249);
-    height: 300px;
+    height: 280px;
     margin-top: 35px;
 }
 .formInputDiv{
@@ -167,6 +168,74 @@ stroke: blue;
     background-color: rgba(128, 128, 128, 0.295);
 }
 
+.maxboxhotel{
+    width: 65%;
+    border-radius: 8px;
+    background: #f2edf9;
+    background: var(--Grapetini-100, #f2edf9);
+    height: 70px;
+    position: relative;
+    overflow: hidden;
+    /* padding: 16px; */
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+    /* justify-content: space-between; */
+    align-items: flex-start;
+    z-index: 1;
+    padding: 20px 15px;
+    margin-top: -30px;
+    margin-bottom: 20px;
+  }
+  
+  .card-imghotel{
+    width: 100%;
+    margin-top: 50px;
+  
+  }
+  .card-flex1hotel{
+    width: 100%;
+  }
+  
+  .card-flex2hotel{
+    width:100%;
+    margin-top: 50px;
+  }
+  .card-imghotel img{
+    width: 33%;
+  }
+  .qrcodehotel{
+    /* width: 0%; */
+    height: 12%;
+    margin-top: 50px;
+  }
+  
+  .popularhotel{
+    margin-top: 50px;
+  }
+  
+  .destination-imgshotel{
+    width: 100%;
+    margin-top: 20px;
+  }
+  .destination-imgshotel img{
+    width: 25%;
+    border-radius: 5%;
+    height: 100%;
+  }
+  .whycleartriphotel{
+    margin-top: 50px;
+    color: black;
+    width: 65vw;
+    /* text-wrap: nowrap; */
+    font-size: 12px;
+    /* height: 20%; */
+    display: flex;
+    flex-wrap: wrap;
+    font-weight: 400;
+
+  }
+  
 
 @media(max-width:1290px){
     .HotelsMainPage{
@@ -187,6 +256,33 @@ stroke: blue;
     .HotelsMainPage{
         width: 95%;
         margin-left: 10px;
+    }
+    .card-flex1hotel img{
+        display: none;
+    }
+    .maxboxhotel{
+        display: none;
+    }
+    .qrcodehotel img{
+        display: none;
+    }
+    .qrcodehotel{
+        margin-top: -450px;
+    }
+    .popularhotel{
+        margin-top: 85px;
+    }
+   
+    .destination-imgshotel {
+        flex-direction: column;
+        /* margin-top: -0px; */
+    }
+    .destination-imgshotel img{
+        width: 80%;
+        margin-left: 30px;
+    }
+    .whycleartriphotel{
+        margin-left: 30px;
     }
 }
 

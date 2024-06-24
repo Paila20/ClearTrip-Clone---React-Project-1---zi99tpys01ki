@@ -6,6 +6,15 @@ import Calendar from 'react-calendar';
 import Carousel from "../SmallComp/Carousal"
 import LoginSignup from '../SmallComp/LoginSignup';
 import CarouselTwo from '../SmallComp/CarousalTwo';
+import card1 from '../Assets/BSB_CTONECARD_F_2006.png'
+import card2 from '../Assets/BSB_SBI_DOM_F_2803.png'
+import card3 from '../Assets/BSB_dubai_packages_1912_1.png'
+import card4 from '../Assets/BSB_exploreall_Packages_1912_1.png'
+import card5 from '../Assets/BSB_hdfc_F_1704.png'
+import card6 from '../Assets/BSB_srilanka_packages_1912_1.png'
+import {flightimg} from '../Assets/Icons'
+import { destination } from "./Constant";
+import flightcard from '../Assets/desktop_flights_ctmahi3.png'
 import { objdropdowncity ,objcolor,objfares,months,daysOfWeek, baseapi } from './Constant';
 
 
@@ -23,7 +32,7 @@ export default function Flights() {
   const [rotateButtonPeople, setrotateButtonPeople] = useState(false);
   const [fare, setfare] = useState("Regular_fare");
   const [flightIn, setflightIn] = useState("");
-  const [flightInOutPop, setflightInOutPop] = useState({ in: false, out: false });
+  // const [flightInOutPop, setflightInOutPop] = useState({ in: false, out: false });
   const [flightOut, setflightOut] = useState("");
   const [datego, setdatego] = useState(new Date());
   const [daygo, setdaygo] = useState(daysOfWeek[datego.getDay()]);
@@ -36,6 +45,12 @@ export default function Flights() {
   const [samefield,setsamefield]=useState(false);
   const [searchedcityIn, setSearchedcityIn] = useState([]);
   const [searchedcityOut, setSearchedcityOut] = useState([]);
+  const [Pop, setPop] = useState({})
+
+  function Popkey(val) {
+    setPop({})
+    setPop({ [val]: !Pop[val] });
+  }
  
 
   
@@ -122,6 +137,8 @@ export default function Flights() {
         })
         const result = await response.json()
         setSearchedcityIn(result.data.airports)
+        // const arr = result.data.airports.map(item=>{return `${item.iata_code} - ${item.city}`})
+        // setSearchedcityIn(new Set(arr));
     } catch (error) {
         console.log(error);
     }
@@ -139,6 +156,9 @@ const fetchFlightsOut = async () => {
       const result = await response.json()
       console.log(result);
       setSearchedcityOut(result.data.airports)
+      
+      // const arr = result.data.airports.map(item=>{return `${item.iata_code} - ${item.city}`})
+      //  setSearchedcityOut(new Set(arr));
   } catch (error) {
       console.log(error);
   }
@@ -250,35 +270,72 @@ const fetchFlightsOut = async () => {
             <div className='inOutFlight flex'>
               <div className='flex flexc g5'>
               <div className='inOutCombine b1 flexa'>
-                <div className='flexa'>
-                  <div className='ii1 flexa'>
+                {/* <div className='flexa'  onClick={() => { setflightInOutPop({ ["in"]: !flightInOutPop["in"] })}}>
+                  <div className='ii1 flexa' >
                     <svg width="20" height="17" viewBox="0 0 20 17" fill="#808080" className="icon-1"><path d="M1.37578 16.4977V15.4977H18.3758V16.4977H1.37578ZM2.95078 11.4227L0.675781 7.49766L1.52578 7.29766L3.32578 8.84766L8.72578 7.39766L4.67578 0.547657L5.75078 0.222656L12.6008 6.34766L17.8258 4.94766C18.2091 4.84766 18.5551 4.91832 18.8638 5.15966C19.1718 5.40166 19.3258 5.71432 19.3258 6.09766C19.3258 6.36432 19.2508 6.59766 19.1008 6.79766C18.9508 6.99766 18.7508 7.13099 18.5008 7.19766L2.95078 11.4227Z"></path></svg>
-                    <input type='text' value={flightIn} onClick={() => { setflightInOutPop({}); setflightInOutPop({ ["in"]: !flightInOutPop["in"] }) }} onChange={(e) => { setflightIn(e.target.value) ; fetchFlightsIn(e.target.value) }} placeholder='Where from?' />
+                    <input type='text' value={flightIn} onClick={() => {  setflightInOutPop({ ["in"]: !flightInOutPop["in"] });setflightInOutPop({}) }} onChange={(e) => { setflightIn(e.target.value) ; fetchFlightsIn(e.target.value) }} placeholder='Where from?' />
                     {flightInOutPop["in"] == true && <div className='flightInData '>
 
                       {searchedcityIn.map((item) => (
-                        <div className='slidee flexa' onClick={() => { setflightIn(`${item.iata_code} - ${item.city}`); setflightInOutPop({}) }}>
+                        <div className='slidee flexa' onClick={() => { setflightInOutPop({ ["in"]: !flightInOutPop["in"] });setflightIn(`${item.iata_code} - ${item.city}`) }}>
                           <p>{item.iata_code}</p>
-                          <h4>{item.city} {item.name}</h4>
-                        </div>
+                          <h4>{item.city} </h4>
+                        </div> 
+                      ))}
+                    </div>
+                    }
+                  </div>
+                </div> */}
+
+                <div className='flexa'  onClick={() => { Popkey("input1"); }}>
+                  <div className='ii1 flexa' >
+                    <svg width="20" height="17" viewBox="0 0 20 17" fill="#808080" className="icon-1"><path d="M1.37578 16.4977V15.4977H18.3758V16.4977H1.37578ZM2.95078 11.4227L0.675781 7.49766L1.52578 7.29766L3.32578 8.84766L8.72578 7.39766L4.67578 0.547657L5.75078 0.222656L12.6008 6.34766L17.8258 4.94766C18.2091 4.84766 18.5551 4.91832 18.8638 5.15966C19.1718 5.40166 19.3258 5.71432 19.3258 6.09766C19.3258 6.36432 19.2508 6.59766 19.1008 6.79766C18.9508 6.99766 18.7508 7.13099 18.5008 7.19766L2.95078 11.4227Z"></path></svg>
+                    <input type='text' value={flightIn}  onClick={() => { Popkey("input1"); }} onChange={(e) => { setflightIn(e.target.value) ; fetchFlightsIn(e.target.value) }} placeholder='Where from?' />
+                    {Pop["input1"] && <div className='flightInData '>
+
+                      {searchedcityIn.map((item) => (
+                        <div className='slidee flexa' onClick={() =>{ Popkey("input1");setflightIn(`${item.iata_code} - ${item.city}`) }}>
+                          <p>{item.iata_code}</p>
+                          <h4>{item.city} </h4>
+                        </div> 
                       ))}
                     </div>
                     }
                   </div>
                 </div>
+
+               
+
+
                 <p onClick={() => { reverseInput() }}>
                   <svg width="32" height="32" viewBox="0 0 32 32" fill="none" className="c-pointer"><rect width="32" height="32" rx="16" fill="white"></rect><g clipPath="url(#clip0_160_1650)"><path d="M24.1666 14.8333H7.83325" stroke="#3366CC" strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round"></path><path d="M7.83325 14.8333L13.6666 9" stroke="#3366CC" strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round"></path><path d="M7.83342 18.3335H24.1667" stroke="#3366CC" strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round"></path><path d="M24.1667 18.3334L18.3334 24.1667" stroke="#3366CC" strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round"></path><circle cx="16" cy="16" r="13.375" stroke="#3366CC" strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round"></circle></g><defs><clipPath id="clip0_160_1650"><rect width="28" height="28" fill="white" transform="translate(2 2)"></rect></clipPath></defs></svg>
                 </p>
                
-                 <div className='i2 flexa'>
-                  <div className='ii2 flexa'>
+                 {/* <div className='i2 flexa' onClick={() => { setflightInOutPop({ ["out"]: !flightInOutPop["out"] })}}>
+                  <div className='ii2 flexa' >
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="#808080" className="icon-2"><mask id="mask0_160_1644" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24"><rect width="24" height="24" fill="#D9D9D9"></rect></mask><g mask="url(#mask0_160_1644)"><path d="M3.5 20.5004V19.5004H20.5V20.5004H3.5ZM18.975 15.4004L3.5 11.1254V6.70039L4.3 6.92539L5 9.05039L10.5 10.6004V2.65039L11.625 2.92539L14.375 11.6754L19.625 13.1504C19.8917 13.2171 20.1043 13.3587 20.263 13.5754C20.421 13.7921 20.5 14.0337 20.5 14.3004C20.5 14.6837 20.3377 14.9921 20.013 15.2254C19.6877 15.4587 19.3417 15.5171 18.975 15.4004Z"></path></g></svg>
-                    <input type='text' value={flightOut} onClick={() => { setflightInOutPop({}); setflightInOutPop({ ["out"]: !flightInOutPop["out"] }) }} onChange={(e) => { setflightOut(e.target.value) ; fetchFlightsOut(e.target.value)}} placeholder='Where to?' />
+                    <input type='text' value={flightOut} onClick={() => { setflightInOutPop({ ["out"]: !flightInOutPop["out"] }) ;setflightInOutPop({})}} onChange={(e) => { setflightOut(e.target.value) ; fetchFlightsOut(e.target.value)}} placeholder='Where to?' />
                     {flightInOutPop["out"] == true && <div className='flightInData '>
                       {searchedcityOut.map((item) => (
-                        <div className=' slidee flexa' onClick={() => { setflightOut(`${item.iata_code} - ${item.city}`); setflightInOutPop({}) }}>
+                        <div className=' slidee flexa' onClick={() => { setflightInOutPop({ ["out"]: !flightInOutPop["out"] });setflightOut(`${item.iata_code} - ${item.city}`)}}>
                           <p>{item.iata_code}</p>
-                          <h4>{item.city} {item.name}</h4>
+                          <h4>{item.city} </h4>
+                        </div>
+                      ))}
+                    </div>
+                    }  
+                  </div>
+                </div> */}
+
+                <div className='i2 flexa' >
+                  <div className='ii2 flexa'  onClick={() => { Popkey("input2"); }}>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="#808080" className="icon-2"><mask id="mask0_160_1644" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24"><rect width="24" height="24" fill="#D9D9D9"></rect></mask><g mask="url(#mask0_160_1644)"><path d="M3.5 20.5004V19.5004H20.5V20.5004H3.5ZM18.975 15.4004L3.5 11.1254V6.70039L4.3 6.92539L5 9.05039L10.5 10.6004V2.65039L11.625 2.92539L14.375 11.6754L19.625 13.1504C19.8917 13.2171 20.1043 13.3587 20.263 13.5754C20.421 13.7921 20.5 14.0337 20.5 14.3004C20.5 14.6837 20.3377 14.9921 20.013 15.2254C19.6877 15.4587 19.3417 15.5171 18.975 15.4004Z"></path></g></svg>
+                    <input type='text' value={flightOut} onClick={() => {()=>{e.stopPropagation()} }} onChange={(e) => { setflightOut(e.target.value) ; fetchFlightsOut(e.target.value)}} placeholder='Where to?' />
+                    {Pop['input2'] && <div className='flightInData '>
+                      {searchedcityOut.map((item) => (
+                        <div className=' slidee flexa' onClick={() => { Popkey("input2");setflightOut(`${item.iata_code} - ${item.city}`)}}>
+                          <p>{item.iata_code}</p>
+                          <h4>{item.city} </h4>
                         </div>
                       ))}
                     </div>
@@ -302,10 +359,64 @@ const fetchFlightsOut = async () => {
                     {datePop.re && <Calendar minDate={datego} onChange={(date) => { setdatere(date); setactiveReDate(true); setways("two") }} value={datere} className="calendarForGoing" />}
                   </div>
                 </div>
-                <button className={`${(!flightIn || !flightOut)||samefield ? "buttondisabled" : ""}`} onClick={() => getFlights()} disabled={(!flightIn || !flightOut)||samefield}>Search flights</button>
+                <button  style={{width:150,marginRight:35}}>Search flights</button>
               </div>
             </div>
           </div>
+          <div className= 'maxbox'>
+            {flightimg}
+            <span className="flex flex-between statement">Free cancellation or free date change starting from ₹499. T&amp;C apply.</span>
+
+          </div>
+          <div className= 'card-img flex flexc'>
+            <div className="card-flex1 flex g10">
+              <img src={card1}/>
+              <img src={card2} />
+              <img src={card3} />
+            </div>
+            <div className=" card-flex2 flex g10 ">
+              <img src={card4} />
+              <img src={card5} />
+              <img src={card6} />
+            </div>
+           
+
+          </div>
+          <div className="flex qrcode">
+              <img src={flightcard}/>
+            </div>
+            <div className="flex flexc popular">
+              <h1>Popular destinations</h1>
+              <div className="flex g20 destination-imgs">
+                {destination.map((item,index) =>(
+                  <img key={index} src={item.src}/>
+                ))}
+              </div>
+
+            </div>
+
+            <div className="flex flexc g20 whycleartrip">
+              <h1> Why Cleartrip ? </h1>
+              <p>
+              It is no longer an uphill battle to get the lowest airfare and book tickets online. Cleartrip is all about making travel  easy, affordable  and simple. From international flights to domestic flights; from early morning flights to late night flights, from cheap flights to luxurious ones. Cleartrip helps you complete your flight booking in just a few clicks. Your online flight booking experience is seamless with our features like:
+
+              </p>
+              <p>
+              ClearChoice Max: Free cancellation or rescheduling for domestic (up to 24 hrs before departure) & international flights (up to 72 hrs before departure).
+              </p>
+                <p>
+                ClearChoice Plus: Free date change or airline change up to 12 hrs (up to 24 hours for Air India*& Vistara*) before departure.
+                </p>
+                <p>
+                Medi-cancel refund: Cancel your domestic flight booking easily on valid medical grounds and get up to ₹3500 against airline cancellation charges per passenger per segment.
+                </p>
+                <p>
+                International travel insurance: Get stress-free coverage against a vast range of uncertainties for all international destinations at only ₹89 per user per day.
+                </p>
+                <p>
+                And with our round-the-clock customer service, we ensure no queries or concerns regarding your flight tickets are left unresolved.
+                </p>
+            </div>
         </div>
         <div className='asidebarFlightPage'>
           <Carousel className="flightPageRightTopCarousal" />

@@ -2,7 +2,7 @@
 import { BrowserRouter as Router,Routes,Route } from "react-router-dom";
 import Flights from "./Flights";
 import Navbar from "./Navbar";
-
+// import 'antd/dist/reset.css';
 import Hotels from "./Hotels";
 import Flightsresult from "./FlightsResult";
 import HotelsResult from "./HotelsResult";

@@ -5,6 +5,15 @@ import Calendar from 'react-calendar';
 import CarouselHotelFirst from '../SmallComp/CarousalHotelFirst';
 import CarouselHotelSecond from '../SmallComp/CarousalHotelSecond';
 import { months,days,roomAndpeople, baseapi } from './Constant';
+import card1 from '../Assets/BSB_CTONECARD_F_2006.png'
+import card2 from '../Assets/BSB_SBI_DOM_F_2803.png'
+import card3 from '../Assets/BSB_dubai_packages_1912_1.png'
+import card4 from '../Assets/BSB_exploreall_Packages_1912_1.png'
+import card5 from '../Assets/BSB_hdfc_F_1704.png'
+import card6 from '../Assets/BSB_srilanka_packages_1912_1.png'
+import {flightimg} from '../Assets/Icons'
+import { destination } from "./Constant";
+import flightcard from '../Assets/desktop_flights_ctmahi3.png'
 
 export default function Hotels() {
   const navigate = useNavigate();
@@ -70,7 +79,7 @@ export default function Hotels() {
         <div className='MainHotelFrontPage'>
           <h1 className='HotelsMainHeading'>Search hotels</h1>
           <h4 className='HotelsMainHeadingBottom'>Enjoy hassle free bookings with Cleartrip</h4>
-          <div className='HotelsMainPageForm flexja flexc'>
+          <div className='HotelsMainPageForm flexja flexc g20'>
             <div className='formInputDiv flexa' onClick={() => { Popkey("input"); }}>
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"><path stroke="gray" strokeLinecap="round" strokeLinejoin="round" d="M20 10.182C20 16.546 12 22 12 22s-8-5.454-8-11.818c0-2.17.843-4.251 2.343-5.786A7.91 7.91 0 0 1 12 2c2.122 0 4.157.862 5.657 2.396A8.277 8.277 0 0 1 20 10.182Z"></path><path stroke="gray" strokeLinecap="round" strokeLinejoin="round" d="M12 13a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"></path></svg>
               <input type='text' onClick={() => { Popkey("input"); }} value={inputvalue} onChange={(e) => { setinputvalue(e.target.value); fetchdataHotelInputFields(e.target.value) }} placeholder='Enter locality, landmark, city or hotel' />
@@ -111,6 +120,7 @@ export default function Hotels() {
             </div>
             <div className='HotelsMainFormButtonDiv'><button className={`HotelsMainFormButton ${!inputvalue ? "buttondisabled" : ""}`} onClick={() => { navigateToHotelResults() }} disabled={!inputvalue}>Search hotels</button></div>
           </div>
+          
         </div>
         <div className='flexja flexc sidecarousaldiv'>
           <CarouselHotelFirst />
@@ -120,7 +130,57 @@ export default function Hotels() {
           </div>
           <CarouselHotelSecond />
         </div>
+        
       </div>
+      <div className= 'maxboxhotel'>
+            {flightimg}
+            <span className="flex ">Free cancellation or free date change starting from ₹499. T&amp;C apply.</span>
+
+          </div>
+          <div className= 'card-imghotel flex flexc'>
+            <div className="card-flex1hotel flex g10">
+              <img src={card1}/>
+              <img src={card2} />
+              <img src={card3} />
+            </div>
+           
+
+          </div>
+          <div className="flex qrcodehotel">
+              <img src={flightcard}/>
+            </div>
+            <div className="flex flexc popularhotel">
+              <h1>Popular destinations</h1>
+              <div className="flex g20 destination-imgshotel">
+                {destination.map((item,index) =>(
+                  <img key={index} src={item.src}/>
+                ))}
+              </div>
+
+            </div>
+
+            <div className="flex flexc g20 whycleartriphotel">
+              <h1> Why Cleartrip ? </h1>
+              <p>
+              It is no longer an uphill battle to get the lowest airfare and book tickets online. Cleartrip is all about making travel  easy, affordable  and simple. From international flights to domestic flights; from early morning flights to late night flights, from cheap flights to luxurious ones. Cleartrip helps you complete your flight booking in just a few clicks. Your online flight booking experience is seamless with our features like:
+
+              </p>
+              <p>
+              ClearChoice Max: Free cancellation or rescheduling for domestic (up to 24 hrs before departure) & international flights (up to 72 hrs before departure).
+              </p>
+                <p>
+                ClearChoice Plus: Free date change or airline change up to 12 hrs (up to 24 hours for Air India*& Vistara*) before departure.
+                </p>
+                <p>
+                Medi-cancel refund: Cancel your domestic flight booking easily on valid medical grounds and get up to ₹3500 against airline cancellation charges per passenger per segment.
+                </p>
+                <p>
+                International travel insurance: Get stress-free coverage against a vast range of uncertainties for all international destinations at only ₹89 per user per day.
+                </p>
+                <p>
+                And with our round-the-clock customer service, we ensure no queries or concerns regarding your flight tickets are left unresolved.
+                </p>
+            </div>
     </div>
   )
 }

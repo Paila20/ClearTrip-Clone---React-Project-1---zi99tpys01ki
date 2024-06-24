@@ -285,10 +285,13 @@ export default function FlightsResult() {
                             </div>}
                         </div>
                         <div className='flightResultInOut flexa'>
-                            <input className='flightResultIn flexja' value={flightIn} onClick={() => { buttonRotate("flight1"); }}  onChange={(e) => { setflightIn(e.target.value) ; fetchFlightsIn(e.target.value) }}/>
+                            <input className='flightResultIn flexja' value={flightIn} onClick={() => { buttonRotate("flight1")  }}  onChange={(e) => { setflightIn(e.target.value) ; fetchFlightsIn(e.target.value) ;buttonRotate("flight1")}}/>
                             {rotateButton["flight1"] && <div className='flightInData flightResultInData flexa flexc'>
                                 {searchedcityIn.map((item) => (
-                                    <div className='slidee flexja' onClick={() => { setflightIn(`${item.iata_code} - ${item.city}`); buttonRotateAllFalse() }}>
+                                    <div className='slidee flexja' 
+                                    // onClick={() => { buttonRotate("flight1"); }} >
+                                    onClick={() => {buttonRotate("flight1"); setflightIn(`${item.iata_code} - ${item.city}`) ;}  }> 
+                                        {/* // onClick={(e) => { setflightIn(e.target.value) ;  fetchFlightsIn(e.target.value)}  }> */}
                                         <p>{item.iata_code}</p>
                                         <h4>{item.city} {item.name}</h4>
                                     </div>
@@ -299,7 +302,8 @@ export default function FlightsResult() {
                             <input className='flightResultOut flexja' value={flightOut} onClick={() => { buttonRotate("flight2"); } } onChange={(e) => { setflightOut(e.target.value) ; fetchFlightsOut(e.target.value) }} />
                             {rotateButton["flight2"] && <div className='flightInData flightResultOutData flexa flexc'>
                                 {searchedcityOut.map((item) => (
-                                    <div className='slidee flexja' onClick={() => { setflightOut(`${item.iata_code} - ${item.city}`); buttonRotateAllFalse() }}>
+                                    // <div className='slidee flexja' onClick={() => { buttonRotate("flight2");setflightOut(`${item.iata_code} - ${item.city}`); buttonRotateAllFalse() }}>
+                                    <div className='slidee flexja' onClick={() => { buttonRotate("flight2");setflightOut(`${item.iata_code} - ${item.city}`) }}>
                                         <p>{item.iata_code}</p>
                                         <h4>{item.city} {item.name}</h4> 
                                     </div>

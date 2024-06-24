@@ -4,6 +4,7 @@ import { clockIcon, circle, owl } from './Constant';
 import { HiOutlineArrowNarrowRight } from 'react-icons/hi';
 import { CiCircleInfo } from "react-icons/ci";
 import '../styles/MyTrips.css';
+import Footer from "../SmallComp/Footer";
 import { logofinder } from './Constant';
 export default function MyTrips() {
     const [bookingdata, setBookingdata] = useState([])
@@ -126,7 +127,7 @@ export default function MyTrips() {
                     </div>
                 ))}
             </div>
-
+            {/* <Footer/> */}
 
         </div>
     )

@@ -1,6 +1,8 @@
 
 import React, { useState } from 'react';
-import { Form, Input, Button, Radio, message } from 'antd';
+import { Form, Input, Button, Radio, message,Select } from 'antd';
+// import 'antd/dist/antd.css';
+// import './antd.css';
 import CarouselThree from '../SmallComp/CarousalThree';
 import "../styles/LoginSignup.css";
 import { useAuthContext } from '../components/ContextAllData';
@@ -14,6 +16,8 @@ export default function LoginSignup({ settokenAvailability,  setlogincheck }) {
   const [error , seterror] = useState(false);
   const [signupForm] = Form.useForm();
   const [loginForm] = Form.useForm();
+
+  const { Option } = Select;
 
   const onFinishSignup = async (values) => {
     try {
@@ -105,7 +109,11 @@ export default function LoginSignup({ settokenAvailability,  setlogincheck }) {
                 </Form.Item>
                 {loginerror && <p className='errorlogin'>Incorrect Email or Password</p>}
                 <Button type="primary" htmlType="submit" className='SubmitLogin'>Login</Button>
+                <div className='flex g20 '>
+                <p className='goto '>Don' t have an account?</p>
                 <p className='gotosignup' onClick={() => { seterror(false); setpagination(false) }}>SignUp</p>
+                </div>
+                
               </Form>
             ) :
             (
@@ -128,19 +136,25 @@ export default function LoginSignup({ settokenAvailability,  setlogincheck }) {
                 >
                   <Input.Password placeholder="Password" className='passField' />
                 </Form.Item>
-                <Form.Item
+                {/* <Form.Item
                   name="gender"
-                  rules={[{ required: true, message: 'Please select your gender!' }]}
+                  // rules={[{ required: true, message: 'Please select your gender!' }]}
                 >
-                  <Radio.Group>
-                    <Radio value="Male">Male</Radio>
-                    <Radio value="Female">Female</Radio>
-                    <Radio value="Other">Other</Radio>
-                  </Radio.Group>
-                </Form.Item>
+                  
+
+                  <Select placeholder="Gender">
+                    <Option value="Male">Male</Option>
+                    <Option value="Female">Female</Option>
+                    <Option value="Other">Other</Option>
+                  </Select>
+                </Form.Item> */}
                 {existusererror && <p className='errors'>User Already Exists</p>}
                 <Button type="primary" htmlType="submit" className='SubmitSignup'>Sign Up</Button>
-                <p className='backtologin' onClick={() => { seterror(false); setpagination(true) }}>Back to Login</p>
+                <div className='flex flexjsb g20'>
+                <span className='goto '>Already a user?</span>
+                <p className='backtologin' onClick={() => { seterror(false); setpagination(true) }}>Login</p>
+                </div>
+                
               </Form>
             )}
         </div>
@@ -148,3 +162,10 @@ export default function LoginSignup({ settokenAvailability,  setlogincheck }) {
     </div>
   );
 }
+
+
+{/* <Radio.Group>
+                    <Radio value="Male">Male</Radio>
+                    <Radio value="Female">Female</Radio>
+                    <Radio value="Other">Other</Radio>
+                  </Radio.Group> */}

@@ -543,6 +543,72 @@ span.error {
 .flightMainHeadingBottomMoverNextLine {
   display: none;
 }
+.maxbox{
+  width: 95%;
+  border-radius: 8px;
+  background: #f2edf9;
+  background: var(--Grapetini-100, #f2edf9);
+  height: 70px;
+  position: relative;
+  overflow: hidden;
+  /* padding: 16px; */
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+  /* justify-content: space-between; */
+  align-items: flex-start;
+  z-index: 1;
+  padding: 20px 15px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.card-img{
+  width: 100%;
+  margin-top: 50px;
+
+}
+.card-flex1{
+  width: 100%;
+}
+
+.card-flex2{
+  width:100%;
+  margin-top: 50px;
+}
+.card-img img{
+  width: 45%;
+}
+.qrcode{
+  /* width: 0%; */
+  height: 37%;
+  margin-top: 50px;
+}
+
+.popular{
+  margin-top: 50px;
+}
+
+.destination-imgs{
+  width: 100%;
+  margin-top: 20px;
+}
+.destination-imgs img{
+  width: 25%;
+  border-radius: 5%;
+  height: 100%;
+}
+.whycleartrip{
+  margin-top: 50px;
+  color: black;
+  width: 65vw;
+  /* text-wrap: nowrap; */
+  font-size: 12px;
+  /* height: 20%; */
+  display: flex;
+  flex-wrap: wrap;
+  font-weight: 400;
+}
 
 
 
@@ -602,12 +668,36 @@ span.error {
 
   .flightpage .asidebarFlightPage {
     display: flex;
-    margin-top: 20px;
+    margin-top: -100px;
     gap: 20px;
   }
 
   .flightMainHeadingBottomMoverNextLine {
     display: block;
+  }
+  .maxbox{
+    display: none;
+  }
+  .card-img{
+   display: none;
+  }
+  .card-flex1 img{
+ 
+    display:none;
+  }
+  .card-flex2 img{
+
+    display: none;
+  }
+  .qrcode img{
+    display: none;
+  }
+  .destination-imgs {
+    flex-direction: column;
+  }
+
+  .destination-imgs img{
+    width: 100%;
   }
 }
 
@@ -706,5 +796,17 @@ span.error {
     margin-left: 0px;
     border-left: none;
   }
+  .card-flex1 img{
+    /* flex-direction: column; */
+    display:none;
+  }
+  .card-flex2 img{
+    /* flex-direction: column; */
+    display: none;
+  }
+  .popular{
+    margin-top: 160px;
+  }
+
 
 }

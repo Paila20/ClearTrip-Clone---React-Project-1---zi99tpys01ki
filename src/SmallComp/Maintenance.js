@@ -14,8 +14,13 @@ export const  Maintenance=()=> {
           </Link>
           </nav>
           
-        <div className= 'flexja' style={{width: '100vw', height: '100vh', overflowY:'hidden'}}>
+        <div className= 'flexja flexc g20' style={{width: '100vw', height: '90vh', overflowY:'hidden'}}>
+            <h1>Website is Under Construction</h1>
          <img src={Maintenanceimg}/>
+         <Link to= '/'>
+         <button style={{backgroundColor: 'black', color: 'white', borderRadius: 5,padding:10}}> Back to home</button>
+         </Link>
+        
         </div>
         </>
     )

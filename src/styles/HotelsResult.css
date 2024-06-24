@@ -464,6 +464,9 @@ scale: 0.7;
 .HotelsResultCardsCarousalMainDiv:hover .rightarrow{
     opacity: 1;
 }
+.footerhotel{
+    margin-left: -500px;
+}
 
 
 

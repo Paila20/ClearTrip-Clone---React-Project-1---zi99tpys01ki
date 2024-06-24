@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useMemo } from 'react'
-import { useNavigate, Link } from 'react-router-dom'
+import { useNavigate, Link,NavLink } from 'react-router-dom'
 import "../styles/HotelsResult.css";
 
 import { useLocation } from 'react-router-dom';
@@ -175,6 +175,7 @@ function filterchangerforrating(key, value) {
    
   }, [])
   return (
+    <>
     <div className='HotelsResult flexa flexc'>
 
 
@@ -395,7 +396,9 @@ function filterchangerforrating(key, value) {
         <button onClick={()=>{setTimeout(()=>{setpagination(pagination+1)},500)}} className={(+totalelementsforpagination/10)===pagination?"disabledcolor":""} disabled={(+totalelementsforpagination/10)===pagination}>Next</button>
       </div>}
       </div>
-      <Footer/>
+     
     </div>
+    <Footer/>
+    </>
   )
 }

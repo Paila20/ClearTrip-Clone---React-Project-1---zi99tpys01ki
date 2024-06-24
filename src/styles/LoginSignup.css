@@ -103,13 +103,21 @@ form{
   width: 100%;
 }
 .inputField{
-  width: 100%;
+
+  width: 280px;
+  height: 45px;
+
 }
 .passField{
-  /* width: 100%; */
-  width: 85%;
-  max-width: 300px;
-  margin-left: 15px;
+
+  width: 280px;
+
+  height: 45px;
+  /* margin-left: 15px; */
+}
+
+.goto{
+  margin-top: 10px;
 }
 
 

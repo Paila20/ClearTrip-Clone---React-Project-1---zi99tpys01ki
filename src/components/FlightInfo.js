@@ -46,7 +46,8 @@ export default function FlightInfo() {
       setemail("");
     }
     else {
-      seterrorcontact(true);
+      // seterrorcontact(true);
+      alert('fill the form correctly')
     }
   }
   function travellerinfo(key, value) {
@@ -177,6 +178,7 @@ export default function FlightInfo() {
     fetchdataforflightcarddetails();
   }, []);
   return (
+    <>
     <div className='flightInfo flexa flexc'>
       <div className="wholenav flexja">
         <nav className='flexa'>
@@ -232,7 +234,7 @@ export default function FlightInfo() {
                     <input type="number" className='flightinfo-mobileinput' onClick={() => { popp("mobile") }} placeholder='Mobile number' ref={inputref} value={phonenumber} onChange={(e) => { seterrorcontact(false); setphonenumber(e.target.value); numbererror(e) }} />
                     <label htmlFor="email">Email address</label>
                     <input type='email' placeholder='Email address' onClick={() => { popp("email") }} value={email} onChange={(e) => { seterrorcontact(false); setemail(e.target.value), emailerror(e) }} />
-                    {errorcontact && <p className='errorcontact'>fill the form correctly</p>}
+                    {/* {errorcontact && <p className='errorcontact'>fill the form correctly</p>} */}
                     <button onClick={() => { popp("button") }}>Submit</button>
                   </form>
                 }
@@ -301,8 +303,10 @@ export default function FlightInfo() {
         </div>
       }
       {!pageLoader && <div className="lds-dual-ring"></div>}
-      <Footer />
+    
     </div>
+    <Footer />
+    </>
   )
 }
 

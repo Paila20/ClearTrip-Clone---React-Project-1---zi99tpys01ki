@@ -1,6 +1,7 @@
 import React from 'react'
 import "../styles/Footer.css";
 import { footerlogo, footericon1, footericon2, footericon3, footericon4 } from '../components/Constant';
+import { footerdata1,footerdata2, footerdata3 } from '../components/Constant';
 
 
 export default function Footer() {
@@ -48,6 +49,48 @@ export default function Footer() {
                             </div>
                         </div>
                     </div>
+                    
+                 <div className='flex flexc footerbottom'>
+                    <div className='flex flexc'>
+                        <h5> Popular Domestic Flight Routes</h5>
+                        <div className='flex footerdata'>
+                        {
+                            footerdata1.map((item,index)=>(
+                                <div className=''>
+                                <h6 key={index}>{item.data}</h6>
+                                </div>
+                            ))
+                        }
+                        </div>
+                    </div>
+                    <div className='flex flexc'>
+                        <h5> Popular International Flight Routes</h5>
+                        <div className='flex footerdata'>
+                        {
+                            footerdata2.map((item,index)=>(
+                                <div className=''>
+                                <h6 key={index}>{item.data}</h6>
+                                </div>
+                            ))
+                        }
+                        </div>
+                    </div>
+                    <div className='flex flexc'>
+                        <h5> Popular hotels</h5>
+                        <div className='flex footerdata'>
+                        {
+                            footerdata3.map((item,index)=>(
+                                <div className=''>
+                                <h6 key={index}>{item.data}</h6>
+                                </div>
+                            ))
+                        }
+                        </div>
+                    </div>
+                       
+                </div>
+                       
+                
                 </div>
             </div>
         </div>

@@ -229,10 +229,12 @@ const yearsArray = Array.from({ length: 26 }, (_, index) => 2024 + index);
                 <p>Total, inclusive of all taxes</p>
               </div>
               <Form.Item>
-              <Button type="primary" htmlType="submit" className='paybuttonpayment'>
+              {/* <Button  className='paybuttonpayment'>
                 Pay now
-              </Button>
+              </Button> */}
+                 <button  className='paybuttonpayment'>Pay now</button>
             </Form.Item>
+         
             </div>
            
           </Form>
