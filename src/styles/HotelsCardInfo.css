@@ -474,10 +474,17 @@ line{
 }
 
 .btninfo{
+    display: flex;
     position: relative;
     padding: 11px 13px;
     gap: 20px;
     background-color: white;
+    text-decoration: none;
+    
+}
+.btninfo p{
+    text-decoration: none; 
+    border: none;
 }
 @media(max-width:1200px){
     

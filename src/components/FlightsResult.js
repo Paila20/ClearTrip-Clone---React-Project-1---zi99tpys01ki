@@ -45,8 +45,8 @@ export default function FlightsResult() {
     const [onewayPrice, setonewayPrice] = useState("2,500");
     const [togglecardfulldetails, settogglecardfulldetails] = useState({});
     const [valuee, setvaluee] = useState(2500);
-    const [searchedcityIn, setSearchedcityIn] = useState([]);
-    const [searchedcityOut, setSearchedcityOut] = useState([]);
+    const [searchedcityIn, setSearchedcityIn] = useState();
+    const [searchedcityOut, setSearchedcityOut] = useState();
     // const [logincheck, setlogincheck] = useState(false)
     const [profiletoggle, setprofiletoggle] = useState(false);
     // const [tokenAvailability, settokenAvailability] = useState();
@@ -176,7 +176,7 @@ export default function FlightsResult() {
 
     const fetchFlightsIn = async () => {
         try {
-            const response = await fetch(`${baseapi}/airport?search={"city":"${flightIn}"}`, {
+            const response = await fetch(`${baseapi}/airport?search={"city":"${flightIn===flightFrom?'b':flightIn}"}`, {
                 method: "GET",
                 headers: {
                     projectID: "afznkxyf8vti",
@@ -192,7 +192,7 @@ export default function FlightsResult() {
     
     const fetchFlightsOut = async () => {
         try {
-            const response = await fetch(`${baseapi}/airport?search={"city":"${flightOut}"}`, {
+            const response = await fetch(`${baseapi}/airport?search={"city":"${flightOut===flightTo?'b':flightOut}"}`, {
                 method: "GET",
                 headers: {
                     projectID: "afznkxyf8vti",
@@ -285,12 +285,12 @@ export default function FlightsResult() {
                             </div>}
                         </div>
                         <div className='flightResultInOut flexa'>
-                            <input className='flightResultIn flexja' value={flightIn} onClick={() => { buttonRotate("flight1")  }}  onChange={(e) => { setflightIn(e.target.value) ; fetchFlightsIn(e.target.value) ;buttonRotate("flight1")}}/>
+                            <input className='flightResultIn flexja' value={flightIn} onClick={() => { buttonRotate("flight1")  }}  onChange={(e) => { setflightIn(e.target.value) ; fetchFlightsIn() ;buttonRotate("flight1")}}/>
                             {rotateButton["flight1"] && <div className='flightInData flightResultInData flexa flexc'>
                                 {searchedcityIn.map((item) => (
                                     <div className='slidee flexja' 
                                     // onClick={() => { buttonRotate("flight1"); }} >
-                                    onClick={() => {buttonRotate("flight1"); setflightIn(`${item.iata_code} - ${item.city}`) ;}  }> 
+                                    onClick={() => { setflightIn(`${item.iata_code} - ${item.city} , IN`)  }  }> 
                                         {/* // onClick={(e) => { setflightIn(e.target.value) ;  fetchFlightsIn(e.target.value)}  }> */}
                                         <p>{item.iata_code}</p>
                                         <h4>{item.city} {item.name}</h4>
@@ -303,7 +303,7 @@ export default function FlightsResult() {
                             {rotateButton["flight2"] && <div className='flightInData flightResultOutData flexa flexc'>
                                 {searchedcityOut.map((item) => (
                                     // <div className='slidee flexja' onClick={() => { buttonRotate("flight2");setflightOut(`${item.iata_code} - ${item.city}`); buttonRotateAllFalse() }}>
-                                    <div className='slidee flexja' onClick={() => { buttonRotate("flight2");setflightOut(`${item.iata_code} - ${item.city}`) }}>
+                                    <div className='slidee flexja' onClick={() => { buttonRotate("flight2");setflightOut(`${item.iata_code} - ${item.city} , IN`) }}>
                                         <p>{item.iata_code}</p>
                                         <h4>{item.city} {item.name}</h4> 
                                     </div>

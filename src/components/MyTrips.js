@@ -8,7 +8,7 @@ import Footer from "../SmallComp/Footer";
 import { logofinder } from './Constant';
 export default function MyTrips() {
     const [bookingdata, setBookingdata] = useState([])
-    const [toggle, settoggle] = useState(false)
+    const [toggle, settoggle] = useState(true)
     const senddata = async () => {
         try {
             const response = await (await fetch(`https://academics.newtonschool.co/api/v1/bookingportals/booking`,

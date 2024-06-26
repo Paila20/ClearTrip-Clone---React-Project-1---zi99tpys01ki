@@ -31,9 +31,11 @@ export default function Flights() {
   const [rotateButtonWay, setrotateButtonWay] = useState(false);
   const [rotateButtonPeople, setrotateButtonPeople] = useState(false);
   const [fare, setfare] = useState("Regular_fare");
-  const [flightIn, setflightIn] = useState("");
+  const [flightIn, setflightIn] = useState("BOM - Mumbai, IN");
+  const[flightInData, setFlightInData] = useState({});
+  const[flightOutData, setFlightOutData] = useState({});
   // const [flightInOutPop, setflightInOutPop] = useState({ in: false, out: false });
-  const [flightOut, setflightOut] = useState("");
+  const [flightOut, setflightOut] = useState("BLR - Bangalore, IN");
   const [datego, setdatego] = useState(new Date());
   const [daygo, setdaygo] = useState(daysOfWeek[datego.getDay()]);
   const [monthgo, setmonthgo] = useState(months[datego.getMonth()])
@@ -128,7 +130,10 @@ export default function Flights() {
 
   const fetchFlightsIn = async () => {
     try {
-        const response = await fetch(`${baseapi}/airport?search={"city":"${flightIn}"}`, {
+      console.log(flightIn)
+      console.log(`${baseapi}/airport?search={"city":"${flightIn===""?'b':flightIn}"}`)
+        const response = await fetch(`${baseapi}/airport?search={"city":"${flightIn==="BOM - Mumbai, IN"?'b':flightIn}"}`, {
+          
             method: "GET",
             headers: {
                 projectID: "afznkxyf8vti",
@@ -137,6 +142,7 @@ export default function Flights() {
         })
         const result = await response.json()
         setSearchedcityIn(result.data.airports)
+        console.log(result)
         // const arr = result.data.airports.map(item=>{return `${item.iata_code} - ${item.city}`})
         // setSearchedcityIn(new Set(arr));
     } catch (error) {
@@ -146,7 +152,8 @@ export default function Flights() {
 
 const fetchFlightsOut = async () => {
   try {
-      const response = await fetch(`${baseapi}/airport?search={"city":"${flightOut}"}`, {
+    console.log(flightOut)
+      const response = await fetch(`${baseapi}/airport?search={"city":"${flightOut==="BLR - Bangalore, IN"?'b':flightOut}"}`, {
           method: "GET",
           headers: {
               projectID: "afznkxyf8vti",
@@ -170,9 +177,15 @@ const fetchFlightsOut = async () => {
     dateprintgo();
     dateprintre();
     setdatePop({ go: false, re: false });
+
+   
+  }, [adult, children, infant, rotateButtonPeople, rotateButtonWay, classFlight, fare, datego, datere,flightIn,flightOut]);
+
+
+  useEffect(()=>{
     fetchFlightsIn();
     fetchFlightsOut();
-  }, [adult, children, infant, rotateButtonPeople, rotateButtonWay, classFlight, fare, datego, datere, flightIn,flightOut]);
+  },[])
 
  
   return (
@@ -287,16 +300,16 @@ const fetchFlightsOut = async () => {
                   </div>
                 </div> */}
 
-                <div className='flexa'  onClick={() => { Popkey("input1"); }}>
+                <div className='flexa' >
                   <div className='ii1 flexa' >
                     <svg width="20" height="17" viewBox="0 0 20 17" fill="#808080" className="icon-1"><path d="M1.37578 16.4977V15.4977H18.3758V16.4977H1.37578ZM2.95078 11.4227L0.675781 7.49766L1.52578 7.29766L3.32578 8.84766L8.72578 7.39766L4.67578 0.547657L5.75078 0.222656L12.6008 6.34766L17.8258 4.94766C18.2091 4.84766 18.5551 4.91832 18.8638 5.15966C19.1718 5.40166 19.3258 5.71432 19.3258 6.09766C19.3258 6.36432 19.2508 6.59766 19.1008 6.79766C18.9508 6.99766 18.7508 7.13099 18.5008 7.19766L2.95078 11.4227Z"></path></svg>
-                    <input type='text' value={flightIn}  onClick={() => { Popkey("input1"); }} onChange={(e) => { setflightIn(e.target.value) ; fetchFlightsIn(e.target.value) }} placeholder='Where from?' />
+                    <input type='text' value={flightIn}  onClick={() => { Popkey("input1"); }}   onChange={(e) => { setflightIn(e.target.value) ; fetchFlightsIn(e.target.value) }} placeholder='Where from?' />
                     {Pop["input1"] && <div className='flightInData '>
-
-                      {searchedcityIn.map((item) => (
-                        <div className='slidee flexa' onClick={() =>{ Popkey("input1");setflightIn(`${item.iata_code} - ${item.city}`) }}>
+                      {console.log(searchedcityIn)}
+                      {searchedcityIn.map((item,index) => (
+                        <div className='slidee flexa' key={index} onClick={() =>{ Popkey("input1"); setflightIn( `${item.iata_code} - ${item.city} , IN`);setFlightInData(item)}}>
                           <p>{item.iata_code}</p>
-                          <h4>{item.city} </h4>
+                          <h4>{item.city} ,{item.name}</h4>
                         </div> 
                       ))}
                     </div>
@@ -330,12 +343,14 @@ const fetchFlightsOut = async () => {
                 <div className='i2 flexa' >
                   <div className='ii2 flexa'  onClick={() => { Popkey("input2"); }}>
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="#808080" className="icon-2"><mask id="mask0_160_1644" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24"><rect width="24" height="24" fill="#D9D9D9"></rect></mask><g mask="url(#mask0_160_1644)"><path d="M3.5 20.5004V19.5004H20.5V20.5004H3.5ZM18.975 15.4004L3.5 11.1254V6.70039L4.3 6.92539L5 9.05039L10.5 10.6004V2.65039L11.625 2.92539L14.375 11.6754L19.625 13.1504C19.8917 13.2171 20.1043 13.3587 20.263 13.5754C20.421 13.7921 20.5 14.0337 20.5 14.3004C20.5 14.6837 20.3377 14.9921 20.013 15.2254C19.6877 15.4587 19.3417 15.5171 18.975 15.4004Z"></path></g></svg>
-                    <input type='text' value={flightOut} onClick={() => {()=>{e.stopPropagation()} }} onChange={(e) => { setflightOut(e.target.value) ; fetchFlightsOut(e.target.value)}} placeholder='Where to?' />
+                    <input type='text' value={flightOut}  onChange={(e) => { setflightOut(e.target.value) ; fetchFlightsOut(e.target.value)}} placeholder='Where to?' />
                     {Pop['input2'] && <div className='flightInData '>
-                      {searchedcityOut.map((item) => (
-                        <div className=' slidee flexa' onClick={() => { Popkey("input2");setflightOut(`${item.iata_code} - ${item.city}`)}}>
+                      {searchedcityOut.map((item,index) => (
+                        <div className=' slidee flexa' key={index} onClick={() => { setflightOut(`${item.iata_code} - ${item.city} , IN`); setFlightOutData(item)}}>
+                          {console.log(item)}
                           <p>{item.iata_code}</p>
-                          <h4>{item.city} </h4>
+
+                          <h4>{item.city}, {item.name} </h4>
                         </div>
                       ))}
                     </div>
@@ -359,7 +374,7 @@ const fetchFlightsOut = async () => {
                     {datePop.re && <Calendar minDate={datego} onChange={(date) => { setdatere(date); setactiveReDate(true); setways("two") }} value={datere} className="calendarForGoing" />}
                   </div>
                 </div>
-                <button  style={{width:150,marginRight:35}}>Search flights</button>
+                <button  style={{width:150,marginRight:35}}  onClick={() => getFlights()}>Search flights</button>
               </div>
             </div>
           </div>
