@@ -154,10 +154,11 @@ export default function LoginSignup({ settokenAvailability,  setlogincheck }) {
                 <span className='goto '>Already a user?</span>
                 <p className='backtologin' onClick={() => { seterror(false); setpagination(true) }}>Login</p>
                 </div>
-                
+              
               </Form>
             )}
         </div>
+        <p>By Cont</p>
       </div>
     </div>
   );

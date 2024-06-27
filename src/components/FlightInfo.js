@@ -2,7 +2,8 @@ import React, { useState, useEffect, useRef, useMemo } from 'react'
 import "../styles/FlightInfo.css";
 import { NavLink, useLocation, useNavigate } from 'react-router-dom'
 import { IoIosArrowDown } from "react-icons/io";
-import Footer from "../SmallComp/Footer"
+import Footer from "../SmallComp/Footer";
+import { toast } from "react-toastify";
 import { countries, states, months, days, objdropdownstate, logofinder, airlineNamefinder, detailssStatefun, baseapi, logosvg,localtoken } from './Constant';
 
 export default function FlightInfo() {
@@ -47,7 +48,8 @@ export default function FlightInfo() {
     }
     else {
       // seterrorcontact(true);
-      alert('fill the form correctly')
+      // alert('fill the form correctly');
+      toast.error('fill the form correctly')
     }
   }
   function travellerinfo(key, value) {
@@ -120,7 +122,8 @@ export default function FlightInfo() {
       navigate(`/flights/results/flightInfo/flightbooking?FirstName="${details.dfname}"&Email="${details.demail}"&amount=${caltotalamout()}`);
     }
     else{
-      alert("detils are not fully filled, fill all the fields");
+      toast.error("detils are not fully filled, fill all the fields");
+      // alert("detils are not fully filled, fill all the fields");
     }
   }
 

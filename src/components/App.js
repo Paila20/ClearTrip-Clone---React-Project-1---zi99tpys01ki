@@ -12,7 +12,10 @@ import PaymentBooking from './PaymentBooking';
 import HotelsCardInfo from './HotelsCardInfo';
 import Hotelpayment from '../SmallComp/Hotelpayment';
 import { Maintenance } from '../SmallComp/Maintenance';
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import MyTrips from "./MyTrips";
+
 
 
 
@@ -21,6 +24,7 @@ function App() {
   return (
   <div >
     <ContextAllDataProvider>
+    <ToastContainer/>
     <Router> 
 
       <Routes>
@@ -41,6 +45,8 @@ function App() {
         <Route path="/maintenance" element={<Maintenance />} />
       </Routes>
     </Router>
+    {/* </ToastContainer> */}
+   
     </ContextAllDataProvider>
   </div>
   )

@@ -4,6 +4,7 @@ import { IoIosArrowDown } from "react-icons/io";
 import Footer from "../SmallComp/Footer";
 import { CgClose } from 'react-icons/cg';
 import { IoChevronDown } from "react-icons/io5";
+import { toast } from "react-toastify";
 import "../styles/Hotelpayment.css"
 import { countries,states,months,days,hotelpaymentStatefun, baseapi,localtoken } from '../components/Constant';
 
@@ -48,7 +49,9 @@ export default function hotelpayment() {
       setemail("");
     }
     else {
-      seterrorcontact(true);
+      // seterrorcontact(true);
+      toast.error("Please enter valid phone number and email")
+
     }
   }
   function travellerinfo(key, value) {
@@ -91,7 +94,8 @@ export default function hotelpayment() {
       navigate(`/hotels/results/hotelInfo/Info/paymentBooking?FirstName="${details.dfname}"&Email="${details.demail}"&amount=${amount}`);
     }
     else {
-      seterrortravellerform(true);
+      // seterrortravellerform(true);
+      toast.error("Please fill all the traveller details")
     }
   }
 
