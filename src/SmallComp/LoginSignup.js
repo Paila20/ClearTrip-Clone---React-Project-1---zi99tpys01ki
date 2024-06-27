@@ -6,6 +6,7 @@ import { Form, Input, Button, Radio, message,Select } from 'antd';
 import CarouselThree from '../SmallComp/CarousalThree';
 import "../styles/LoginSignup.css";
 import { useAuthContext } from '../components/ContextAllData';
+import { toast } from "react-toastify";
 import { baseapi } from '../components/Constant';
 
 export default function LoginSignup({ settokenAvailability,  setlogincheck }) {
@@ -37,7 +38,8 @@ export default function LoginSignup({ settokenAvailability,  setlogincheck }) {
       })).json();
 
       if (response.status === "fail" && response.message === "User already exists") {
-        setexistusererror(true);
+        // setexistusererror(true);
+        toast.error("User already exists");
       } else if (response.status === "success") {
         localStorage.setItem("token", JSON.stringify(response.token));
         localStorage.setItem("user", JSON.stringify(response.data.user.name));
@@ -47,7 +49,8 @@ export default function LoginSignup({ settokenAvailability,  setlogincheck }) {
         setall((prev) => ({ ...prev, token: response.token }));
       }
     } catch (error) {
-      message.error(error.message);
+      // message.error(error.message);
+      toast.error('User Already Exists')
     }
     signupForm.resetFields();
   };
@@ -79,7 +82,10 @@ export default function LoginSignup({ settokenAvailability,  setlogincheck }) {
      
     } 
     catch (error) {
-      setloginerror(true); 
+      // setloginerror(true); 
+      // message.error(error.message);
+      toast.error('Incorrect Email or Password')
+
      }
     loginForm.resetFields();
   };
