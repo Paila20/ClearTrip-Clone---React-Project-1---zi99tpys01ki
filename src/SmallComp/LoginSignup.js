@@ -109,9 +109,18 @@ export default function LoginSignup({ settokenAvailability,  setlogincheck }) {
                 </Form.Item>
                 {loginerror && <p className='errorlogin'>Incorrect Email or Password</p>}
                 <Button type="primary" htmlType="submit" className='SubmitLogin'>Login</Button>
-                <div className='flex g20 '>
-                <p className='goto '>Don' t have an account?</p>
-                <p className='gotosignup' onClick={() => { seterror(false); setpagination(false) }}>SignUp</p>
+                <div className='flex g20 flexc '>
+                  <div className='flex flexj g20'>
+                  <p className='goto  flex'>Don' t have an account?</p>
+                  <p className='gotosignup' onClick={() => { seterror(false); setpagination(false) }}>SignUp</p>
+                  </div>
+               
+                <div className='flex g20 flexc'>
+                <p className='login-number-option'>We now support mobile number based login. The option will be available soon</p>
+                <p className='login-terms-policy'>By continuing, you agree to Cleartrip's <span className='blue'>privacy policy</span>  &
+                <span className='blue'>terms of use.</span></p>
+                </div>
+               
                 </div>
                 
               </Form>
@@ -154,11 +163,14 @@ export default function LoginSignup({ settokenAvailability,  setlogincheck }) {
                 <span className='goto '>Already a user?</span>
                 <p className='backtologin' onClick={() => { seterror(false); setpagination(true) }}>Login</p>
                 </div>
+                <p className='signup-number-option'>We now support mobile number based login. The option will be available soon</p>
+                <p className='signup-terms-policy'>By continuing, you agree to Cleartrip's <span className='blue'>privacy policy</span> &
+                <span className='blue'>terms of use.</span></p>
               
               </Form>
             )}
         </div>
-        <p>By Cont</p>
+
       </div>
     </div>
   );
