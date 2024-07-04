@@ -2,12 +2,12 @@ let tl;
 import React, { useEffect, useState, useMemo } from 'react'
 import { NavLink, useNavigate, Link } from 'react-router-dom'
 import "../styles/FlightsResults.css";
-
+import Footer from '../SmallComp/Footer';
 import { useLocation } from 'react-router-dom';
 import Calendar from 'react-calendar';
 import LoginSignup from '../SmallComp/LoginSignup';
 import { CiCircleInfo } from "react-icons/ci";
-import Footer from "../SmallComp/Footer";
+
 import {objdropdowncity,days,months,logofinder,airlineNamefinder,flightsresultsStatefun, baseapi } from './Constant';
 import { useAuthContext } from './ContextAllData';
 
@@ -220,6 +220,7 @@ export default function FlightsResult() {
 
 
     return (
+        <>
         <div className='flightResultMain flex flexc'>
              {logincheck && <LoginSignup settokenAvailability={settokenAvailability} checklogin={checklogin} setlogincheck={setlogincheck} />}
             <nav className='navFlightResults flexja'>
@@ -504,8 +505,10 @@ export default function FlightsResult() {
                 </div>
             }
             {!pageLoader && <div className="lds-dual-ring"></div>}
-            <Footer/>
+           
         </div>
+         <Footer/>
+         </>
 
     )
 }

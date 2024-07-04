@@ -487,6 +487,7 @@ span.error {
   padding: 5px;
   background-color: #f0f0f0;
   width: 300px;
+  z-index: 100;
 }
 
 .flightInData h4 {
@@ -497,7 +498,7 @@ span.error {
 }
 
 .asidebarFlightPage {
-  background-color: white;
+  /* background-color: white; */
   margin-left: 5px;
 }
 

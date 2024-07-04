@@ -114,6 +114,7 @@
     left: 0;
     width: 277px;
     background-color: white;
+    z-index: 100;
 }
 .HotelsPeoplePop p{
     color: rgba(0, 0, 0, 0.667);
@@ -143,7 +144,7 @@
     height: 300px;
     overflow-y: scroll;
     border-radius: 6px;
-    z-index: 1;
+    z-index: 100;
     padding: 0px 10px;
 }
 .hotelMainPageInput{
@@ -184,7 +185,7 @@ stroke: blue;
     align-items: flex-start;
     z-index: 1;
     padding: 20px 15px;
-    margin-top: -30px;
+    margin-top: -9px;
     margin-bottom: 20px;
   }
   

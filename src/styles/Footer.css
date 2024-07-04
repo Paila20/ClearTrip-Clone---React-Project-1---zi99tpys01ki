@@ -5,13 +5,17 @@
     /* padding-bottom: 100px; */
     height: 2vh;
     position: absolute;
-   
+
+
 }
 .g40{
     gap:10px
 }
 .Footermainouterdiv{
     margin-top: 10px;
+    border-top: 0.005px solid lightgray;
+    /* color: 5px solid gray; */
+
   
 }
 .footercardright {

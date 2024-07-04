@@ -432,12 +432,14 @@ opacity: 1;
     position: fixed;
     top: 0;
     right: -550px;
-    padding: 20px 10px;
+    padding: 20px 30px;
     height: 100%;
-    width: 500px;
+    width: 400px;
     z-index: 100000;
     background-color: white;
     transition: all 0.2s ease-in;
+    box-shadow: -10px 0 500px rgba(0, 0, 0, 5);
+     
 }
 
 .hotel-logincheck{

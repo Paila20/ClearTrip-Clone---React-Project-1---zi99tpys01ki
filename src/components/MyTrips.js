@@ -6,7 +6,10 @@ import { CiCircleInfo } from "react-icons/ci";
 import '../styles/MyTrips.css';
 import Footer from "../SmallComp/Footer";
 import { logofinder } from './Constant';
+import { useAuthContext } from './ContextAllData';
 export default function MyTrips() {
+
+    const {  tokenAvailability,checklogin } = useAuthContext();
     const [bookingdata, setBookingdata] = useState([])
     const [toggle, settoggle] = useState(true)
     const senddata = async () => {
@@ -34,11 +37,20 @@ export default function MyTrips() {
         const formattedTime = new Date(timestamp).toLocaleDateString('en-US', options);
         return formattedTime;
     }
- 
 
     useEffect(() => {
-        senddata()
-    }, []) 
+        if (!tokenAvailability) {
+            checklogin();
+        }
+    }, [tokenAvailability]);
+
+    useEffect(() => {
+        if (tokenAvailability) {
+            senddata();
+        }
+    }, [tokenAvailability]);
+ 
+    
     return (
         <div style={{ width: '60vw' }}>
             <h1 className='booking-heading'>Booking history</h1>
@@ -48,7 +60,8 @@ export default function MyTrips() {
             </div>
 
           
-            {toggle && bookingdata.length > 0 && bookingdata.map((item, index) => item.booking_type === 'flight' && (
+            { tokenAvailability &&
+            toggle && bookingdata.length > 0 && bookingdata.map((item, index) => item.booking_type === 'flight' && (
                 <div key={index} className="booking-flight-details">
                     <div className="booking-flight-details-header ">
                         <div className="booking-header-head1 ">
@@ -99,7 +112,7 @@ export default function MyTrips() {
 
          
             <div className='booking-hotel-trip '>
-                {bookingdata && !toggle && bookingdata.map((item, index) => item.booking_type === 'hotel' && (
+                { tokenAvailability && bookingdata && !toggle && bookingdata.map((item, index) => item.booking_type === 'hotel' && (
                     <div className='booking-hotelinfo-left-card'>
                         <div className=' booking-hotelinfo '>
                             <div className='booking-hotel-col'>

@@ -306,7 +306,7 @@ function filterchangerforrating(key, value) {
                       <NavLink to="/under-maintainance"><p className='profileSelectors rightPS flexa'><svg viewBox="0 0 14 14" height="16" width="16" className="c-secondary-500"><g fill="none" fillRule="evenodd"><rect width="14" height="14" fill="#FFF" opacity="0"></rect><path fill="currentColor" fillRule="nonzero" d="M5.5,1 C5.5,1.82842712 6.17157288,2.5 7,2.5 C7.82842712,2.5 8.5,1.82842712 8.5,1 L11,1 C11.5522847,1 12,1.44771525 12,2 L12,12 C12,12.5522847 11.5522847,13 11,13 L8.5,13 C8.5,12.1715729 7.82842712,11.5 7,11.5 C6.17157288,11.5 5.5,12.1715729 5.5,13 L3,13 C2.44771525,13 2,12.5522847 2,12 L2,2 C2,1.44771525 2.44771525,1 3,1 L5.5,1 Z M4.402,2.499 L3.5,2.499 L3.5,6 L5,6 L5,7.5 L3.5,7.5 L3.5,11.499 L4.402,11.499 L4.46706391,11.3917355 C4.96982923,10.6015566 5.83218191,10.0625441 6.82372721,10.0050927 L7,10 C8.06512059,10 9.00059634,10.5550755 9.53293609,11.3917355 L9.597,11.499 L10.5,11.499 L10.5,7.5 L9,7.5 L9,6 L10.5,6 L10.5,2.499 L9.597,2.499 L9.53293609,2.60826455 C9.03017077,3.39844335 8.16781809,3.93745585 7.17627279,3.99490731 L7,4 C5.93487941,4 4.99940366,3.44492446 4.46706391,2.60826455 L4.402,2.499 Z M8,6 L8,7.5 L6,7.5 L6,6 L8,6 Z"></path></g></svg><p>print hotel voucher</p></p></NavLink>
                     </div>
                   </div>
-                  <div className='SignoutBtn' onClick={() => { finishtoken(); setall((prev) => ({ ...prev, ["token"]: "" })) }}>Sign out</div>
+                  <div className='SignoutBtn' onClick={() => { finishtoken(); setall((prev) => ({ ...prev, ["token"]: "" })) }}>Log out</div>
                 </div>}
             </button>}
           </nav>
